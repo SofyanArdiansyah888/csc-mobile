@@ -1,0 +1,7 @@
+{
+  "name": "csc-mobile-new",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
