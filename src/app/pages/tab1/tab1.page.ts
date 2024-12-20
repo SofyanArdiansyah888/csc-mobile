@@ -11,7 +11,6 @@ import {ModalService} from '../../services/ionic/modal.service';
 import {environment} from "../../../environments/environment";
 import {IonicModule} from "@ionic/angular";
 import {CommonModule, NgForOf, NgIf, NgOptimizedImage, NgStyle} from "@angular/common";
-import {ButtonDirective} from "primeng/button";
 
 @Component({
   selector: 'app-tab1',
@@ -25,7 +24,6 @@ import {ButtonDirective} from "primeng/button";
     NgStyle,
     RouterLink,
     CommonModule,
-    ButtonDirective,
   ],
   standalone: true
 })
@@ -70,7 +68,7 @@ export class Tab1Page {
   }
 
   // promoClick(court: CourtEntity) {
-    // this.router.navigateByUrl(`court/${court.id}/detail-promo`);
+  // this.router.navigateByUrl(`court/${court.id}/detail-promo`);
   // }
 
   courtClick(court: CourtEntity) {
@@ -135,8 +133,7 @@ export class Tab1Page {
   // }
 
 
-  promoClick(item: any){
-
+  promoClick(item: any) {
 
 
     // });

@@ -21,8 +21,8 @@ export interface VenueEntity {
   image3: string;
   category_id?: number;
   category?: CategoryEntity;
-  courts?: CourtEntity[];
-  facilities?: FacilityEntity[];
+  courts: CourtEntity[];
+  facilities: FacilityEntity[];
   created_at?: string;
   updated_at?: string;
   deleted_at?: string;

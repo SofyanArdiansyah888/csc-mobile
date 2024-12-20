@@ -3,41 +3,76 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
+  <!-- Header Component -->
   <app-base-header
     (handleBackClick)="backClick()"
-    title="{{category.name}}"
+    [title]="category.name"
     description="List venue pilihan untuk kamu"
   ></app-base-header>
 
-
+  <!-- Search Input -->
   <ion-item class="hw-cari" lines="none">
-    <ion-icon class="icon-search" name="search" item-start></ion-icon>
-    <ion-input placeholder="Lapangan Apaki Cari Bossku ?"></ion-input>
+    <ion-icon class="icon-search" name="search" slot="start"></ion-icon>
+    <ion-input placeholder="Lapangan Apaki Cari Bossku?"></ion-input>
   </ion-item>
 
-  <div *ngIf="!loading">
-    <div style="text-align:center" *ngIf="venues.length === 0">
+  <!-- Venue List -->
+  <ng-container *ngIf="!loading; else loadingSkeleton">
+    <div class="empty-state" *ngIf="venues.length === 0">
       <p>Belum ada data</p>
     </div>
-    <div class="hw-list" style="width: 100%" *ngFor="let venue of venues">
+    <div class="hw-list" *ngFor="let venue of venues">
       <ion-item class="hw-listlapangan" (click)="venueClick(venue)">
-        <ion-col size="9" style="padding: 0">
+        <ion-col size="9" class="hw-listlapangan-details">
           <p class="hw-nama">{{ venue.name }}</p>
           <p class="hw-address">{{ venue.location }}</p>
 
-<!--          <p class="hw-fasilitas">{{ venue?.facilities[0].name }}</p>-->
-<!--          <p class="hw-fasilitas">{{ venue?.facilities[1].name }}</p>-->
-          <p class="hw-fasilitas">dst...</p>
 
-<!--          <p class="hw-nama harga">{{ venue?.courts[0].price_description }}</p>-->
+          <div>
+            <p *ngFor="let facility of venue?.facilities?.slice(0,2)" class="hw-fasilitas">
+              {{ facility?.name || '' }}
+            </p>
+          </div>
+
+
+          <p class="hw-nama harga">
+            {{ venue?.courts?.[0]?.price_description || '' }}
+          </p>
         </ion-col>
 
-        <ion-col size="3">
-          <img class="thumbnail" src="{{imageUrl}}/{{venue.logo}}"/>
+        <ion-col size="3" class="hw-thumbnail">
+          <img class="thumbnail" [src]="imageUrl + '/' + venue.logo" alt="{{ venue.name }}"/>
         </ion-col>
       </ion-item>
     </div>
-  </div>
+  </ng-container>
 
-<!--  <app-skeleton-list [loading]='loading'></app-skeleton-list>-->
+  <!-- Loading Skeleton -->
+  <ng-template #loadingSkeleton>
+    <div *ngIf="loading" class="hw-list">
+      <ion-item *ngFor="let venue of [1,2,3,4,5]" class="hw-listlapangan">
+        <ion-col size="9" class="hw-listlapangan-details">
+          <p class="hw-nama">
+            <ion-skeleton-text></ion-skeleton-text>
+          </p>
+          <p class="hw-address">
+            <ion-skeleton-text></ion-skeleton-text>
+          </p>
+          <div class="hw-fasilitas">
+            <ion-skeleton-text></ion-skeleton-text>
+          </div>
+          <p class="hw-nama harga">
+            <ion-skeleton-text></ion-skeleton-text>
+          </p>
+        </ion-col>
+
+        <ion-col size="3" class="hw-thumbnail">
+          <ion-skeleton-text
+            animated
+            style="height: 80px;border-radius: 20px"
+          ></ion-skeleton-text>
+        </ion-col>
+      </ion-item>
+    </div>
+  </ng-template>
 </ion-content>
