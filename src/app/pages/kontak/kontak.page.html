@@ -1,0 +1,42 @@
+<ion-content fullscreen="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div style="width: 100%;">
+    <ion-item lines="none" class="header-title" style="margin-bottom: -10px;">
+      <ion-col size="1">
+        <ion-icon class="backclik_black" (click)="backClick()" src="assets/icon/chevron-left.svg"></ion-icon>
+      </ion-col>
+      <ion-col size="11">
+        <p class="title" style="margin: 20px 0 0px 10px;">Hubungi CS</p>
+        <p style="margin: 0;">
+          <span style="padding-left: 10px;">Silahkan hubungi kami untuk segala pertanyaan</span>
+        </p>
+      </ion-col>
+    </ion-item>
+  </div>
+
+  <ion-item style="margin-top:50%;" lines="none">
+    <img class="logo" src="assets/olahraga/comment-dots-solid.svg">
+  </ion-item>
+
+  <ion-item style="margin-top:5px;" lines="none">
+    <ion-col>
+      <p class="top">Butuh informasi lebih jelas?</p>
+      <p class="second">Chat langsung dengan CS MSportive yah</p>
+    </ion-col>
+  </ion-item>
+
+  <ion-item style="margin-top:5px;" lines="none">
+
+    <div class="hw-wa">
+      <a href="https://wa.me/6285211818886?text=Halo%Karsa">
+       <span>Kirim Pesan via Whatsapp</span>
+      </a>
+    </div>
+
+  </ion-item>
+
+
+</ion-content>

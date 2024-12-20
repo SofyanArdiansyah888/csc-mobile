@@ -1,0 +1,46 @@
+.backclik_black {
+  position: absolute;
+  top: -7px;
+  background: #FFDDE0;
+  padding: 10px;
+  left: 0px;
+  border-radius: 100%;
+  font-size: 18px;
+}
+
+ion-item {
+  --padding-start: 20px;
+  padding-right: 20px;
+  --inner-padding-end: 0px;
+
+  p {
+    font-family: 'Metropolis-Semi';
+    font-size: 18px;
+  }
+
+  .kategori,
+  .harga {
+    color: #6257A0;
+  }
+
+  .kategori {
+    font-size: 12px;
+  }
+
+  div[slot=end] {
+    padding-top: 21px;
+  }
+}
+
+ion-item.header-title p {
+  color: #000000;
+  font-family: "Metropolis-Bold";
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+span {
+  font-family: "Metropolis-Regular";
+  color: #A5A5A5;
+  font-size: 14px;
+}

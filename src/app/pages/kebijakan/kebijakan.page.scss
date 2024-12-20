@@ -1,0 +1,59 @@
+.backclik_black {
+    position: absolute;
+    top: 0px;
+    background: #FFDDE0;
+    padding: 10px;
+    left: 0px;
+    border-radius: 100%;
+  }
+
+
+
+    div {
+        display: block;
+        position: relative;
+        width: 100%;
+    }
+    p {
+      font-family: 'Metropolis-Regular';
+      display: block;
+      position: relative;
+      }
+  
+
+
+
+
+ion-item.header-title p {
+    color: #000000;
+    font-family: "Metropolis-Bold";
+    font-size: 18px;
+}
+
+span {
+    font-family: "Metropolis-Regular";
+    color: #A5A5A5;
+    font-size: 14px;
+}
+
+
+img.logo {
+    margin: 0 auto;
+    float: none;
+    display: block;
+}
+
+p.top {
+    width: 65%;
+    text-align: center;
+    margin: 0 auto;
+    line-height: 1.5;
+    letter-spacing: 1.2px;
+}
+
+p.hw-konten {
+    font-family: "Metropolis-Regular";
+    display: block;
+    position: relative;
+    line-height: 1.5;
+}

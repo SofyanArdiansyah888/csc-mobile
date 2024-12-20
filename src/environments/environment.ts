@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseUrl: `https://karsa.banisadar.com/api`,
+  imageUrl:`https://karsa.banisadar.com/storage`
 };
 
 /*

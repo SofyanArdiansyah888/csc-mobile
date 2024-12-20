@@ -1,0 +1,129 @@
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <app-base-header
+    (handleBackClick)="backClick()"
+    title="Detail Pesanan"
+    description="Silahkan periksa kembali riwayat pesanan kamu">
+  </app-base-header>
+
+
+  <!--Detail order Pesanan-->
+<div style="margin-top: 32px;" class="hw-rincian hwdatetime">
+  <ion-item class="with-border isi">
+    <ion-col size="6">
+      <p class="title" style="margin: 0px 0 0px 0px;">Pembayaran</p>
+    </ion-col>
+    <ion-col style="text-align: right; color: #000000;" size="6">
+      <span class="hw-paid">Berhasil</span>
+    </ion-col>
+  </ion-item>
+
+  <ion-item style="margin-top: 10px;" class="isi" lines="none">
+    <ion-col class="kiri"  size="6">Order ID</ion-col>
+    <ion-col style="text-align: right;" size="6">SPRTVIN232032128117</ion-col>
+  </ion-item>
+
+  <ion-item style="margin-top: 10px;" class="isi" lines="none">
+    <ion-col class="kiri"  size="6">Dibayar</ion-col>
+    <ion-col class="lainnya" style="text-align: right;" size="6">3 Oktober 2022</ion-col>
+  </ion-item>
+
+  <ion-item style="margin-top: 10px;" class="isi" lines="none">
+    <ion-col class="kiri"  size="6">Metode Pembayaran</ion-col>
+    <ion-col class="lainnya" style="text-align: right; margin-bottom: 10px;" size="6">BNI</ion-col>
+  </ion-item>
+
+  <ion-item style="margin-top: 10px;" class="isi" lines="none">
+    <ion-col class="kiri"  size="6">Biaya Venue</ion-col>
+    <ion-col style="text-align: right;" size="6">450.000</ion-col>
+  </ion-item>
+
+  <ion-item style="margin-top: 10px;" class="isi" lines="none">
+    <ion-col class="kiri"  size="6">Convenience Fee</ion-col>
+    <ion-col class="lainnya" style="text-align: right;" size="6">0</ion-col>
+  </ion-item>
+
+  <ion-item style="margin-top: 10px;" class="isi" lines="none">
+    <ion-col class="kiri" size="6" style="margin-bottom: 10px;">Biaya Transaksi</ion-col>
+    <ion-col class="lainnya" style="text-align: right; margin-bottom: 10px;" size="6">5.000</ion-col>
+  </ion-item>
+
+  <ion-item style="margin-top: 10px;" class="isi" lines="none">
+    <ion-col class="kiri" size="6" style="margin-bottom: 10px;">Total Pembayaran</ion-col>
+    <ion-col class="lainnya" style="text-align: right; margin-bottom: 10px;" size="6">455.000</ion-col>
+  </ion-item>
+
+
+</div>
+
+<div class="hw-empty-space"></div>
+
+
+<!--Jadwal Pesanan-->
+<ion-item class="with-border isi">
+  <ion-col size="6">
+    <p class="title" style="margin: 0px 0 0px 0px;">Jadwal Pesanan</p>
+  </ion-col>
+  <ion-col style="text-align: right; color: #000000;" size="6">
+    BOOK32328896004
+  </ion-col>
+</ion-item>
+
+<ion-item lines="none">
+  <ion-col>
+    <p class="title" style="margin: 25px 0 15px 0px;">Karsa Mini Soccer</p>
+    <p class="hw-spek">Lapangan A - Rumput sintetis</p>
+  </ion-col>
+</ion-item>
+
+
+<!--Detail tanggal waktunya-->
+<div class="hw-list" style="width:100%; margin-top: 22px;">
+  <p class="hw-datee">Rabu, 28 Sep 2022</p>
+
+<ion-item class="hw-item-waktunya" lines="none">
+  <ion-col class="hw-reviewtime hw-time" size="12">
+    <div class="hw-col-2">
+      08:00 - 09:00
+    </div>
+    <div class="hw-col-2">
+      <p class="pricenya">Rp225.000</p>
+    </div>
+  </ion-col>
+</ion-item>
+
+  <ion-item class="hw-item-waktunya" lines="none">
+    <ion-col class="hw-reviewtime hw-time" size="12">
+      <div class="hw-col-2">
+        09:00 - 10:00
+      </div>
+      <div class="hw-col-2">
+        <p class="pricenya">Rp225.000</p>
+      </div>
+    </ion-col>
+    </ion-item>
+</div>
+
+<div class="hw-empty-space"></div>
+
+
+</ion-content>
+
+<!--Footer-->
+<ion-footer>
+  <ion-item class="hw-tombol" lines="none">
+  <ion-button class="pilih">
+    <span>
+      <a style="color:#fff;" href="/olahraga/pilih">
+        KEMBALI
+      </a>
+    </span>
+  </ion-button>
+</ion-item>
+
+</ion-footer>

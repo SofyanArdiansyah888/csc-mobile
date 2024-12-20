@@ -1,0 +1,132 @@
+<ion-content>
+  <ion-item lines="none" class="header-title" style="margin-bottom: -10px">
+    <ion-col style="margin: 45px 20px">
+      <ion-icon
+        class="backclik_black"
+        (click)="backClick()"
+        src="assets/icon/chevron-left.svg"
+      ></ion-icon>
+    </ion-col>
+  </ion-item>
+
+  <div class="frame-default">
+    <img class="logo" src="assets/olahraga/logo.png" />
+    <form class="mid" #form="ngForm" (ngSubmit)="register(form.value)">
+      <ion-grid>
+        <ion-row color="primary">
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+            <div>
+              <h3>Yuk Daftar & <br />Bertanding Sekarang</h3>
+            </div>
+
+            <div class="kurung">
+              <div class="bungkus">
+                <ion-row class="upgan">
+                  <ion-col>
+                    <div class="ion-text-left bm_reg">
+                      Jika sudah punya akun / <a routerLink="/login"> Login</a>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </div>
+            </div>
+
+            <div class="hw-form-daftar">
+              <ion-item lines="none">
+                <ion-label position="floating" mode="ios"
+                  >Nama Lengkap</ion-label
+                >
+                <ion-input
+                  enterkeyhint="go"
+                  (keyup.enter)="register(form.value)"
+                  ngModel
+                  name="nama"
+                  type="text"
+                >
+                </ion-input>
+              </ion-item>
+              <ion-item lines="none">
+                <ion-label position="floating" mode="ios"
+                  >Nomor Handphone</ion-label
+                >
+                <ion-input
+                  enterkeyhint="go"
+                  (keyup.enter)="register(form.value)"
+                  ngModel
+                  name="telepon"
+                  type="number"
+                >
+                </ion-input>
+              </ion-item>
+<!--              <ion-item lines="none">-->
+<!--                <ion-label position="floating" mode="ios">Email</ion-label>-->
+<!--                <ion-input-->
+<!--                  enterkeyhint="go"-->
+<!--                  (keyup.enter)="register(form.value)"-->
+<!--                  ngModel-->
+<!--                  name="email"-->
+<!--                  type="email"-->
+<!--                >-->
+<!--                </ion-input>-->
+<!--                <span class="error" [hidden]="emailerror === ''"-->
+<!--                  >{{emailerror}}</span-->
+<!--                >-->
+<!--              </ion-item>-->
+<!--              <ion-item lines="none">-->
+<!--                <ion-label position="floating" mode="ios">Password</ion-label>-->
+<!--                <ion-input-->
+<!--                  enterkeyhint="go"-->
+<!--                  (keyup.enter)="register(form.value)"-->
+<!--                  ngModel-->
+<!--                  name="password"-->
+<!--                  [type]="showPassword ? 'text' : 'password'"-->
+<!--                ></ion-input>-->
+<!--                <ion-icon-->
+<!--                  class="mata-satu"-->
+<!--                  size="default"-->
+<!--                  slot="end"-->
+<!--                  [name]="showPassword ? 'eye-off' : 'eye'"-->
+<!--                  (click)="togglePassword()"-->
+<!--                ></ion-icon>-->
+<!--                <span class="error" [hidden]="passerror === ''"-->
+<!--                  >{{passerror}}</span-->
+<!--                >-->
+<!--              </ion-item>-->
+
+              <ion-item lines="none">
+                <input type="checkbox" value="terima" />
+                <ion-col
+                  style="padding-left: 35px; line-height: 1.3"
+                  class="hw-time"
+                  size="12"
+                >
+                  <label style="color: #b2b2b2; opacity: 0.6" >
+                    Saya setuju dengan
+                    <a>syarat & ketentuan</a> yang berlaku
+                    di platform MSportive
+                  </label>
+                </ion-col>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <div class="ion-text-center googlebutton">
+              <ion-button
+                type="submit"
+                [disabled]="form.invalid"
+                expand="block"
+                class="flex-margin"
+                size="default"
+              >
+                <span>DAFTAR SEKARANG</span>
+              </ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>

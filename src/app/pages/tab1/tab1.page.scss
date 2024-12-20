@@ -1,0 +1,316 @@
+ion-header {
+  .hw-slide {
+    min-height: 187px;
+
+  }
+
+  ion-slides {
+    margin-bottom: 10px !important;
+}
+
+.hw-titleatas {
+  color: #000;
+  margin-bottom: 0px;
+}
+
+  .paling-atas {
+    padding: 20px;
+    background: #fff;
+
+    ion-toolbar {
+
+      --background: #fff;
+    }
+
+    ion-avatar {
+      color: #fff;
+      background: #c5c4c4;
+      text-align: center;
+      line-height: 45px;
+      width: 45px;
+      height: 45px;
+      font-size: 20px;
+      font-family: 'Metropolis-Medium';
+      margin-left: 1px;
+      margin-top: 10px;
+      right: 0;
+    position: absolute;
+    }
+
+    .hw-user {
+      position: relative;
+      top: -3px;
+    }
+
+    .wel {
+      font-family: Metropolis-Medium;
+      font-size: 12px;
+      color: #a5a5a5;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    .nama {
+      font-family: Metropolis-Medium;
+      font-size: 18px;
+      color: #2d2d2d;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .hw-pesan {
+      font-size: 23px
+    }
+
+    span.hw-pesan-unred {
+      background: #2EC4B6;
+      width: 18px;
+      height: 18px;
+      border-radius: 100%;
+      color: #fff;
+      font-family: "Metropolis-Medium";
+      font-size: 13px;
+      text-align: center;
+      line-height: 19px;
+      position: relative;
+      top: -4px;
+      box-shadow: 0px 3px 6px #2ec4b667;
+      left: -7px;
+    }
+  }
+
+  .swiper-slide img {
+    width: 90%;
+    height: 157px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0px 5px 15px #00000019;
+    margin-bottom: 30px;
+    background-color: #fd9f27;
+  }
+
+}
+
+.menu-atas {
+  margin-bottom: 12px;
+  min-height: 105px;
+
+  .scrollable .kotak .scroll-col {
+    padding: 0 35px 0 0;
+  }
+}
+
+
+.scrollable {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  .kotak {
+    padding-left: 20px;
+    max-width: max-content;
+    width: max-content;
+
+    
+
+    .scroll-col {
+      padding: 0 20px 0 0;
+      
+      .hw_menu-oder {
+        background: #FFC69A !important;
+      }
+
+      .hw-mnfutsal{
+        background: #FEEBC6 !important;
+      }
+
+      .hw_menucepat {
+        width: 61px;
+        height: 61px;
+        background: #f9929f;
+        border-radius: 100%;
+        position: relative;
+
+
+        img {
+          object-fit: cover;
+    object-position: center;
+    position: absolute;
+    top: 55%;
+    right: -77%;
+    transform: translate(-50%, -50%);
+        }
+
+        ion-badge {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          border-radius: 10px;
+          background: #2EC4B6;
+          font-size: 8px;
+
+          span {
+            color: #fff;
+            font-size: 8px;
+            font-family: 'Metropolis-Medium';
+            top: 2px;
+            position: relative;
+          }
+        }
+
+      }
+
+      .title-produk {
+        font-size: 12px;
+        color: #656565;
+    opacity: 0.8;
+      }
+    }
+  }
+}
+
+.scrollable::-webkit-scrollbar {
+  display: none;
+}
+
+.title {
+  font-family: 'Metropolis-Bold';
+  font-size: 18px;
+}
+
+.subtext {
+  font-size: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.menu-atas {
+  .scrollcontent {
+    margin-bottom: 15px;
+
+  }
+}
+
+.toko-pilihan {
+  min-height: 203px;
+
+  ion-item {
+    --padding-start: 20px;
+    --inner-padding-end: 5px;
+    --min-height: 18px;
+
+  }
+
+  .header-title {
+    height: 28px;
+  }
+
+  p {
+    margin: 0
+  }
+
+  .title {
+    margin-bottom: 15px;
+  }
+
+
+  .hw_tokopilihan {
+    width: 166px;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0px 5px 15px #0000001c;
+    margin-bottom: 30px;
+    margin-top: 3px;
+
+    img {
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      height: 90px;
+      width: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    ion-item {
+      --padding-start: 10px;
+      --inner-padding-end: 10px;
+      white-space: break-spaces;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+
+      .diskon {
+        line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin-top: 10px;
+    margin-bottom: 16px;
+    color: #656565;
+
+        span {
+          font-family: 'Metropolis-Bold'
+        }
+      }
+
+
+      img {
+        width: 27px;
+        height: 27px;
+        border-radius: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+    p.fitur-tdktau {
+      background: #f55869;
+    border-radius: 100%;
+    height: 25px;
+    width: 25px;
+    line-height: 2.5;
+    padding-left: 4px;
+    color: #fff;
+    font-size: 10px;
+    margin-top: -10px;
+  }
+
+  }
+
+  .hw_berita {
+    .judul {
+      max-width: 100%;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin-top: 10px;
+    margin-bottom: 16px;
+    color: #656565;
+    }
+  }
+
+}
+
+.hw-chat {
+  position: absolute;
+  right: 25px;
+  p {
+    color: #F15162;
+    margin: 0 auto;
+    text-align: center;
+}
+img {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+}

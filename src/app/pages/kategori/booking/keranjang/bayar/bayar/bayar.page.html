@@ -1,0 +1,95 @@
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <app-base-header
+    (handleBackClick)="backClick()"
+    title="Metode Pembayaran"
+    description="Pilih metode pembayaran kamu">
+  </app-base-header>
+
+
+  <div class="hwdatetime">
+    <ion-item
+      style="
+        --background: #ff000000;
+        --inner-border-width: 0 0 3px 0;
+        --border-style: dashed;
+      "
+    >
+      <ion-col size="12">
+        <p class="title hw-bultah" style="margin: 20px 0 0px 0px">Transfer</p>
+      </ion-col>
+    </ion-item>
+  </div>
+
+  <!--Pilih Bank-->
+  <div class="hw-jamnya" id="pilih-jam">
+    <form action="">
+      <ion-item>
+        <input type="radio" name="banknya" value="1386665000971" />
+        <ion-col class="hw-isibank" size="12">
+          <img src="../../../../../../../assets/bank/bni.png" />
+          <label class="namabank">BNI Virtual Account</label>
+        </ion-col>
+      </ion-item>
+
+      <ion-item>
+        <input type="radio" name="banknya" value="1386665000972" />
+        <ion-col class="hw-isibank" size="12">
+          <img src="../../../../../../../assets/bank/mandiri.png" />
+          <label class="namabank">Mandiri Virtual Account</label>
+        </ion-col>
+      </ion-item>
+
+      <ion-item>
+        <input type="radio" name="banknya" value="1386665000973" />
+        <ion-col class="hw-isibank" size="12">
+          <img ngSrc="../../../../../../../assets/bank/bca.png" height="26" width="47" alt=""/>
+          <label class="namabank">BCA Virtual Account</label>
+        </ion-col>
+      </ion-item>
+
+      <ion-item lines="none">
+        <input type="radio" name="banknya" value="1386665000974" />
+        <ion-col class="hw-isibank" size="12">
+          <img ngSrc="../../../../../../../assets/bank/bri.png" height="28" width="52" alt=""/>
+          <label class="namabank">BRI Virtual Account</label>
+        </ion-col>
+      </ion-item>
+      <div class="hw-empty-space"></div>
+    </form>
+  </div>
+
+  <!-- <ion-item lines="none">
+    <ion-col style="text-align: right" size="6"
+      ><label>Powered by</label></ion-col
+    >
+    <ion-col size="6"><img src="assets/bank/midtrans.png" /></ion-col>
+  </ion-item> -->
+</ion-content>
+
+<ion-footer>
+  <ion-item lines="none">
+    <ion-col size="6">
+      <p class="hw-labelharga">Total Biaya</p>
+<!--      <p class="hw-hargatotal"><span>{{totalPrice| currency:'Rp.':'symbol':'3.0' }}</span></p>-->
+    </ion-col>
+    <ion-col
+      size="6"
+      style="margin: 0 auto; float: none; text-align: right; padding: 0"
+    >
+      <ion-button class="pilih">
+        <span>
+          <a
+            style="color: #fff"
+            (click) = selanjutnyaClick()
+          >
+            Selanjutnya
+          </a>
+        </span>
+      </ion-button>
+    </ion-col>
+  </ion-item>
+</ion-footer>

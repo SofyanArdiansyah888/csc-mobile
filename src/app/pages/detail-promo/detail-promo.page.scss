@@ -1,0 +1,104 @@
+.backclik_black {
+    position: absolute;
+    top: 0px;
+    background: #FFDDE0;
+    padding: 10px;
+    left: 0px;
+    border-radius: 100%;
+  }
+  div.datanya {
+    display: block;
+    border-bottom: 6px solid #EBEBEB;
+    margin-top: 15px;
+
+        img.hw-ganbarnya {
+            margin: 15px 0px;
+            border-radius: 15px;
+            height: 214px;
+            width: 100%;
+            object-fit: cover;
+    }
+  ion-item.hw-lapangan {
+    --padding-start: 20px;
+    padding-right: 20px;
+    --inner-padding-end: 0px;
+    div {
+        display: block;
+        position: relative;
+        width: 100%;
+    }
+    p.hw-nama-lapangan{
+        color: #000;
+    font-family: "Metropolis-Bold";
+    font-size: 18px;
+    margin: 0px 0 15px 0;
+    }
+    p {
+      font-family: 'Metropolis-Regular';
+      display: block;
+      position: relative;
+      }
+    p.hw-deskripsi {
+        font-size: 14px;
+        font-size: 14px;
+    margin-top: 5px;
+    color: #656565;
+    line-height: 1.5;
+    opacity: 0.7;
+    }
+  }
+}
+
+div.hw-col6 {
+    width: 49.9% !important;
+    display: inline-block !important;
+    margin: 0 auto;
+    vertical-align: top;
+}
+
+.teks-kanan p {
+    text-align: right;
+    opacity: 0.7;
+}
+
+    .hw-jenis p {
+        background: url(/src/assets/olahraga/circle-check-solid.svg) no-repeat 100% 100%;
+        background-position: left center;
+        padding-left: 20px;
+        opacity: 1;
+        color: #000;
+        font-size: 16px;
+        font-family: "Metropolis-Semi" !important;
+        margin: 10px 0;
+    }
+
+ion-item.header-title p {
+    color: #000000;
+    font-family: "Metropolis-Bold";
+    font-size: 18px;
+}
+
+span {
+    font-family: "Metropolis-Regular";
+    color: #A5A5A5;
+    font-size: 14px;
+}
+
+p.harga {
+    color: #000;
+    font-family: "Metropolis-Bold";
+    font-size: 18px;
+    margin: 10px 5px 15px 0;
+}
+
+span.hw-btn {
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    background: #F15162;
+    color: #fff;
+    padding: 8px 30px;
+    border-radius: 15px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}

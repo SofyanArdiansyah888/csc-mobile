@@ -1,0 +1,57 @@
+<ion-content fullscreen="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div style="width: 100%; margin-bottom: 32px">
+    <ion-item lines="none" class="header-title">
+      <p class="title" style="margin: 20px 0 0px 0">Riwayat Transaksi</p>
+    </ion-item>
+    <p style="margin: 0">
+      <span style="padding: 0 20px"
+      >Lorem ipsum dolor amet lagela estagle mangle</span
+      >
+    </p>
+  </div>
+
+  <div *ngIf="!loading">
+    <div class="hw-konten-short" *ngFor="let item of bookings">
+      <ion-item lines="full">
+        <div class="hw-col-2">
+          <span style="color: #656565">
+            {{ item?.court?.venue?.category?.name }}
+          </span>
+        </div>
+        <div class="hw-col-2" style="text-align: right">
+          <span class="hw-paid">{{ item.status }}</span>
+        </div>
+      </ion-item>
+
+      <ion-item lines="none">
+        <div class="hw-col-3 col-logo">
+          <img
+            class="logo-lapangan"
+            src="{{imageUrl}}venue/{{item?.court?.venue?.logo}}"
+          />
+        </div>
+        <div class="hw-col-4">
+          <p class="hw-namalap">{{ item?.court?.name }}</p>
+          <!--          <p class="hw-tglbook">{{item.booking_date}}</p>-->
+        </div>
+        <div class="hw-col-3" style="text-align: right">
+          <!--          <p class="hw-harga">Rp. {{item.price}}</p>-->
+        </div>
+      </ion-item>
+    </div>
+  </div>
+  <div *ngIf="loading">
+    <div
+      *ngFor="let item of [1,2,3,4,5]"
+      style="width: 90vw; margin: 20px auto; height: 90px"
+    >
+      <ion-thumbnail style="width: 100%" slot="start">
+        <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+      </ion-thumbnail>
+    </div>
+  </div>
+</ion-content>

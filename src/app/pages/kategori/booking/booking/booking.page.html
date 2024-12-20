@@ -1,0 +1,105 @@
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <app-base-header
+    (handleBackClick)="backClick()"
+    title="Booking"
+    description="Silahkan pesan jadwal yang tersedia">
+  </app-base-header>
+
+  <div class="hw-list" style="width: 100%">
+    <a href="/olahraga/singlesport">
+      <ion-item lines="none" class="hw-listlapangan">
+        <ion-col size="9" style="padding: 0">
+          <p class="hw-nama">{{court.name}}</p>
+          <p class="hw-address">{{court.description}}</p>
+
+          <p class="hw-fasilitas">Jenis Alas : {{court.pedestal_type}}</p>
+          <p class="hw-fasilitas">Jenis Lapangan : {{court.field_type}}</p>
+
+          <p class="hw-nama harga">{{court.price_description}}</p>
+        </ion-col>
+
+        <ion-col size="3">
+          <img class="thumbnail" src="{{imageUrl}}/{{court.image}}" />
+        </ion-col>
+      </ion-item>
+    </a>
+  </div>
+  <div class="hw-empty-space"></div>
+
+  <div class="hwdatetime">
+    <ion-item lines="none">
+      <ion-col size="6">
+        <p class="title hw-bultah" style="margin: 20px 0 0px 0px">
+        {{monthName(selectedMonth)}} {{selectedYear}}
+        </p>
+      </ion-col>
+      <ion-col size="6" style="margin-bottom: 15px">
+        <ion-icon
+          class="prev backclik_black"
+          (click)="prevMonth()"
+          src="assets/icon/chevron-left.svg"
+        ></ion-icon>
+        <ion-icon
+          class="next backclik_black"
+          (click)="nextMonth()"
+          src="assets/icon/chevron-right.svg"
+        ></ion-icon>
+      </ion-col>
+    </ion-item>
+
+    <ion-item>
+      <div class="outer-div">
+        <div class="inner-div">
+          <ul id="dates">
+            <li
+              *ngFor="let day of days"
+              [ngClass]="{'active booked': day.booked, 'disabled': day.disabled}"
+              (click)="!day.disabled && dateClick(day)">
+              <span>{{ day.day }}</span>
+              {{ day.date }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ion-item>
+
+  </div>
+
+  <div class="hw-jamnya" id="pilih-jam">
+    <ion-item lines="none" *ngFor="let bookingTime of bookingTimes">
+      <input
+        type="checkbox"
+        value="{{bookingTime.id}}"
+        [checked]="bookingTime.selected"
+        (change)="onCheckboxChange($event.target,bookingTime)"
+      />
+<!--      <ion-col class="hw-time" size="12">-->
+<!--        <label for="{{bookingTime.name}}">{{bookingTime.name}}</label-->
+<!--        ><span class="harga">{{bookingTime.price | currency:'Rp.':'symbol':'3.0' }}</span>-->
+<!--      </ion-col>-->
+    </ion-item>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-item lines="none">
+    <ion-col size="6">
+      <p class="hw-labelharga">Total Biaya</p>
+<!--      <p class="hw-hargatotal"><span>{{totalPrice| currency:'Rp.':'symbol':'3.0' }}</span></p>-->
+    </ion-col>
+    <ion-col
+      size="6"
+      style="margin: 0 auto; float: none; text-align: right; padding: 0"
+    >
+      <ion-button class="pilih" (click)="selanjutnyaClick()">
+        <span>
+          <a style="color: #fff"> Selanjutnya </a>
+        </span>
+      </ion-button>
+    </ion-col>
+  </ion-item>
+</ion-footer>

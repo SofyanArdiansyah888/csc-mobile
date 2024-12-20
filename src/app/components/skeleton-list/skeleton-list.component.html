@@ -1,0 +1,10 @@
+<div *ngIf="loading">
+  <div
+    *ngFor="let item of repeats"
+    style="width: 90vw; margin: 20px auto; height: 90px"
+  >
+    <ion-thumbnail style="width: 100%" slot="start">
+      <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+    </ion-thumbnail>
+  </div>
+</div>

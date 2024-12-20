@@ -1,0 +1,131 @@
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <app-base-header
+    (handleBackClick)="backClick()"
+    title="Instruksi Pembayaran"
+    description="Lakukan pembayaran berikut">
+  </app-base-header>
+
+
+  <!--Detail order Pesanan-->
+  <div style="margin-top: 32px;" class="hw-rincian hwdatetime">
+    <ion-item class="with-border isi">
+      <ion-col size="6">Order ID</ion-col>
+      <ion-col style="text-align: right; color: #000000;" size="6">
+        SPRTVIN232032128117
+      </ion-col>
+    </ion-item>
+
+    <ion-item style="margin-top: 15px;" class="isi" lines="none">
+      <ion-col size="6">Biaya sewa</ion-col>
+      <ion-col style="text-align: right;" size="6">450.000</ion-col>
+    </ion-item>
+
+    <ion-item class="isi" lines="none">
+      <ion-col size="6">Convenience Fee</ion-col>
+      <ion-col class="lainnya" style="text-align: right;" size="6">0</ion-col>
+    </ion-item>
+
+    <ion-item class="isi">
+      <ion-col size="6" style="margin-bottom: 10px;">Biaya Transaksi</ion-col>
+      <ion-col class="lainnya" style="text-align: right; margin-bottom: 10px;" size="6">5.000</ion-col>
+    </ion-item>
+
+    <ion-item class="hwtotal" lines="none">
+      <ion-col size="6">Total Biaya Sewa</ion-col>
+      <ion-col size="6" style="text-align:right ;">Rp450.000</ion-col>
+    </ion-item>
+  </div>
+
+  <div class="hw-empty-space"></div>
+
+
+  <!--Menunggu Pembayaran-->
+  <ion-item lines="none" style="margin-top: 0px;">
+    <p class="title" style="margin: 0px 0 0px 0px;">Menunggu Pembayaran</p>
+  </ion-item>
+
+  <ion-item style="margin-top: -10px;" lines="none" class="isi">
+    <ion-col size="10" style="padding: 0;">
+      Selesaikan pembayaran dalam
+    </ion-col>
+    <ion-col size="2">
+      <span class="hw-countdown">{{ m }}:{{ timer }}</span>
+    </ion-col>
+  </ion-item>
+
+
+  <!--Detail No.rek-->
+  <div class="hw-list" style="width:100%; margin-top: 22px;">
+    <ion-item lines="none">
+      <ion-col class="hw-reviewtime hw-time" size="12">
+        <div class="hw-col-3">
+          <img src="assets/bank/bni.png">
+        </div>
+        <div class="hw-col-3">
+          <p class="Noreknya waktunya">8343011xxxx</p>
+        </div>
+        <div style="text-align: right; padding-right: 10px;" class="hw-col-3">
+<!--          <label (click)="copy()" class="salin">Salin</label>-->
+        </div>
+      </ion-col>
+    </ion-item>
+  </div>
+
+  <div class="hw-empty-space"></div>
+
+  <!--Panduan Pembayaran-->
+  <ion-item lines="none" style="margin-top: 0px;">
+    <p class="title" style="margin: 0px 0 0px 0px;">Panduan Pembayaran</p>
+  </ion-item>
+
+  <ion-accordion-group>
+    <ion-accordion value="first">
+      <ion-item slot="header" lines="inset">
+        <ion-label>ATM BNI</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        isinyaaaa
+      </div>
+    </ion-accordion>
+    <ion-accordion value="second">
+      <ion-item slot="header" lines="inset">
+        <ion-label>Klik BNI</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        isinyaaaa
+      </div>
+    </ion-accordion>
+    <ion-accordion value="third">
+      <ion-item slot="header" lines="inset">
+        <ion-label>BNI Mobile Banking</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        isinyaaaaaa
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
+
+</ion-content>
+
+<ion-footer>
+  <ion-item lines="none">
+    <ion-col size="6">
+      <p class="hw-labelharga">Bantuan</p>
+    </ion-col>
+    <ion-col size="6" style="margin: 0 auto; float: none; text-align: right; padding: 0;">
+      <ion-button class="pilih" (click)=bookingClick()>
+        <span>
+          <a style="color:#fff;" href="tabs/tab2">
+            OK
+          </a>
+        </span>
+      </ion-button>
+    </ion-col>
+
+  </ion-item>
+</ion-footer>

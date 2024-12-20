@@ -1,0 +1,61 @@
+<ion-item lines="none" class="header-title" style="margin-bottom: -10px">
+  <ion-col size="1">
+    <ion-icon
+      class="backclik_black"
+      (click)="backClick()"
+      src="assets/icon/chevron-left.svg"
+    ></ion-icon>
+  </ion-col>
+</ion-item>
+
+<div class="frame-default">
+  <img class="logo" ngSrc="assets/olahraga/logo.png" height="32" width="147"/>
+  <form class="mid" #form="ngForm" (ngSubmit)="register(form.value)">
+    <ion-grid class="hw-otp-konten">
+      <ion-row color="primary">
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div>
+            <h3>Kode OTP terkirim!</h3>
+            <p>
+              Masukkan kode OTP yang kami kirimkan ke email yang anda daftarkan
+              <strong>{{dataform.email}}</strong>
+            </p>
+          </div>
+          <ion-grid>
+            <ion-row class="otp-box">
+              <ion-col>
+                <div class="card ion-text-left">
+<!--                  <ng-otp-input-->
+<!--                    #ngOtpInput-->
+<!--                    (onInputChange)="onOtpChange($event)"-->
+<!--                    *ngIf="showOtpComponent"-->
+<!--                    [config]="config"-->
+<!--                  ></ng-otp-input>-->
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+<!--                <h3 class="ion-text-center" [hidden]="displayTime === '00:00'">-->
+<!--                  {{displayTime}}-->
+<!--                </h3>-->
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+
+<!--          [disabled]="form.invalid"-->
+          <div class="hw-tombol" padding>
+            <ion-button
+              size="large"
+              type="submit"
+
+              expand="block"
+              >KONFIRMASI
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</div>

@@ -1,0 +1,107 @@
+<ion-content>
+  <ion-item lines="none" class="header-title" style="margin-bottom: -10px">
+    <ion-col style="margin: 45px 20px">
+      <ion-icon
+        class="backclik_black"
+        (click)="backClick()"
+        src="assets/icon/chevron-left.svg"
+      ></ion-icon>
+    </ion-col>
+  </ion-item>
+
+  <div class="frame-default">
+    <img class="logo" ngSrc="assets/olahraga/logo.png" height="32" width="147"/>
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)"  class="mid">
+      <ion-grid>
+        <ion-row color="primary">
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+            <div>
+              <h3>Halo, Sudah Siap <br />Untuk Bertanding?</h3>
+<!--              <p style="color: red">{{(message)}}</p>-->
+            </div>
+            <ion-row class="upgan">
+              <ion-col>
+                <div class="ion-text-left bm_reg">
+                  Jika belum punya akun/ <a (click) = "daftarClick()"> Daftar</a>
+                </div>
+              </ion-col>
+            </ion-row>
+            <div class="hw-login-form">
+              <ion-item lines="none">
+                <ion-label position="floating" mode="ios"
+                >Nomor Handphone</ion-label
+                >
+                <ion-input
+                  enterkeyhint="go"
+                  (keyup.enter)="login(loginForm.value)"
+                  ngModel
+                  name="telepon"
+                  type="number"
+                >
+                </ion-input>
+              </ion-item>
+<!--              <ion-item lines="none">-->
+<!--                <ion-label position="floating" mode="ios">Email</ion-label>-->
+<!--                <ion-input-->
+<!--                  class="hw-input"-->
+<!--                  enterkeyhint="go"-->
+<!--                  (keyup.enter)="login(loginForm.value)"-->
+<!--                  name="email"-->
+<!--                  type="email"-->
+<!--                  ngModel-->
+<!--                >-->
+<!--                </ion-input>-->
+<!--              </ion-item>-->
+
+<!--              <ion-item lines="none">-->
+<!--                <ion-label position="floating" mode="ios">Password</ion-label>-->
+<!--                <ion-input-->
+<!--                  class="hw-input"-->
+<!--                  enterkeyhint="go"-->
+<!--                  (keyup.enter)="login(loginForm.value)"-->
+<!--                  name="password"-->
+<!--                  [type]="showPassword ? 'text' : 'password'"-->
+<!--                  ngModel-->
+<!--                ></ion-input>-->
+                <!--<ion-icon class="eye" size="default" slot="end" [name]="passwordToggleIcon" (click)="togglePassword()">
+              </ion-icon> -->
+<!--                <div class="hw-lupa" (click)="lupakiAlert()">-->
+<!--                  <span>Lupa?</span>-->
+<!--                </div>-->
+<!--              </ion-item>-->
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div class="ion-text-center login_button">
+              <ion-button
+                type="submit"
+                [disabled]="loginForm.value.email === '' || loginForm.value.password === '' "
+                expand="block"
+                class="flex-margin"
+                size="default"
+              >
+                <span>LOGIN</span>
+              </ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+
+<!--        <ion-row>-->
+<!--          <ion-col>-->
+<!--            &lt;!&ndash; <div class="ion-text-center atau">-->
+<!--              atau lebih cepat-->
+<!--            </div> &ndash;&gt;-->
+<!--            <div class="ion-text-center googlebutton">-->
+<!--              <ion-button expand="block" class="flex-margin" size="default">-->
+<!--                <ion-icon slot="start" src="assets/icon/google.svg"></ion-icon>-->
+<!--                <span>LOGIN GOOGLE</span>-->
+<!--              </ion-button>-->
+<!--            </div>-->
+<!--          </ion-col>-->
+<!--        </ion-row>-->
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>

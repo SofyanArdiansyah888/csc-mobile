@@ -1,0 +1,119 @@
+<ion-item lines="none" class="header-title" style="margin-bottom: -10px">
+  <ion-col size="1">
+    <ion-icon
+      class="backclik_black"
+      (click)="backClick()"
+      src="assets/icon/chevron-left.svg"
+    ></ion-icon>
+  </ion-col>
+  <ion-col size="11">
+    <p class="title">Ubah Password</p>
+    <p style="margin: -11px 0 0px 10px">
+      <span style="padding-left: 10px"
+        >Silahkan input password lama anda terlebih dulu</span
+      >
+    </p>
+  </ion-col>
+</ion-item>
+
+<div class="frame-default">
+  <form class="mid" #form="ngForm" (ngSubmit)="changePassword(form.value)">
+    <ion-grid>
+      <ion-row color="primary">
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div class="hw-form-daftar">
+            <ion-item lines="none">
+              <ion-label position="floating" mode="ios"
+                >Password Lama</ion-label
+              >
+              <ion-input
+                enterkeyhint="go"
+                (keyup.enter)="changePassword(form.value)"
+                ngModel
+                name="old_password"
+                [type]="showPassword ? 'text' : 'password'"
+              ></ion-input>
+              <ion-icon
+                class="mata-satu"
+                size="default"
+                slot="end"
+                [name]="showPassword ? 'eye-off' : 'eye'"
+                (click)="togglePassword()"
+              ></ion-icon>
+<!--              <span class="error" [hidden]="passerror === ''"-->
+<!--                >{{passerror}}</span-->
+<!--              >-->
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-label position="floating" mode="ios"
+                >Password Baru</ion-label
+              >
+              <ion-input
+                enterkeyhint="go"
+                (keyup.enter)="changePassword(form.value)"
+                ngModel
+                name="password"
+                [type]="showPassword ? 'text' : 'password'"
+              ></ion-input>
+              <ion-icon
+                class="mata-satu"
+                size="default"
+                slot="end"
+                [name]="showPassword ? 'eye-off' : 'eye'"
+                (click)="togglePassword()"
+              ></ion-icon>
+<!--              <span class="error" [hidden]="passerror === ''"-->
+<!--                >{{passerror}}</span-->
+<!--              >-->
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-label position="floating" mode="ios"
+                >Ketik Ulang Password Baru</ion-label
+              >
+              <ion-input
+                enterkeyhint="go"
+                (keyup.enter)="changePassword(form.value)"
+                ngModel
+                name="password_confirm"
+                [type]="showPassword ? 'text' : 'password'"
+              ></ion-input>
+              <ion-icon
+                class="mata-satu"
+                size="default"
+                slot="end"
+                [name]="showPassword ? 'eye-off' : 'eye'"
+                (click)="togglePassword()"
+              ></ion-icon>
+<!--              <span class="error" [hidden]="passerror === ''"-->
+<!--                >{{passerror}}</span-->
+              >
+            </ion-item>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row> </ion-row>
+    </ion-grid>
+    <ion-footer>
+      <div style="padding: 0px 20px 20px 20px; display: block">
+        <ion-col>
+          <div class="ion-text-center googlebutton">
+            <ion-button
+              type="submit"
+              [disabled]="form.invalid"
+              expand="block"
+              class="flex-margin"
+              size="default"
+            >
+              <span>Simpan Perubahan</span>
+            </ion-button>
+          </div>
+        </ion-col>
+      </div>
+    </ion-footer>
+  </form>
+</div>
+
+

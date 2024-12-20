@@ -1,0 +1,105 @@
+ion-header {
+    z-index: 15;
+    min-height: 265px;
+    background: #F15162;
+    ion-item {
+        --background: #ff000000;
+        p.hw-user {
+            font-size: 20px;
+            font-family: "Metropolis-ExtraBold";
+            margin-top: 45px;
+            margin-bottom: 0;
+        }
+        p.hw-gabung {
+            margin-top: 5px;
+        }
+        img {
+            background: #fff;
+        }
+        p{
+            color: #fff;
+        }
+        p.membernya {
+                font-size: 35px;
+                color: #fff;
+                font-family: "Metropolis-ExtraBold";
+                text-align: center;
+                width: 100%;
+                
+                span {
+                    color: rgba(255, 255, 255, 0);
+                    -webkit-text-stroke: 1px white;
+                     font-size: 35px;
+                    padding-right: 10px;
+                }
+            }
+    }
+}
+
+ion-content ion-item {
+    --inner-padding-end: 0px;
+      --detail-icon-color: #ff4156;
+      --detail-icon-font-size: 18px;
+      --detail-icon-opacity: 1;
+  }
+
+ion-item {
+    --padding-start: 0px;
+    padding-right: 20px;
+    padding-left: 20px;
+    --inner-padding-end: 0px;
+}
+
+
+.hw-first-title {
+    padding: 0;
+  
+    p {
+      margin: 0
+    }
+  
+    .hw-judul {
+        font-family: "Metropolis-Semi";
+        font-size: 18px;
+        color: #000000;
+    }
+  }
+  
+  .hw-title {
+    height: 42px;
+    margin-top: -4px;
+  }
+  
+  .hw-info {
+    padding-top: 30px;
+    padding-bottom: 10px;
+  
+    p {
+      margin-bottom: 0
+    }
+  }
+  
+  .hw-akun {
+    //--padding-start: 22px;
+  
+    .hw-ikon {
+      width: 25px;
+    }
+  
+    div[slot="start"] {
+      margin-inline-end: 15px;
+    }
+  
+    p {
+      margin: 25px 0;
+      font-family: 'Metropolis-Regular'
+    }
+  }
+
+  .hw-empty-space {
+    width: 100%;
+    display: block;
+    position:relative;
+    border-bottom: 5px solid #EBEBEB;
+    margin-top: 0px;
+    }

@@ -1,0 +1,44 @@
+<ion-content fullscreen="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-item lines="none" class="header-title" style="margin-bottom: -10px;">
+    <ion-col style="padding: 20px 0; margin-top: 10px;" size="12">
+      <ion-icon class="backclik_black" (click)="backClick()" src="assets/icon/chevron-left.svg"></ion-icon>
+  </ion-col>
+  </ion-item>
+
+  <ion-item lines="none" class="header-title" style="margin-bottom: -10px;">
+    <ion-col>
+    <p class="title" style="margin: 10px 0 0px 0px;">Fitur belum tersedia</p>
+    <p style="margin: 0;">
+      <span style="font-size: 12px;">Berikan penilaian kepada kami untuk menjadi lebih baik.</span>
+    </p>
+  </ion-col>
+  </ion-item>
+
+  <ion-item style="margin-top:10%;" lines="none">
+    <img class="logo" ngSrc="../../../assets/olahraga/rate.png" height="28" width="29">
+    <img class="logo" ngSrc="../../../assets/olahraga/rate.png" height="28" width="29">
+    <img class="logo" src="../../../assets/olahraga/rate.png">
+    <img class="logo" src="../../../assets/olahraga/rate.png">
+    <img class="logo" src="../../../assets/olahraga/rate.png">
+  </ion-item>
+
+  <ion-item style="margin-top:5px;" lines="none">
+    <ion-col>
+      <p class="second">Klik tombol di bawah untuk memberikan penilaian bintang 5 pada kami di Google Playstore, terimakasih!</p>
+    </ion-col>
+  </ion-item>
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-item style="margin-top:5px;" lines="none">
+    <div class="hw-wa rate">
+      <span>BERI PENILAIAN</span>
+    </div>
+  </ion-item>
+</ion-footer>

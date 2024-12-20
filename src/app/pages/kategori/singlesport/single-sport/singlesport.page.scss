@@ -1,0 +1,280 @@
+
+ion-header {
+  .hw-slide {
+    min-height: 214px;
+
+  }
+
+  ion-slides {
+    margin-bottom: -10px !important;
+    margin-top: 55px;
+  }
+
+  .hw-titleatas {
+    color: #000;
+    margin-bottom: 0px;
+  }
+
+  .paling-atas {
+    padding: 20px;
+    background: #fff;
+
+    ion-toolbar {
+
+      --background: #fff;
+    }
+
+  }
+
+  .swiper-slide img {
+    width: 90%;
+    height: 214px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0px 5px 15px #00000019;
+    margin-bottom: 30px;
+    background-color: #fd9f27;
+  }
+
+}
+
+
+ion-slides .swiper-pagination.swiper-pagination-bullets {
+  --left: unset;
+  --width: 100%;
+  --text-align: center;
+  --margin: 0 auto;
+  --float: none;
+}
+
+ion-item {
+  --padding-start: 20px;
+  --padding-end: 5px;
+
+  p {
+    font-family: 'Metropolis-Semi';
+    font-size: 18px;
+  }
+
+  .kategori,
+  .harga {
+    color: #6257A0;
+  }
+
+  .kategori {
+    font-size: 12px;
+  }
+
+  div[slot=end] {
+    padding-top: 21px;
+  }
+}
+
+.ion-padding {
+  padding-inline-start: 20px;
+  padding-inline-end: 20px;
+}
+
+
+img.thumbnail {
+  min-height: 80px;
+}
+
+ion-item.hw-listlapangan {
+  margin-top: 20px;
+
+  p {
+    margin: 5px;
+    font-size: 14px;
+    line-height: 1.2;
+    font-family: "Metropolis-Regular";
+    letter-spacing: 0.5px;
+  }
+
+  p.hw-shortdesc {
+    color: #000000;
+    font-size: 15px;
+    font-family: "Metropolis-Semi";
+  }
+}
+
+ion-item.header-title p {
+  color: #000000;
+  font-family: "Metropolis-Bold";
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+span {
+  font-family: "Metropolis-Regular";
+  color: #A5A5A5;
+  font-size: 14px;
+  position: relative;
+  display: block;
+  line-height: 1.5;
+}
+
+span.hw-btn {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  background: #a8afab;
+  color: #fff;
+  padding: 5px 14px;
+  border-radius: 5px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.hw-empty-space {
+  width: 100%;
+  display: block;
+  position: relative;
+  border-bottom: 5px solid #EBEBEB;
+  margin: 15px 0;
+}
+
+ion-item.waktu {
+  margin-top: -15px;
+  margin-bottom: -10px;
+
+  ion-col {
+    padding: 0;
+  }
+
+  p.hw-waktu {
+    font-family: "Metropolis-Regular";
+    font-size: 14px;
+    margin: 0;
+    color: #656565;
+  }
+
+  p.teks-kanan {
+    float: right;
+  }
+}
+
+ion-item.fasilitas {
+  margin-top: -15px;
+
+  ion-col {
+    padding: 0;
+
+    .isi-fasilitas {
+      margin-bottom: 5px;
+
+      ion-icon {
+        font-size: 18px;
+      }
+    }
+
+    span {
+      display: inline;
+      margin-left: 10px;
+    }
+  }
+}
+
+ion-item.lokasi {
+  margin-top: -15px;
+
+  ion-col {
+    padding: 0;
+
+    .isi-fasilitas {
+      margin-bottom: 5px;
+
+      ion-icon {
+        font-size: 18px;
+      }
+    }
+
+    span {
+      display: inline;
+      margin-left: 0px;
+    }
+
+    span.hw-btn-view {
+      border: 1px solid #F15162;
+      padding: 2px 30px;
+      position: absolute;
+      border-radius: 15px;
+      color: #F15162;
+      bottom: -3px;
+      right: 0;
+    }
+  }
+}
+
+ion-item.hw-map {
+  margin-top: 10px;
+}
+
+ion-item.kebijakan {
+  margin-top: -15px;
+
+  ion-col {
+    padding: 0;
+
+    ion-icon {
+      font-size: 18px;
+    }
+
+    p {
+      color: #656565;
+      font-size: 16px;
+      font-family: "Metropolis-Regular";
+      margin: 20px 0;
+    }
+  }
+}
+
+ion-item.harga {
+  margin-top: 0px;
+
+  ion-col {
+    padding: 0;
+
+    span {
+      display: inline;
+    }
+
+    p.teks {
+      font-size: 12px;
+      font-family: "Metropolis-Regular";
+    }
+
+  }
+}
+
+
+ion-icon.hw-star {
+  position: absolute;
+  left: 4%;
+  font-size: 18px;
+}
+
+.hw-map img {
+  border-radius: 15px;
+  max-height: 180px;
+  width: 100%;
+  object-fit: cover;
+}
+
+ion-footer {
+  margin-bottom: 10px;
+
+  ion-item.hw-tombol {
+    margin-top: -10px;
+
+    ion-button {
+      width: 100%;
+      margin-bottom: 30px;
+
+      span {
+        color: #fff;
+      }
+    }
+  }
+}
+

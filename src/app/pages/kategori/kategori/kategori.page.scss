@@ -1,0 +1,74 @@
+
+ion-item.hw-listlapangan {
+  margin-top: 20px;
+  align-items: flex-start;
+
+  p.hw-nama {
+    margin: 5px;
+    font-size: 14px;
+    line-height: 1.2;
+    font-family: "Metropolis-Semi";
+    letter-spacing: 0.5px;
+    color: #000;
+    opacity: 1;
+  }
+
+  p.hw-address {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  p, span {
+    margin: 12px 5px;
+    font-size: 12px;
+    line-height: 1.2;
+    font-family: "Metropolis-Regular";
+    letter-spacing: 0.2px;
+    color: #656565;
+    opacity: 0.6;
+  }
+
+  p.hw-fasilitas {
+    background: url(/src/assets/olahraga/circle-check-solid.svg) no-repeat 100% 100%;
+    background-position: left center;
+    padding-left: 20px;
+    opacity: 1;
+    color: #989aa2;
+  }
+
+  p.harga {
+    margin-bottom: 10px;
+  }
+}
+
+
+
+
+
+ion-item.hw-cari {
+  ion-icon {
+    font-size: 22px;
+    position: absolute;
+    z-index: 5;
+    margin-top: 20px;
+    margin-left: 15px;
+    color: #80808087;
+  }
+
+  ion-input {
+    font-size: 12px;
+    border: 1px solid #D4D4D4;
+    border-radius: 25px;
+    margin-top: 20px;
+    padding: 5px 5px 5px 45px !important;
+    background: #FCFCFC;
+    font-family: "Metropolis-Regular";
+    font-weight: normal;
+    color: #A5A5A5;
+  }
+}
+

@@ -1,0 +1,144 @@
+  ion-item {
+    --padding-start: 20px;
+    padding-right: 0px;
+    --inner-padding-end: 20px;
+    --background: #ff000000;
+  
+    p {
+      font-family: 'Metropolis-Semi';
+      font-size: 18px;
+    }
+  
+  
+    div[slot=end] {
+      padding-top: 21px;
+    }
+  }
+  
+  .ion-padding {
+    padding-inline-start: 20px;
+    padding-inline-end: 20px;
+  }
+
+  
+  img.thumbnail {
+    min-height: 90px;
+    border-radius: 15px;
+    object-fit: fill;
+}
+
+ion-item.hw-listlapangan {
+    margin-top: 20px;
+    align-items: flex-start;
+
+    p.hw-nama {
+        margin: 5px;
+    font-size: 14px;
+    line-height: 1.2;
+    font-family: "Metropolis-Semi";
+    letter-spacing: 0.5px;
+    color: #000;
+    opacity: 0.6;
+    }
+
+    p.hw-address {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+    p, span {
+        margin: 5px;
+        font-size: 12px;
+        line-height: 1.2;
+        font-family: "Metropolis-Regular";
+        letter-spacing: 0.2px;
+        color: #656565;
+        opacity: 0.6;
+    }
+}
+
+ion-item.header-title p {
+    color: #000000;
+    font-family: "Metropolis-Bold";
+    font-size: 18px;
+}
+
+span {
+    font-family: "Metropolis-Regular";
+    color: #A5A5A5;
+    font-size: 14px;
+    opacity: 0.6;
+}
+
+.hw-konten-short {
+    width: 100%;
+    display: block;
+    position: relative;
+    padding: 0px 0px;
+    border: 1px solid #e7e6e6;
+    border-radius: 15px;
+    box-shadow: 0px 5px 3px rgb(0 0 0 / 10%);
+    max-width: 92%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    .hw-col-2 {
+        display: inline-block;
+        position: relative;
+        width: 49.5%;
+        .hw-paid {
+            background: #19A9A0;
+            color: #fff;
+            border-radius: 5px;
+            padding: 5px;
+            font-size: 12px;
+        }
+        .hw-unpaid{
+            background: #F15162;
+            color: #fff;
+            border-radius: 5px;
+            padding: 5px;
+            font-size: 12px;
+        }
+    }
+    .hw-col-3 {
+        width: 30%;
+        p.hw-harga {
+            font-size: 12px;
+        }
+    }
+}
+.logo-lapangan {
+    width: 60px;
+    margin: 10px 0;
+    border-radius: 100%;
+}
+
+.hw-col-4{
+    width: 64.5%;
+    p.hw-namalap {
+        font-size: 16px;
+        font-family: "Metropolis-Medium";
+        margin: 5px 0;
+    }
+    p.hw-tglbook {
+        margin: 5px 0;
+        font-size: 12px;
+        color: #A3A3A3;
+        opacity: 0.6;
+    }
+}
+
+.col-logo {
+    width: 10%;
+}
+
+ion-skeleton-text {
+    --border-radius: 10px;
+    height: 90px;
+    // --background: rgba(188, 0, 255, 0.065);
+    // --background-rgb: 188, 0, 255;
+  }
+
