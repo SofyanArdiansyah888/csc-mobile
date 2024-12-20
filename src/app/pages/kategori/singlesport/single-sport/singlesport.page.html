@@ -1,124 +1,131 @@
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <app-base-header
     (handleBackClick)="backClick()"
     title="Venue"
     description="Informasi lengkap venue pilihan kamu">
   </app-base-header>
 
+  <ng-container *ngIf="!loading; else loadingSkeleton">
+    <div class="hw-slide" style="margin-top: 32px">
+      <ion-header class="ion-no-border">
 
-  <div class="hw-slide" style="margin-top: 32px">
-    <ion-header class="ion-no-border">
-
-      <div>
-        <div class="hw-slide">
-          <div class="hw-section-slide">
-            <!-- SLIDER  -->
-<!--            <ion-slides  autoplay="5000" loop="true" speed="300" pager="true" [options]="slideOptsOne" class="slider-atas" #homeSlide>-->
-<!--              <ion-slide *ngIf="venue.image1 !== ''">-->
-<!--                <img src="{{imageUrl}}/{{venue.image1}}">-->
-<!--              </ion-slide>-->
-<!--              <ion-slide *ngIf="venue.image2 !== ''">-->
-<!--                <img src="{{imageUrl}}/{{venue.image2}}">-->
-<!--              </ion-slide>-->
-<!--              <ion-slide *ngIf="venue.image3 !== ''">-->
-<!--                <img src="{{imageUrl}}/{{venue.image3}}">-->
-<!--              </ion-slide>-->
-<!--            </ion-slides>-->
+        <div>
+          <div class="hw-slide">
+            <div class="hw-section-slide">
+              <!-- SLIDER  -->
+              <!--            <ion-slides  autoplay="5000" loop="true" speed="300" pager="true" [options]="slideOptsOne" class="slider-atas" #homeSlide>-->
+              <!--              <ion-slide *ngIf="venue.image1 !== ''">-->
+              <!--                <img src="{{imageUrl}}/{{venue.image1}}">-->
+              <!--              </ion-slide>-->
+              <!--              <ion-slide *ngIf="venue.image2 !== ''">-->
+              <!--                <img src="{{imageUrl}}/{{venue.image2}}">-->
+              <!--              </ion-slide>-->
+              <!--              <ion-slide *ngIf="venue.image3 !== ''">-->
+              <!--                <img src="{{imageUrl}}/{{venue.image3}}">-->
+              <!--              </ion-slide>-->
+              <!--            </ion-slides>-->
+            </div>
           </div>
         </div>
-      </div>
-    </ion-header>
-  </div>
+      </ion-header>
+    </div>
 
 
+    <!-- Kategori Olahraga-->
+    <div style="width: 100%;">
+      <ion-item lines="none" class="header-title">
+        <p class="title" style="margin: 20px 0 0px 0;">{{ venue.name }}</p>
+      </ion-item>
+      <ion-icon class="hw-star" src="assets/olahraga/star-solid.svg"></ion-icon>
+      <p class="title" style="margin: 2px 0px 5px 40px; font-size: 16px;">
+        {{ venue.rating }} - {{ venue.city }}
+      </p>
+      <p style="margin: 0;">
+        <span style="padding: 0 20px;">{{ venue.description }}</span>
+      </p>
+    </div>
 
-  <!-- Kategori Olahraga-->
-  <div style="width: 100%;">
-    <ion-item lines="none" class="header-title">
-      <p class="title" style="margin: 20px 0 0px 0;">{{venue.name}}</p>
-    </ion-item>
-    <ion-icon class="hw-star" src="assets/olahraga/star-solid.svg"></ion-icon>
-    <p class="title" style="margin: 2px 0px 5px 40px; font-size: 16px;">
-      {{venue.rating}} - {{venue.city}}
-    </p>
-    <p style="margin: 0;">
-      <span style="padding: 0 20px;">{{venue.description}}</span>
-    </p>
-  </div>
-<div class="hw-empty-space"></div>
+    <div class="hw-empty-space"></div>
 
 
-<!-- Jam Operasional -->
-<div style="width: 100%;">
-  <ion-item style="margin-top: -10px;" lines="none" class="header-title">
-    <p class="title" style="margin: 0px 0 0px 0; color: black;">
-      Jam Operasional
-    </p>
-  </ion-item>
-  <ion-item class="waktu" lines="none">
-  <ion-col size="6">
-    <p class="hw-waktu">{{venue.operating_day}}</p>
-  </ion-col>
-  <ion-col size="6">
-    <p class="hw-waktu teks-kanan">{{venue.operating_time}}</p>
-  </ion-col>
-  </ion-item>
-</div>
-<div class="hw-empty-space"></div>
+    <!-- Jam Operasional -->
+    <div style="width: 100%;">
+      <ion-item style="margin-top: -10px;" lines="none" class="header-title">
+        <p class="title" style="margin: 0px 0 0px 0; color: black;">
+          Jam Operasional
+        </p>
+      </ion-item>
+      <ion-item class="waktu" lines="none">
+        <ion-col size="6">
+          <p class="hw-waktu">{{ venue.operating_day }}</p>
+        </ion-col>
+        <ion-col size="6">
+          <p class="hw-waktu teks-kanan">{{ venue.operating_time }}</p>
+        </ion-col>
+      </ion-item>
+    </div>
+    <div class="hw-empty-space"></div>
 
-<!-- Fasilitas -->
-<div style="width: 100%;">
-  <ion-item lines="none" class="header-title">
-    <p class="title" style="margin: 0px 0 25px 0; color: black;">
-      Fasilitas
-    </p>
-  </ion-item>
-  <ion-item class="fasilitas" lines="none" style="overflow-x:auto;">
-    <ion-col class="kiri" size="5" *ngFor="let facility of venue.facilities">
-      <div class="isi-fasilitas">
-        <img src="{{imageUrl}}/{{facility.image}}"/><span>{{facility.name}}</span>
-      </div>
-    </ion-col>
-    </ion-item>
-</div>
-<div class="hw-empty-space"></div>
+    <!-- Fasilitas -->
+    <div style="width: 100%;">
+      <ion-item lines="none" class="header-title">
+        <p class="title" style="margin: 0px 0 25px 0; color: black;">
+          Fasilitas
+        </p>
+      </ion-item>
+      <ion-item class="fasilitas" lines="none" style="overflow-x:auto;">
+        <ion-col class="kiri" size="5" *ngFor="let facility of venue.facilities">
+          <div class="isi-fasilitas">
+            <img src="{{imageUrl}}/{{facility.image}}"/><span>{{ facility.name }}</span>
+          </div>
+        </ion-col>
+      </ion-item>
+    </div>
+    <div class="hw-empty-space"></div>
 
-<!--Lokasi-->
-<div style="width: 100%;">
-  <ion-item lines="none" class="header-title">
-    <p class="title" style="margin: 0px 0 25px 0; color: black;">
-      Lokasi
-    </p>
-  </ion-item>
-  <ion-item class="lokasi" lines="none">
-    <ion-col size="9">
-      <span>{{venue.location}}</span>
-    </ion-col>
-    <ion-col size="3">
-      <span class="hw-btn-view">Lihat</span>
-    </ion-col>
-  </ion-item>
-  <!-- <ion-item class="hw-map" lines="none">
-    <img src="assets/olahraga/makassar-Google-map.png">
-  </ion-item> -->
-  </div>
-  <div class="hw-empty-space"></div>
+    <!--Lokasi-->
+    <div style="width: 100%;">
+      <ion-item lines="none" class="header-title">
+        <p class="title" style="margin: 0px 0 25px 0; color: black;">
+          Lokasi
+        </p>
+      </ion-item>
+      <ion-item class="lokasi" lines="none">
+        <ion-col size="9">
+          <span>{{ venue.location }}</span>
+        </ion-col>
+        <ion-col size="3">
+          <span class="hw-btn-view">Lihat</span>
+        </ion-col>
+      </ion-item>
+      <!-- <ion-item class="hw-map" lines="none">
+        <img src="assets/olahraga/makassar-Google-map.png">
+      </ion-item> -->
+    </div>
+    <div class="hw-empty-space"></div>
 
-  <!--Aturan& Kebijakan-->
-  <div style="width: 100%;" (click)="termClick(venue)">
-    <ion-item class="kebijakan" lines="none">
-      <ion-col size="1">
-        <ion-icon src="assets/olahraga/kebijakan.svg"></ion-icon>
-      </ion-col>
-      <ion-col size="11">
-        <p>Aturan & Kebijakan</p>
-        <ion-icon style="position:absolute ; right:0px; top: 15px;"  src="assets/olahraga/chevron-left.svg"></ion-icon>
-      </ion-col>
-    </ion-item>
+    <!--Aturan& Kebijakan-->
+    <div style="width: 100%;" (click)="termClick(venue)">
+      <ion-item class="kebijakan" lines="none">
+        <ion-col size="1">
+          <ion-icon src="assets/olahraga/kebijakan.svg"></ion-icon>
+        </ion-col>
+        <ion-col size="11">
+          <p>Aturan & Kebijakan</p>
+          <ion-icon style="position:absolute ; right:0px; top: 15px;" src="assets/olahraga/chevron-left.svg"></ion-icon>
+        </ion-col>
+      </ion-item>
 
-  </div>
-
+    </div>
+  </ng-container>
 </ion-content>
+
+<ng-template #loadingSkeleton>
+  <app-singlesport-skeleton *ngIf="loading"></app-singlesport-skeleton>
+</ng-template>
 
 <!--Footer-->
 <ion-footer>
@@ -127,19 +134,21 @@
       <p class="teks">Harga mulai</p>
     </ion-col>
     <ion-col style="text-align:right;" size="6">
-<!--      <p>{{venue?.courts?.length > 0 ? venue?.courts[0].price_description : ''}}</p>-->
+      <p>{{ venue?.courts ? venue?.courts?.[0]?.price_description : '' }}</p>
     </ion-col>
 
   </ion-item>
 
   <ion-item class="hw-tombol" lines="none">
-  <ion-button class="pilih" (click) = "pilihLapanganClick(venue)">
+    <ion-button class="pilih" (click)="pilihLapanganClick(venue)">
     <span>
-      <a style="color:#fff;" >
+      <a style="color:#fff;">
         Pilih Lapangan
       </a>
     </span>
-  </ion-button>
-</ion-item>
+    </ion-button>
+  </ion-item>
 
 </ion-footer>
+
+
