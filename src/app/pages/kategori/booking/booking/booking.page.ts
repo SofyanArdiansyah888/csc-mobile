@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {BookingTimeEntity} from 'src/app/entities/BookingTime.entity';
 import {CourtEntity} from 'src/app/entities/Court.entity';
 import {ApiService} from 'src/app/services/api.service';
@@ -8,10 +8,12 @@ import {ModalService} from 'src/app/services/ionic/modal.service';
 import {isSequence} from 'src/app/services/utils.service';
 import {KeranjangPage} from '../keranjang/keranjang/keranjang.page';
 import {Router} from '@angular/router';
-import {Location, NgClass, NgForOf} from '@angular/common';
+import {CurrencyPipe, Location, NgClass, NgForOf} from '@angular/common';
 import {environment} from "../../../../../environments/environment";
 import {BaseHeaderComponent} from "../../../../components/base-header/base-header.component";
 import {IonicModule} from "@ionic/angular";
+import {BookingService} from "../../../../services/signal/booking.service";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-booking',
@@ -21,11 +23,14 @@ import {IonicModule} from "@ionic/angular";
     BaseHeaderComponent,
     IonicModule,
     NgForOf,
-    NgClass
+    NgClass,
+    CurrencyPipe
   ],
   standalone: true
 })
 export class BookingPage implements OnInit {
+  @ViewChild('innerDiv') innerDiv!: ElementRef;
+
   court: CourtEntity = {
     name:'',
     image:'',
@@ -51,12 +56,16 @@ export class BookingPage implements OnInit {
     private alertService: AlertService,
     private modalService: ModalService,
     private router: Router,
-    private location: Location
+    private location: Location,
+    private bookingService: BookingService
   ) {
   }
 
 
   async ngOnInit() {
+    setTimeout(() => {
+      this.scrollToToday()
+    });
     await this.initCourt();
     const result = await this.apiService.bookingTimes();
     this.bookingTimes = result.data.data;
@@ -66,6 +75,25 @@ export class BookingPage implements OnInit {
         bookingTime.selected = false;
       }
     );
+
+  }
+
+  scrollToToday(): void {
+
+    const todayElement = this.innerDiv.nativeElement.querySelector(
+      `li[data-date="${moment().date()}"]`
+    );
+    console.log("TODAY ELEMENT:",todayElement)
+
+    if (todayElement) {
+      todayElement.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'center' });
+    } else {
+      console.warn('Today\'s element not found in the list!');
+    }
+  }
+
+  ionViewWillEnter(){
+    this.countTotalPrice();
   }
 
   async initCourt(){
@@ -116,6 +144,7 @@ export class BookingPage implements OnInit {
 
   countTotalPrice(){
     this.totalPrice = 0;
+    console.log("BOOKING PAGE",this.bookingTimes)
     this.bookingTimes.map((times) => {
       if(times.selected)
         {this.totalPrice += Number(times.price)}
@@ -123,26 +152,21 @@ export class BookingPage implements OnInit {
   }
 
   async selanjutnyaClick() {
-    const temp = this.selectedTimes.toString().replace(/[^0-9]/g, '');
-    if (!isSequence(temp)) {
-      this.alertService.fail('Waktu booking harus berurutan !');
-      return;
+    if(this.bookingTimes?.filter(item => item.selected === true).length === 0){
+        this.alertService.fail('Waktu booking harus berurutan !');
+        return;
     }
-    // const { data } = await this.modalService.show(KeranjangPage, {
-    //   bookingTimes: this.bookingTimes,
-    //   bookingDate: new Date(
-    //     this.selectedYear,
-    //     this.selectedMonth,
-    //     this.selectedDate
-    //   ),
-    //   court: this.court,
-    // });
-    // this.bookingTimes = data.bookingTimes;
+    this.bookingService.doBooking({
+      bookingTimes: this.bookingTimes,
+      bookingDate: new Date(
+        this.selectedYear,
+        this.selectedMonth,
+        this.selectedDate
+      ),
+      court: this.court
+    })
+    this.router.navigateByUrl(`/court/${this.court.id}/booking/keranjang`);
     this.countTotalPrice();
-  }
-
-  doRefresh(event:any) {
-    this.ngOnInit();
   }
 
   backClick(){

@@ -3,3 +3,4 @@ export const environment = {
   baseUrl: `https://karsa.banisadar.com/api`,
   imageUrl:`https://karsa.banisadar.com/storage`
 };
+

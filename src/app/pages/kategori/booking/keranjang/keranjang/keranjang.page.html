@@ -1,7 +1,5 @@
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
+
 
   <app-base-header
     (handleBackClick)="backClick()"
@@ -17,21 +15,24 @@
   <div class="hw-list" style="width: 100%">
     <ion-item lines="none" class="hw-listlapangan">
       <ion-col size="12" style="padding: 0">
-<!--        <p class="hw-nama">{{court.name}} - {{court.pedestal_type}}</p>-->
-<!--        <p class="hw-jadwal hw-address">{{bookingDate | date :  "dd MMM y" : "UTC + 8"}}</p>-->
+        <p class="hw-nama">{{court?.name}} - {{court?.pedestal_type}}</p>
+        <p class="hw-jadwal hw-address">{{bookingDate | date :  "dd MMM y" : "UTC + 8"}}</p>
       </ion-col>
     </ion-item>
-    <ion-item lines="none" *ngFor="let item of bookingTimes">
-      <ion-col class="hw-reviewtime hw-time" size="12" *ngIf="item.selected">
-        <label class="waktunya">{{item.name}}</label>
-<!--        <span class="harga">{{item.price| currency:'Rp.':'symbol':'3.0' }}</span>-->
-        <ion-icon
-          class="hw-icon"
-          (click)="deleteClick(item)"
-          src="assets/olahraga/trash-can-solid.svg"
-        ></ion-icon>
-      </ion-col>
-    </ion-item>
+    <div *ngFor="let item of bookingTimes">
+      <ion-item lines="none" *ngIf="item.selected === true" >
+        <ion-col class="hw-reviewtime hw-time" size="12" >
+          <label class="waktunya">{{item.name}}</label>
+          <span class="harga">{{item.price| currency:'Rp.':'symbol':'3.0' }}</span>
+          <ion-icon
+            class="hw-icon"
+            (click)="deleteClick(item)"
+            src="assets/olahraga/trash-can-solid.svg"
+          ></ion-icon>
+        </ion-col>
+      </ion-item>
+    </div>
+
 
   </div>
 
@@ -48,7 +49,7 @@
 
     <ion-item class="isi" lines="none">
       <ion-col size="6">Biaya venue</ion-col>
-<!--      <ion-col style="text-align: right" size="6">{{ totalPrice | currency:'Rp.':'symbol':'3.0' }}</ion-col>-->
+      <ion-col style="text-align: right" size="6">{{ totalPrice | currency:'Rp.':'symbol':'3.0' }}</ion-col>
     </ion-item>
 
     <!-- <ion-item class="isi" lines="none">
@@ -70,7 +71,7 @@
 
     <ion-item class="hwtotal" lines="none">
       <ion-col size="6">Total Biaya Sewa</ion-col>
-<!--      <ion-col size="6" style="text-align: right">{{totalPrice | currency:'Rp.':'symbol':'3.0' }}</ion-col>-->
+      <ion-col size="6" style="text-align: right">{{totalPrice | currency:'Rp.':'symbol':'3.0' }}</ion-col>
     </ion-item>
   </div>
 
@@ -98,7 +99,7 @@
   <ion-item lines="none">
     <ion-col size="6">
       <p class="hw-labelharga">Total Biaya</p>
-<!--      <p class="hw-hargatotal"><span>{{totalPrice| currency:'Rp.':'symbol':'3.0' }}</span></p>-->
+      <p class="hw-hargatotal"><span>{{totalPrice| currency:'Rp.':'symbol':'3.0' }}</span></p>
     </ion-col>
     <ion-col
       size="6"

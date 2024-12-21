@@ -1,15 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicModule, ModalController, NavController, NavParams} from '@ionic/angular';
 import {BookingTimeEntity} from 'src/app/entities/BookingTime.entity';
-import {CourtEntity} from 'src/app/entities/Court.entity';
-import {VenueEntity} from 'src/app/entities/Venue.entity';
-import {KebijakanPage} from 'src/app/pages/kebijakan/kebijakan.page';
 import {ModalService} from 'src/app/services/ionic/modal.service';
 import {ApiService} from 'src/app/services/api.service';
 import {AlertService} from 'src/app/services/ionic/alert.service';
-import {BayarPage} from '../bayar/bayar/bayar.page';
 import {BaseHeaderComponent} from "../../../../../components/base-header/base-header.component";
-import {NgForOf, NgIf} from "@angular/common";
+import {CurrencyPipe, DatePipe, Location, NgForOf, NgIf} from "@angular/common";
+import {BookingService} from "../../../../../services/signal/booking.service";
+import {CourtEntity} from "../../../../../entities/Court.entity";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-keranjang',
@@ -19,26 +18,29 @@ import {NgForOf, NgIf} from "@angular/common";
     IonicModule,
     BaseHeaderComponent,
     NgForOf,
-    NgIf
+    NgIf,
+    DatePipe,
+    CurrencyPipe
   ],
   standalone: true
 })
 export class KeranjangPage {
-  // court: CourtEntity;
+  court: CourtEntity | null | undefined = null;
   // venue: VenueEntity;
   bookingTimes: BookingTimeEntity[] = [];
   bookingDate: any;
   totalPrice = 0;
 
   constructor(
-    private modalController: ModalController,
-    private modalService: ModalService,
-    private apiService: ApiService,
-    private alertService: AlertService,
-    private navController: NavController,
-    navParams: NavParams
+      private  bookingService: BookingService,
+      private location: Location,
+      private router: Router,
   ) {
-    const {data} = navParams;
+    const booking = this.bookingService.booking()
+    console.log("ISI BOOKING",booking)
+    this.bookingTimes = booking.bookingTimes
+    this.bookingDate = booking.bookingDate
+    this.court = booking.court
     // this.court = data.court;
     // this.venue = data.venue;
     // this.bookingTimes = data.bookingTimes;
@@ -60,6 +62,7 @@ export class KeranjangPage {
   }
 
   kebijakanClick() {
+    // this.router.navigateByUrl(``)
     // this.modalService.show(KebijakanPage, {venue: this.venue});
   }
 
@@ -67,15 +70,9 @@ export class KeranjangPage {
     item.selected = false;
     this.countTotalPrice();
   }
-  doRefresh(event: any){}
 
   backClick() {
-    // this.modalController.dismiss({
-    //   court: this.court,
-    //   venue: this.venue,
-    //   bookingTimes: this.bookingTimes,
-    //   bookingDate: this.bookingDate
-    // });
+    this.location.back()
   }
 
   async selanjutnyaClick() {

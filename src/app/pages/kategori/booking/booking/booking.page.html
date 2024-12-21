@@ -1,7 +1,4 @@
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
 
   <app-base-header
     (handleBackClick)="backClick()"
@@ -53,12 +50,14 @@
 
     <ion-item>
       <div class="outer-div">
-        <div class="inner-div">
-          <ul id="dates">
+        <div class="inner-div" #innerDiv>
+          <ul id="dates" >
             <li
               *ngFor="let day of days"
               [ngClass]="{'active booked': day.booked, 'disabled': day.disabled}"
-              (click)="!day.disabled && dateClick(day)">
+              [attr.data-date]="day.date"
+              (click)="!day.disabled && dateClick(day)"
+            >
               <span>{{ day.day }}</span>
               {{ day.date }}
             </li>
@@ -77,10 +76,10 @@
         [checked]="bookingTime.selected"
         (change)="onCheckboxChange($event.target,bookingTime)"
       />
-<!--      <ion-col class="hw-time" size="12">-->
-<!--        <label for="{{bookingTime.name}}">{{bookingTime.name}}</label-->
-<!--        ><span class="harga">{{bookingTime.price | currency:'Rp.':'symbol':'3.0' }}</span>-->
-<!--      </ion-col>-->
+      <ion-col class="hw-time" size="12">
+        <label for="{{bookingTime.name}}">{{bookingTime.name}}</label
+        ><span class="harga">{{bookingTime.price | currency:'Rp.':'symbol':'3.0' }}</span>
+      </ion-col>
     </ion-item>
   </div>
 </ion-content>
@@ -89,7 +88,7 @@
   <ion-item lines="none">
     <ion-col size="6">
       <p class="hw-labelharga">Total Biaya</p>
-<!--      <p class="hw-hargatotal"><span>{{totalPrice| currency:'Rp.':'symbol':'3.0' }}</span></p>-->
+      <p class="hw-hargatotal"><span>{{totalPrice| currency:'Rp.':'symbol':'3.0' }}</span></p>
     </ion-col>
     <ion-col
       size="6"

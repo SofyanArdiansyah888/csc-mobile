@@ -10,6 +10,10 @@ export const routes: Routes = [
     path:'court/:id/booking',
     loadComponent: () => import('./pages/kategori/booking/booking/booking.page').then(m => m.BookingPage)
   },
+  {
+    path:'court/:id/booking/keranjang',
+    loadComponent: () => import('./pages/kategori/booking/keranjang/keranjang/keranjang.page').then(m => m.KeranjangPage)
+  },
 
   {
     path: 'category/:id',
