@@ -1,0 +1,60 @@
+<section>
+  <div class="datanya" *ngFor="let court of [1,2,3]">
+    <ion-item class="hw-lapangan" lines="none">
+      <ion-skeleton-text style="height: 300px;border-radius: 10px" class="hw-ganbarnya"></ion-skeleton-text>
+    </ion-item>
+
+    <!--Nama Lapangan & Deskripsi-->
+    <ion-item class="hw-lapangan produk-desc" lines="none">
+      <ion-col>
+        <ion-skeleton-text></ion-skeleton-text>
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-col>
+    </ion-item>
+
+    <!--Jenis Fasilitasnya-->
+    <ion-item
+      class="hw-lapangan spesifikasi"
+      lines="none"
+      style="margin-top: -20px"
+    >
+      <ion-col size="12">
+        <div class="hw-col-main">
+          <div class="hw-col6 hw-jenis">
+            <ion-skeleton-text></ion-skeleton-text>
+          </div>
+          <div class="hw-col6 teks-kanan">
+            <ion-skeleton-text></ion-skeleton-text>
+          </div>
+        </div>
+
+        <div class="hw-col-main">
+          <div class="hw-col6 hw-jenis">
+            <ion-skeleton-text></ion-skeleton-text>
+          </div>
+          <div class="hw-col6 teks-kanan">
+            <ion-skeleton-text></ion-skeleton-text>
+          </div>
+        </div>
+
+        <div class="hw-col-main">
+          <div class="hw-col6 hw-jenis">
+            <ion-skeleton-text></ion-skeleton-text>
+          </div>
+          <div class="hw-col6 teks-kanan">
+            <ion-skeleton-text></ion-skeleton-text>
+          </div>
+        </div>
+        <div style="border: 1px solid #ebebeb"></div>
+      </ion-col>
+    </ion-item>
+
+    <!--Harganya-->
+    <ion-item lines="none">
+      <ion-col>
+        <ion-skeleton-text></ion-skeleton-text>
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-col>
+    </ion-item>
+  </div>
+</section>
