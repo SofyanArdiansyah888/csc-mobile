@@ -1,78 +1,74 @@
 <ion-content fullscreen="true">
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
+  <section>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 
-  <!-- Header Component -->
-  <app-base-header
-    (handleBackClick)="backClick()"
-    [title]="category.name"
-    description="List venue pilihan untuk kamu"
-  ></app-base-header>
+    <!-- Header Component -->
+    <app-base-header
+      (handleBackClick)="backClick()"
+      [title]="category.nama"
+      description="List venue pilihan untuk kamu"
+    ></app-base-header>
 
-  <!-- Search Input -->
-  <ion-item class="hw-cari" lines="none">
-    <ion-icon class="icon-search" name="search" slot="start"></ion-icon>
-    <ion-input placeholder="Lapangan Apaki Cari Bossku?"></ion-input>
-  </ion-item>
+    <!-- Search Input -->
+    <ion-item class="hw-cari" lines="none">
+      <ion-icon class="icon-search" name="search" slot="start"></ion-icon>
+      <ion-input placeholder="Lapangan Apaki Cari Bossku?"></ion-input>
+    </ion-item>
 
-  <!-- Venue List -->
-  <ng-container *ngIf="!loading; else loadingSkeleton">
-    <div class="empty-state" *ngIf="venues.length === 0">
-      <p>Belum ada data</p>
-    </div>
-    <div class="hw-list" *ngFor="let venue of venues">
-      <ion-item class="hw-listlapangan" (click)="venueClick(venue)">
-        <ion-col size="9" class="hw-listlapangan-details">
-          <p class="hw-nama">{{ venue.name }}</p>
-          <p class="hw-address">{{ venue.location }}</p>
+    <!-- Venue List -->
+    <ng-container *ngIf="!loading; else loadingSkeleton">
+      <div class="empty-state" *ngIf="venues.length === 0">
+        <p>Belum ada data</p>
+      </div>
+      <div class="hw-list" *ngFor="let venue of venues">
+        <ion-item class="hw-listlapangan" (click)="venueClick(venue)">
+          <ion-col size="9" class="hw-listlapangan-details">
+            <p class="hw-nama">{{ venue?.nama }}</p>
+            <p class="hw-address">{{ venue?.lokasi }}</p>
 
 
-          <div>
-            <p *ngFor="let facility of venue?.facilities?.slice(0,2)" class="hw-fasilitas">
-              {{ facility?.name || '' }}
+            <div>
+              <p *ngFor="let facility of venue?.fasilitass?.slice(0,2)" class="hw-fasilitas">
+                {{ facility?.name || '' }}
+              </p>
+            </div>
+
+
+            <p class="hw-nama harga">
+              {{ venue?.lapangans?.[0]?.deskripsi_harga || '' }}
             </p>
-          </div>
+          </ion-col>
 
+          <ion-col size="3" class="hw-thumbnail">
+            <img class="thumbnail" [src]="imageUrl + '/' + venue.logo" alt="{{ venue.nama }}"/>
+          </ion-col>
+        </ion-item>
+      </div>
+    </ng-container>
 
-          <p class="hw-nama harga">
-            {{ venue?.courts?.[0]?.price_description || '' }}
-          </p>
-        </ion-col>
-
-        <ion-col size="3" class="hw-thumbnail">
-          <img class="thumbnail" [src]="imageUrl + '/' + venue.logo" alt="{{ venue.name }}"/>
-        </ion-col>
-      </ion-item>
-    </div>
-  </ng-container>
-
-  <!-- Loading Skeleton -->
-  <ng-template #loadingSkeleton>
-    <div *ngIf="loading" class="hw-list">
-      <ion-item *ngFor="let venue of [1,2,3,4,5]" class="hw-listlapangan">
-        <ion-col size="9" class="hw-listlapangan-details">
-          <p class="hw-nama">
+    <!-- Loading Skeleton -->
+    <ng-template #loadingSkeleton>
+      <div *ngIf="loading" class="hw-list">
+        <ion-item *ngFor="let venue of [1,2,3,4,5]" class="hw-listlapangan">
+          <ion-col size="9" class="hw-listlapangan-details">
             <ion-skeleton-text></ion-skeleton-text>
-          </p>
-          <p class="hw-address">
             <ion-skeleton-text></ion-skeleton-text>
-          </p>
-          <div class="hw-fasilitas">
             <ion-skeleton-text></ion-skeleton-text>
-          </div>
-          <p class="hw-nama harga">
             <ion-skeleton-text></ion-skeleton-text>
-          </p>
-        </ion-col>
+            <ion-skeleton-text></ion-skeleton-text>
+            <ion-skeleton-text></ion-skeleton-text>
+          </ion-col>
 
-        <ion-col size="3" class="hw-thumbnail">
-          <ion-skeleton-text
-            animated
-            style="height: 80px;border-radius: 20px"
-          ></ion-skeleton-text>
-        </ion-col>
-      </ion-item>
-    </div>
-  </ng-template>
+          <ion-col size="3" class="hw-thumbnail">
+            <ion-skeleton-text
+              animated
+              style="height: 80px;border-radius: 20px"
+            ></ion-skeleton-text>
+          </ion-col>
+        </ion-item>
+      </div>
+    </ng-template>
+  </section>
 </ion-content>

@@ -1,4 +1,4 @@
-import {CourtEntity} from './Court.entity';
+import {LapanganEntity} from './Lapangan.entity';
 
 export interface BookingEntity {
   court_id: number;
@@ -7,6 +7,6 @@ export interface BookingEntity {
   booking_time: string;
   status: string;
   hour: number;
-  court?: CourtEntity;
+  court?: LapanganEntity;
 }
 

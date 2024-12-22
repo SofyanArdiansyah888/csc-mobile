@@ -25,21 +25,7 @@ import {SinglesportSkeletonComponent} from "../../../../components/singlesport-s
   standalone: true
 })
 export class SinglesportPage implements OnInit {
-  venue: VenueEntity = {
-    name: '',
-    city: '',
-    operating_day: '',
-    operating_time: '',
-    location: '',
-    rating: '',
-    description: '',
-    logo: '',
-    image1: '',
-    image2: '',
-    image3: '',
-    courts: [],
-    facilities: [],
-  };
+  venue: VenueEntity | null = null;
   loading = false;
   imageUrl = environment.imageUrl;
   constructor(
@@ -62,11 +48,11 @@ export class SinglesportPage implements OnInit {
     this.location.back();
   }
 
-  termClick(venue: VenueEntity) {
+  termClick(venue?: VenueEntity | null) {
     // this.modalService.show(KebijakanPage, { venue });
   }
 
-  pilihLapanganClick(venue: VenueEntity) {
+  pilihLapanganClick(venue: VenueEntity | null) {
     this.router.navigateByUrl(`${this.router.url}/pilih`);
   }
 

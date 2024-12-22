@@ -1,7 +1,7 @@
 import {Location, NgForOf, NgIf} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {CourtEntity} from 'src/app/entities/Court.entity';
+import {LapanganEntity} from 'src/app/entities/Lapangan.entity';
 import {VenueEntity} from 'src/app/entities/Venue.entity';
 import {ApiService} from 'src/app/services/api.service';
 import {environment} from "../../../../../environments/environment";
@@ -26,7 +26,7 @@ import {PilihSkeletonComponent} from "../../../../components/pilih-skeleton/pili
 })
 export class PilihPage implements OnInit {
   venue: VenueEntity | null = null;
-  courts: CourtEntity[] = [];
+  courts: LapanganEntity[] = [];
   imageUrl = environment.imageUrl;
   loading = false;
   constructor(
@@ -42,14 +42,14 @@ export class PilihPage implements OnInit {
     const result =  await this.apiService.venue(temp[4]);
     this.loading = false
     this.venue = result?.data?.data;
-    this.courts = this.venue?.courts ?? [];
+    this.courts = this.venue?.lapangans ?? [];
   }
 
   backClick() {
     this.location.back();
   }
 
-  bookingClick(court: CourtEntity) {
+  bookingClick(court: LapanganEntity) {
     this.router.navigateByUrl(`/court/${court.id}/booking`);
   }
 

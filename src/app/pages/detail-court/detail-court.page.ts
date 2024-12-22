@@ -2,7 +2,7 @@ import {CommonModule, Location} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {IonicModule, ModalController} from '@ionic/angular';
-import {CourtEntity} from '../../entities/Court.entity';
+import {LapanganEntity} from '../../entities/Lapangan.entity';
 import {ApiService} from '../../services/api.service';
 import {AuthenticationService} from '../../services/auth/authentication.service';
 import {AlertService} from '../../services/ionic/alert.service';
@@ -22,15 +22,7 @@ import {BaseHeaderComponent} from "../../components/base-header/base-header.comp
   standalone: true
 })
 export class DetailCourtPage implements OnInit {
-  court: CourtEntity = {
-    name:'',
-    image:'',
-    description:'',
-    price_description:'',
-    field_type:'',
-    pedestal_type:'',
-    sports:''
-  };
+  court: LapanganEntity | undefined =  undefined;
   imageUrl = environment.imageUrl;
   constructor(
     private modalController: ModalController,
@@ -55,7 +47,7 @@ export class DetailCourtPage implements OnInit {
 
   bookingClick(){
     if(this.authService.isLoggedIn){
-      this.router.navigateByUrl(`court/${this.court.id}/booking`);
+      this.router.navigateByUrl(`court/${this?.court?.id}/booking`);
     }else{
       this.alertService.fail('Silahkan login terlebih dahulu untuk dapat membooking!');
     }

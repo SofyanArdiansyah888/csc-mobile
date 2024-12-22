@@ -8,9 +8,7 @@ import {NgForOf} from "@angular/common";
   templateUrl: './singlesport-skeleton.component.html',
   styleUrls: ['./singlesport-skeleton.component.scss'],
   imports: [
-    BaseHeaderComponent,
-    IonicModule,
-    NgForOf
+    IonicModule
   ],
   standalone: true
 })

@@ -1,12 +1,12 @@
 import {Injectable, signal} from '@angular/core';
-import {CourtEntity} from "../../entities/Court.entity";
+import {LapanganEntity} from "../../entities/Lapangan.entity";
 import {BookingTimeEntity} from "../../entities/BookingTime.entity";
 
 
 interface IBookingValue {
   bookingTimes: BookingTimeEntity[]
   bookingDate: any;
-  court?: CourtEntity | null
+  court?: LapanganEntity | null
 }
 
 @Injectable({

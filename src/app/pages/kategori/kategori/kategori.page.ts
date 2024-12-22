@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IonicModule, ModalController} from '@ionic/angular';
 
-import {CategoryEntity} from 'src/app/entities/Category.entity';
+import {KategoriEntity} from 'src/app/entities/Kategori.entity';
 import {VenueEntity} from 'src/app/entities/Venue.entity';
 import {ApiService} from 'src/app/services/api.service';
 import {ModalService} from 'src/app/services/ionic/modal.service';
@@ -24,11 +24,11 @@ import {BaseHeaderComponent} from "../../../components/base-header/base-header.c
 })
 export class KategoriPage implements OnInit {
   venues: VenueEntity[] = [];
-  category: CategoryEntity = {
+  category: KategoriEntity = {
     id:0,
-    name:'Kategori',
-    image:'',
-    background_color:'',
+    nama:'Kategori',
+    link_gambar:'',
+    bg_color:'',
   };
   imageUrl = environment.imageUrl;
   loading = false;

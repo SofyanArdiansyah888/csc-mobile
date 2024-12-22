@@ -1,117 +1,119 @@
 <ion-content>
 
+  <section>
+    <app-base-header
+      (handleBackClick)="backClick()"
+      title="Karsa Mini Soccer"
+      description="Periksa kembali jadwal pesanan kamu">
+    </app-base-header>
 
-  <app-base-header
-    (handleBackClick)="backClick()"
-    title="Karsa Mini Soccer"
-    description="Periksa kembali jadwal pesanan kamu">
-  </app-base-header>
 
-
-  <ion-item style="margin-top: 10px">
-    <p class="title" style="margin: 20px 0 0px 0px">Jadwal Pesanan</p>
-  </ion-item>
-
-  <div class="hw-list" style="width: 100%">
-    <ion-item lines="none" class="hw-listlapangan">
-      <ion-col size="12" style="padding: 0">
-        <p class="hw-nama">{{court?.name}} - {{court?.pedestal_type}}</p>
-        <p class="hw-jadwal hw-address">{{bookingDate | date :  "dd MMM y" : "UTC + 8"}}</p>
-      </ion-col>
+    <ion-item style="margin-top: 10px">
+      <p class="title" style="margin: 20px 0 0px 0px">Jadwal Pesanan</p>
     </ion-item>
-    <div *ngFor="let item of bookingTimes">
-      <ion-item lines="none" *ngIf="item.selected === true" >
-        <ion-col class="hw-reviewtime hw-time" size="12" >
-          <label class="waktunya">{{item.name}}</label>
-          <span class="harga">{{item.price| currency:'Rp.':'symbol':'3.0' }}</span>
+
+    <div class="hw-list" style="width: 100%">
+      <ion-item lines="none" class="hw-listlapangan">
+        <ion-col size="12" style="padding: 0">
+          <p class="hw-nama">{{ court?.nama }} - {{ court?.tipe_alas }}</p>
+          <p class="hw-jadwal hw-address">{{ bookingDate | date :  "dd MMM y" : "UTC + 8" }}</p>
+        </ion-col>
+      </ion-item>
+      <div *ngFor="let item of bookingTimes">
+        <ion-item lines="none" *ngIf="item.selected === true">
+          <ion-col class="hw-reviewtime hw-time" size="12">
+            <label class="waktunya">{{ item.name }}</label>
+            <span class="harga">{{ item.price| currency:'Rp.':'symbol':'3.0' }}</span>
+            <ion-icon
+              class="hw-icon"
+              (click)="deleteClick(item)"
+              src="assets/olahraga/trash-can-solid.svg"
+            ></ion-icon>
+          </ion-col>
+        </ion-item>
+      </div>
+
+
+    </div>
+
+    <div class="hw-empty-space"></div>
+
+    <div class="hw-rincian hwdatetime">
+      <ion-item style="margin-top: -15px; margin-bottom: 10px">
+        <ion-col size="12">
+          <p class="title hw-bultah" style="margin: 20px 0 0px 0px">
+            Ringkasan Pembayaran
+          </p>
+        </ion-col>
+      </ion-item>
+
+      <ion-item class="isi" lines="none">
+        <ion-col size="6">Biaya venue</ion-col>
+        <ion-col style="text-align: right" size="6">{{ totalPrice | currency:'Rp.':'symbol':'3.0' }}</ion-col>
+      </ion-item>
+
+      <!-- <ion-item class="isi" lines="none">
+        <ion-col size="6">Biaya layanan</ion-col>
+        <ion-col class="lainnya" style="text-align: right" size="6"
+          >3.000</ion-col
+        >
+      </ion-item>
+
+      <ion-item class="isi">
+        <ion-col size="6" style="margin-bottom: 10px">Biaya lainnya</ion-col>
+        <ion-col
+          class="lainnya"
+          style="text-align: right; margin-bottom: 10px"
+          size="6"
+          >5.000</ion-col
+        >
+      </ion-item> -->
+
+      <ion-item class="hwtotal" lines="none">
+        <ion-col size="6">Total Biaya Sewa</ion-col>
+        <ion-col size="6" style="text-align: right">{{ totalPrice | currency:'Rp.':'symbol':'3.0' }}</ion-col>
+      </ion-item>
+    </div>
+
+    <div class="hw-empty-space"></div>
+
+    <!--Aturan& Kebijakan-->
+    <div style="width: 100%">
+      <ion-item class="kebijakan" lines="none">
+        <ion-col size="1">
+          <ion-icon src="assets/olahraga/kebijakan.svg"></ion-icon>
+        </ion-col>
+        <ion-col size="11" (click)="kebijakanClick()">
+          <p>Aturan & Kebijakan</p>
           <ion-icon
-            class="hw-icon"
-            (click)="deleteClick(item)"
-            src="assets/olahraga/trash-can-solid.svg"
+            style="position: absolute; right: 0px; top: 15px"
+
+            src="assets/olahraga/chevron-left.svg"
           ></ion-icon>
         </ion-col>
       </ion-item>
     </div>
 
-
-  </div>
-
-  <div class="hw-empty-space"></div>
-
-  <div class="hw-rincian hwdatetime">
-    <ion-item style="margin-top: -15px; margin-bottom: 10px">
-      <ion-col size="12">
-        <p class="title hw-bultah" style="margin: 20px 0 0px 0px">
-          Ringkasan Pembayaran
-        </p>
-      </ion-col>
-    </ion-item>
-
-    <ion-item class="isi" lines="none">
-      <ion-col size="6">Biaya venue</ion-col>
-      <ion-col style="text-align: right" size="6">{{ totalPrice | currency:'Rp.':'symbol':'3.0' }}</ion-col>
-    </ion-item>
-
-    <!-- <ion-item class="isi" lines="none">
-      <ion-col size="6">Biaya layanan</ion-col>
-      <ion-col class="lainnya" style="text-align: right" size="6"
-        >3.000</ion-col
-      >
-    </ion-item>
-
-    <ion-item class="isi">
-      <ion-col size="6" style="margin-bottom: 10px">Biaya lainnya</ion-col>
-      <ion-col
-        class="lainnya"
-        style="text-align: right; margin-bottom: 10px"
-        size="6"
-        >5.000</ion-col
-      >
-    </ion-item> -->
-
-    <ion-item class="hwtotal" lines="none">
-      <ion-col size="6">Total Biaya Sewa</ion-col>
-      <ion-col size="6" style="text-align: right">{{totalPrice | currency:'Rp.':'symbol':'3.0' }}</ion-col>
-    </ion-item>
-  </div>
-
-  <div class="hw-empty-space"></div>
-
-  <!--Aturan& Kebijakan-->
-  <div style="width: 100%">
-    <ion-item class="kebijakan" lines="none">
-      <ion-col size="1">
-        <ion-icon src="assets/olahraga/kebijakan.svg"></ion-icon>
-      </ion-col>
-      <ion-col size="11" (click)="kebijakanClick()">
-        <p>Aturan & Kebijakan</p>
-        <ion-icon
-          style="position: absolute; right: 0px; top: 15px"
-
-          src="assets/olahraga/chevron-left.svg"
-        ></ion-icon>
-      </ion-col>
-    </ion-item>
-  </div>
-</ion-content>
-
-<ion-footer>
-  <ion-item lines="none">
-    <ion-col size="6">
-      <p class="hw-labelharga">Total Biaya</p>
-      <p class="hw-hargatotal"><span>{{totalPrice| currency:'Rp.':'symbol':'3.0' }}</span></p>
-    </ion-col>
-    <ion-col
-      size="6"
-      style="margin: 0 auto; float: none; text-align: right; padding: 0"
-    >
-      <ion-button class="pilih" (click) = "selanjutnyaClick()">
+    <ion-footer>
+      <ion-item lines="none">
+        <ion-col size="6">
+          <p class="hw-labelharga">Total Biaya</p>
+          <p class="hw-hargatotal"><span>{{ totalPrice| currency:'Rp.':'symbol':'3.0' }}</span></p>
+        </ion-col>
+        <ion-col
+          size="6"
+          style="margin: 0 auto; float: none; text-align: right; padding: 0"
+        >
+          <ion-button class="pilih" (click)="selanjutnyaClick()">
         <span>
-          <a style="color: #fff" >
+          <a style="color: #fff">
             Selanjutnya
           </a>
         </span>
-      </ion-button>
-    </ion-col>
-  </ion-item>
-</ion-footer>
+          </ion-button>
+        </ion-col>
+      </ion-item>
+    </ion-footer>
+  </section>
+</ion-content>
+

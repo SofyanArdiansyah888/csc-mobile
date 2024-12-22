@@ -1,200 +1,202 @@
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  <!-- HEADER -->
-  <ion-header class="ion-no-border">
-    <ion-item style="margin: 35px 0 -20px 0; z-index: 2" lines="none">
-      <img class="logo" ngSrc="../../../assets/olahraga/logo.png" height="32" width="147"/>
-      <div class="hw-chat">
-        <a (click)="kontakClick()">
-          <img class="chat" ngSrc="../../../assets/olahraga/comment-dots-solid.svg" height="19" width="22"/>
-          <p>kontak</p>
-        </a>
-      </div>
-    </ion-item>
+  <section>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <!-- HEADER -->
+    <ion-header class="ion-no-border">
+      <ion-item style="padding-top:35px; z-index: 2" lines="none">
+        <img class="logo" ngSrc="../../../assets/olahraga/logo.png" height="32" width="147"/>
+        <div class="hw-chat">
+          <a (click)="kontakClick()">
+            <img class="chat" ngSrc="../../../assets/olahraga/comment-dots-solid.svg" height="19" width="22"/>
+            <p>kontak</p>
+          </a>
+        </div>
+      </ion-item>
 
-    <div class="paling-atas">
-      <ion-toolbar class="bar-gede" no-padding>
-        <ion-item class="hw-transparant" lines="none">
-          <p class="title hw-titleatas">Mau olahraga apa hari ini ?</p>
-        </ion-item>
-        <span style="color: #a3a3a3">
+      <div class="paling-atas">
+        <ion-toolbar class="bar-gede" no-padding>
+          <ion-item class="hw-transparant" lines="none">
+            <p class="title hw-titleatas">Mau olahraga apa hari ini ?</p>
+          </ion-item>
+          <span style="color: #a3a3a3">
           Booking online, GRATIS extra time 15menit!
         </span>
-      </ion-toolbar>
-    </div>
+        </ion-toolbar>
+      </div>
 
-        <div *ngIf="!loading">
-          <div class="hw-slide">
-            <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-              <ion-refresher-content></ion-refresher-content>
-            </ion-refresher>
-            <div class="hw-section-slide">
-              <!-- SLIDER  -->
-              <!--            [options]="slideOptsOne"-->
-<!--              <ion-slides-->
-<!--                autoplay="5000"-->
-<!--                loop="true"-->
-<!--                speed="300"-->
-<!--                pager="true"-->
+      <div *ngIf="!loading">
+        <div class="hw-slide">
+          <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content></ion-refresher-content>
+          </ion-refresher>
+          <div class="hw-section-slide">
+            <!-- SLIDER  -->
+            <!--            [options]="slideOptsOne"-->
+            <!--              <ion-slides-->
+            <!--                autoplay="5000"-->
+            <!--                loop="true"-->
+            <!--                speed="300"-->
+            <!--                pager="true"-->
 
-<!--                class="slider-atas"-->
-<!--                #homeSlide-->
-<!--              >-->
-<!--                <ion-slide *ngFor="let advertising of advertisings">-->
-<!--                  <img src="{{imageUrl}}/{{advertising.image}}"/>-->
-<!--                </ion-slide>-->
-<!--              </ion-slides>-->
-            </div>
+            <!--                class="slider-atas"-->
+            <!--                #homeSlide-->
+            <!--              >-->
+            <!--                <ion-slide *ngFor="let advertising of advertisings">-->
+            <!--                  <img src="{{imageUrl}}/{{advertising.image}}"/>-->
+            <!--                </ion-slide>-->
+            <!--              </ion-slides>-->
           </div>
         </div>
-
-    <!-- SLIDER SKELETON -->
-    <!--    <div *ngIf="loading">-->
-    <!--      <div class="hw-slide">-->
-    <!--        <div class="hw-section-slide">-->
-    <!--          &lt;!&ndash; SLIDER  &ndash;&gt;-->
-    <!--          <ion-slides class="slider-atas">-->
-    <!--            <ion-slide *ngFor="let slider of [1,2]">-->
-    <!--              <ion-skeleton-text-->
-    <!--                animated-->
-    <!--                slider-->
-    <!--                style="-->
-    <!--                  width: 90%;-->
-    <!--                  height: 157px;-->
-    <!--                  border-radius: 20px;-->
-    <!--                  margin-bottom: 30px;-->
-    <!--                "-->
-    <!--              >-->
-    <!--              </ion-skeleton-text>-->
-    <!--            </ion-slide>-->
-    <!--          </ion-slides>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
-  </ion-header>
-
-
-  <div>
-    <!-- KATEGORI -->
-    <div *ngIf="!loading" class="menu-atas">
-      <div class="scrollable">
-        <div class="kotak">
-          <ion-row>
-            <ion-col *ngFor="let category of categories" class="scroll-col">
-              <a [routerLink]="['/category', category.id]">
-                <div class="hw_menucepat"
-                     [ngStyle]='{"background-color": category.background_color}'>
-                  <img ngSrc="{{imageUrl}}/{{category.image}}" height="60" width="60" alt=""/>
-                </div>
-              </a>
-              <p class="title-produk ion-text-center">
-                {{ category.name }}
-              </p>
-            </ion-col>
-          </ion-row>
-        </div>
       </div>
-    </div>
 
-    <!-- Lapangan Terlaris -->
-    <div *ngIf="!loading" class="toko-pilihan">
-      <div>
-        <ion-item lines="none" class="header-title">
-          <p class="title">Lapangan Terlaris</p>
-        </ion-item>
-      </div>
-      <div class="scrollable">
-        <div class="kotak">
-          <ion-row>
-            <!-- COURT -->
-            <ion-col *ngFor="let court of courts" class="scroll-col">
-              <div *ngIf="!court.isPromo" class="hw_tokopilihan" (click)="courtClick(court)">
-                <img class="gambarmitra" src="{{imageUrl}}/{{court.image}}"/>
-                <ion-item lines="none">
-                  <p class="nama-lap diskon">{{ court.name }}</p>
-                  <p class="fitur-tdktau" slot="end">BO</p>
-                </ion-item>
-              </div>
-            </ion-col>
-          </ion-row>
-        </div>
-      </div>
-    </div>
+      <!-- SLIDER SKELETON -->
+      <!--    <div *ngIf="loading">-->
+      <!--      <div class="hw-slide">-->
+      <!--        <div class="hw-section-slide">-->
+      <!--          &lt;!&ndash; SLIDER  &ndash;&gt;-->
+      <!--          <ion-slides class="slider-atas">-->
+      <!--            <ion-slide *ngFor="let slider of [1,2]">-->
+      <!--              <ion-skeleton-text-->
+      <!--                animated-->
+      <!--                slider-->
+      <!--                style="-->
+      <!--                  width: 90%;-->
+      <!--                  height: 157px;-->
+      <!--                  border-radius: 20px;-->
+      <!--                  margin-bottom: 30px;-->
+      <!--                "-->
+      <!--              >-->
+      <!--              </ion-skeleton-text>-->
+      <!--            </ion-slide>-->
+      <!--          </ion-slides>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <!--    </div>-->
+    </ion-header>
 
-    <!-- Promo Terbaru -->
-    <div *ngIf="!loading && promos.length > 0" class="toko-pilihan">
-      <div>
-        <ion-item lines="none" class="header-title">
-          <p class="title">Promo Terbaru</p>
-        </ion-item>
-      </div>
-      <div class="scrollable">
-        <div class="kotak">
-          <ion-row>
-            <ion-col *ngFor="let promo of promos" class="scroll-col">
-              <div class="hw_tokopilihan hw_berita" (click)="promoClick(promo)">
-                <img class="gambarmitra" src="{{imageUrl}}/{{promo.image}}"/>
-                <ion-item lines="none">
-                  <div>
-                    <p class="judul" style="margin-bottom:0px ;">{{ promo.name }}</p>
-                    <p style="margin-top:0px;font-size: 11px;margin-bottom:12px">{{ promo.promo }}</p>
+
+    <div>
+      <!-- KATEGORI -->
+      <div *ngIf="!loading" class="menu-atas">
+        <div class="scrollable">
+          <div class="kotak">
+            <ion-row>
+              <ion-col *ngFor="let category of categories" class="scroll-col">
+                <a [routerLink]="['/category', category.id]">
+                  <div class="hw_menucepat"
+                       [ngStyle]='{"background-color": category.bg_color}'>
+                    <img ngSrc="{{imageUrl}}kategori/{{category.link_gambar}}" height="60" width="60" alt=""/>
                   </div>
+                </a>
+                <p class="title-produk ion-text-center">
+                  {{ category.nama }}
+                </p>
+              </ion-col>
+            </ion-row>
+          </div>
+        </div>
+      </div>
 
-                </ion-item>
+      <!-- Lapangan Terlaris -->
+      <div *ngIf="!loading" class="toko-pilihan">
+        <div>
+          <ion-item lines="none" class="header-title">
+            <p class="title">Lapangan Terlaris</p>
+          </ion-item>
+        </div>
+        <div class="scrollable">
+          <div class="kotak">
+            <ion-row>
+              <!-- COURT -->
+              <ion-col *ngFor="let court of courts" class="scroll-col">
+                <div *ngIf="!court.isPromo" class="hw_tokopilihan" (click)="courtClick(court)">
+                  <img class="gambarmitra" src="{{imageUrl}}lapangan/{{court.link_gambar}}"/>
+                  <ion-item lines="none">
+                    <p class="nama-lap diskon">{{ court.nama }}</p>
+                    <p class="fitur-tdktau" slot="end">BO</p>
+                  </ion-item>
+                </div>
+              </ion-col>
+            </ion-row>
+          </div>
+        </div>
+      </div>
 
-              </div>
-            </ion-col>
+      <!-- Promo Terbaru -->
+      <div *ngIf="!loading && promos.length > 0" class="toko-pilihan">
+        <div>
+          <ion-item lines="none" class="header-title">
+            <p class="title">Promo Terbaru</p>
+          </ion-item>
+        </div>
+        <div class="scrollable">
+          <div class="kotak">
+            <ion-row>
+              <ion-col *ngFor="let promo of promos" class="scroll-col">
+                <div class="hw_tokopilihan hw_berita" (click)="promoClick(promo)">
+                  <img class="gambarmitra" src="{{imageUrl}}promo/{{promo?.link_gambar}}"/>
+                  <ion-item lines="none">
+                    <div>
+                      <p class="judul" style="margin-bottom:0px ;">{{ promo?.nama }}</p>
+                      <p style="margin-top:0px;font-size: 11px;margin-bottom:12px">{{ promo.promo }}</p>
+                    </div>
 
-          </ion-row>
+                  </ion-item>
+
+                </div>
+              </ion-col>
+
+            </ion-row>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div *ngIf="loading">
-    <div class="menu-atas">
-      <div class="scrollable">
-        <div class="kotak">
-          <ion-row>
-            <div class="scroll-col" *ngFor="let menu of [1,2,3,4]">
-              <div class="hw_menucepat" style="background: transparent">
-                <ion-skeleton-text animated></ion-skeleton-text>
+    <div *ngIf="loading">
+      <div class="menu-atas">
+        <div class="scrollable">
+          <div class="kotak">
+            <ion-row>
+              <div class="scroll-col" *ngFor="let menu of [1,2,3,4]">
+                <div class="hw_menucepat" style="background: transparent">
+                  <ion-skeleton-text animated></ion-skeleton-text>
+                </div>
+                <p class="title-produk ion-text-center">
+                  <ion-skeleton-text animated></ion-skeleton-text>
+                </p>
               </div>
-              <p class="title-produk ion-text-center">
-                <ion-skeleton-text animated></ion-skeleton-text>
-              </p>
-            </div>
-          </ion-row>
+            </ion-row>
+          </div>
+        </div>
+      </div>
+      <div class="toko-pilihan" *ngFor="let kolom of [1,2,3]">
+        <div>
+          <ion-item lines="none" class="header-title">
+            <p class="title">
+              <ion-skeleton-text
+                animated
+                style="width: 110px"
+              ></ion-skeleton-text>
+            </p>
+          </ion-item>
+        </div>
+        <div class="scrollable">
+          <div class="kotak">
+            <ion-row>
+              <div class="scroll-col" *ngFor="let mitra of [1,2,3]">
+                <div class="hw_tokopilihan" style="box-shadow: unset">
+                  <ion-skeleton-text
+                    animated
+                    style="height: 142px"
+                  ></ion-skeleton-text>
+                </div>
+              </div>
+            </ion-row>
+          </div>
         </div>
       </div>
     </div>
-    <div class="toko-pilihan" *ngFor="let kolom of [1,2,3]">
-      <div>
-        <ion-item lines="none" class="header-title">
-          <p class="title">
-            <ion-skeleton-text
-              animated
-              style="width: 110px"
-            ></ion-skeleton-text>
-          </p>
-        </ion-item>
-      </div>
-      <div class="scrollable">
-        <div class="kotak">
-          <ion-row>
-            <div class="scroll-col" *ngFor="let mitra of [1,2,3]">
-              <div class="hw_tokopilihan" style="box-shadow: unset">
-                <ion-skeleton-text
-                  animated
-                  style="height: 142px"
-                ></ion-skeleton-text>
-              </div>
-            </div>
-          </ion-row>
-        </div>
-      </div>
-    </div>
-  </div>
+  </section>
 </ion-content>

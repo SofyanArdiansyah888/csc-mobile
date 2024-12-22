@@ -1,76 +1,80 @@
-<ion-header>
-<ion-item lines="none">
-  <p class="membernya">
-    <span>MEMBER</span>
-    SPORTIVE</p>
-</ion-item>
-
-<ion-item lines="none">
-  <ion-col size="9">
-<p class="hw-user">John Doe</p>
-<p class="hw-gabung">Sejak 22 September 2022</p>
-  </ion-col>
-  <ion-col size="3">
-<img class="hw-qrcode" src="../../../../assets/olahraga/qr.png">
-  </ion-col>
-
-</ion-item>
-</ion-header>
-
 <ion-content>
-  <ion-item style="margin-top: 30px;" lines="none" class="hw-title">
-    <ion-grid class="hw-first-title ">
-      <p class="hw-judul">Akun</p>
-    </ion-grid>
-  </ion-item>
-  <ion-item class="hw-akun" detail (click)="biodataClick()" lines="full">
-    <div slot="start" class="hw-ikon">
-      <img class="hw-iconaddgrey" src="../../../../assets/olahraga/profile/boidata.png">
-    </div>
-    <p>Biodata diri</p>
-  </ion-item>
-  <!-- <ion-item class="hw-akun" detail (click)="ktpClick()" lines="full">
-    <div slot="start" class="hw-ikon">
-      <img class="hw-iconaddgrey" src="assets/olahraga/profile/ktp.svg">
-    </div>
-    <p>Verifikasi KTP</p>
-  </ion-item> -->
-  <ion-item class="hw-akun" detail (click)="passwordClick()" lines="none">
-    <div slot="start" class="hw-ikon">
-      <img class="hw-iconaddgrey" src="../../../../assets/olahraga/profile/pass.svg">
-    </div>
-    <p>Ubah Password</p>
-  </ion-item>
 
-  <div class="hw-empty-space"></div>
+  <section>
+    <ion-header>
+      <ion-item lines="none">
+        <p class="membernya">
+          <span>MEMBER</span>
+          SPORTIVE</p>
+      </ion-item>
 
-  <ion-item lines="none">
-    <ion-grid class="hw-first-title hw-info">
-      <p class="hw-judul">Tentang MSportive</p>
-    </ion-grid>
-  </ion-item>
-  <ion-item class="hw-akun" detail (click)="syaratKetentuanClick()" lines="full">
-    <div slot="start" class="hw-ikon">
-      <img class="hw-iconaddgrey" src="../../../../assets/olahraga/profile/sk.svg">
-    </div>
-    <p>Syarat dan Ketentuan</p>
-  </ion-item>
-  <ion-item class="hw-akun" detail (click)="kebijakanPrivasiClick()" lines="full">
-    <div slot="start" class="hw-ikon">
-      <img class="hw-iconaddgrey" src="../../../../assets/olahraga/profile/pp.svg">
-    </div>
-    <p>Kebijakan Privasi</p>
-  </ion-item>
-  <ion-item class="hw-akun" detail (click)="hubungiKamiClick()" lines="full">
-    <div slot="start" class="hw-ikon">
-      <img class="hw-iconaddgrey" src="../../../../assets/olahraga/profile/kk.svg">
-    </div>
-    <p>Hubungi Kami</p>
-  </ion-item>
-  <ion-item class="hw-akun" detail (click)="keluarClick()" lines="full">
-    <div slot="start" class="hw-ikon">
-      <img class="hw-iconaddgrey" src="../../../../assets/olahraga/profile/keluar.svg">
-    </div>
-    <p style="color: #ff4156;">Keluar</p>
-  </ion-item>
+      <ion-item lines="none">
+        <ion-col size="9">
+          <p class="hw-user">John Doe</p>
+          <p class="hw-gabung">Sejak 22 September 2022</p>
+        </ion-col>
+        <ion-col size="3">
+          <img class="hw-qrcode" src="../../../../assets/olahraga/qr.png">
+        </ion-col>
+
+      </ion-item>
+    </ion-header>
+
+    <ion-item style="margin-top: 30px;" lines="none" class="hw-title">
+      <ion-grid class="hw-first-title ">
+        <p class="hw-judul">Akun</p>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="hw-akun" detail (click)="biodataClick()" lines="full">
+      <div slot="start" class="hw-ikon">
+        <img class="hw-iconaddgrey" src="../../../../assets/olahraga/profile/boidata.png">
+      </div>
+      <p>Biodata diri</p>
+    </ion-item>
+    <!-- <ion-item class="hw-akun" detail (click)="ktpClick()" lines="full">
+      <div slot="start" class="hw-ikon">
+        <img class="hw-iconaddgrey" src="assets/olahraga/profile/ktp.svg">
+      </div>
+      <p>Verifikasi KTP</p>
+    </ion-item> -->
+    <ion-item class="hw-akun" detail (click)="passwordClick()" lines="none">
+      <div slot="start" class="hw-ikon">
+        <img class="hw-iconaddgrey" src="../../../../assets/olahraga/profile/pass.svg">
+      </div>
+      <p>Ubah Password</p>
+    </ion-item>
+
+    <div class="hw-empty-space"></div>
+
+    <ion-item lines="none">
+      <ion-grid class="hw-first-title hw-info">
+        <p class="hw-judul">Tentang MSportive</p>
+      </ion-grid>
+    </ion-item>
+    <ion-item class="hw-akun" detail (click)="syaratKetentuanClick()" lines="full">
+      <div slot="start" class="hw-ikon">
+        <img class="hw-iconaddgrey" src="../../../../assets/olahraga/profile/sk.svg">
+      </div>
+      <p>Syarat dan Ketentuan</p>
+    </ion-item>
+    <ion-item class="hw-akun" detail (click)="kebijakanPrivasiClick()" lines="full">
+      <div slot="start" class="hw-ikon">
+        <img class="hw-iconaddgrey" src="../../../../assets/olahraga/profile/pp.svg">
+      </div>
+      <p>Kebijakan Privasi</p>
+    </ion-item>
+    <ion-item class="hw-akun" detail (click)="hubungiKamiClick()" lines="full">
+      <div slot="start" class="hw-ikon">
+        <img class="hw-iconaddgrey" src="../../../../assets/olahraga/profile/kk.svg">
+      </div>
+      <p>Hubungi Kami</p>
+    </ion-item>
+    <ion-item class="hw-akun" detail (click)="keluarClick()" lines="full">
+      <div slot="start" class="hw-ikon">
+        <img class="hw-iconaddgrey" src="../../../../assets/olahraga/profile/keluar.svg">
+      </div>
+      <p style="color: #ff4156;">Keluar</p>
+    </ion-item>
+  </section>
+
 </ion-content>

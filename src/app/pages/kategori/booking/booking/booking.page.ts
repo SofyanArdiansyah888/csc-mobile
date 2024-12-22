@@ -1,12 +1,10 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {BookingTimeEntity} from 'src/app/entities/BookingTime.entity';
-import {CourtEntity} from 'src/app/entities/Court.entity';
+import {LapanganEntity} from 'src/app/entities/Lapangan.entity';
 import {ApiService} from 'src/app/services/api.service';
 import {getAllDaysInMonth, getMonthName, thisMonth, thisYear, today,} from 'src/app/services/date.service';
 import {AlertService} from 'src/app/services/ionic/alert.service';
 import {ModalService} from 'src/app/services/ionic/modal.service';
-import {isSequence} from 'src/app/services/utils.service';
-import {KeranjangPage} from '../keranjang/keranjang/keranjang.page';
 import {Router} from '@angular/router';
 import {CurrencyPipe, Location, NgClass, NgForOf} from '@angular/common';
 import {environment} from "../../../../../environments/environment";
@@ -31,13 +29,7 @@ import * as moment from "moment";
 export class BookingPage implements OnInit {
   @ViewChild('innerDiv') innerDiv!: ElementRef;
 
-  court: CourtEntity = {
-    name:'',
-    image:'',
-    description:'',
-    price_description:'',
-    created_at:''
-  };
+  court?: LapanganEntity = undefined;
 
   bookingTimes: BookingTimeEntity[] = [];
   selectedTimes = [];
@@ -71,7 +63,7 @@ export class BookingPage implements OnInit {
     this.bookingTimes = result.data.data;
     this.bookingTimes.map(
       (bookingTime) => {
-        bookingTime.price = this.court.price;
+        bookingTime.price = this?.court?.harga;
         bookingTime.selected = false;
       }
     );
@@ -165,7 +157,7 @@ export class BookingPage implements OnInit {
       ),
       court: this.court
     })
-    this.router.navigateByUrl(`/court/${this.court.id}/booking/keranjang`);
+    this.router.navigateByUrl(`/court/${this?.court?.id}/booking/keranjang`);
     this.countTotalPrice();
   }
 

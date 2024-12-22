@@ -1122,6 +1122,20 @@ ion-item.hw-cari ion-icon {
   margin-top: 0px !important;
 }
 
+ion-content section{
+  max-width: 400px !important;
+  margin: 0px auto;
+}
+.empty-state{
+  justify-content: center;
+  display: flex;
+}
+.test{
+  background: #fafafa !important;
+
+}
+
+
 @media only screen and (max-width: 360px) {
   ion-radio {
     width: 135px !important;

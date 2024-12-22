@@ -1,13 +1,10 @@
 import {Component} from '@angular/core';
-import {IonicModule, ModalController, NavController, NavParams} from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 import {BookingTimeEntity} from 'src/app/entities/BookingTime.entity';
-import {ModalService} from 'src/app/services/ionic/modal.service';
-import {ApiService} from 'src/app/services/api.service';
-import {AlertService} from 'src/app/services/ionic/alert.service';
 import {BaseHeaderComponent} from "../../../../../components/base-header/base-header.component";
 import {CurrencyPipe, DatePipe, Location, NgForOf, NgIf} from "@angular/common";
 import {BookingService} from "../../../../../services/signal/booking.service";
-import {CourtEntity} from "../../../../../entities/Court.entity";
+import {LapanganEntity} from "../../../../../entities/Lapangan.entity";
 import {Router} from "@angular/router";
 
 @Component({
@@ -25,7 +22,7 @@ import {Router} from "@angular/router";
   standalone: true
 })
 export class KeranjangPage {
-  court: CourtEntity | null | undefined = null;
+  court: LapanganEntity | null | undefined = null;
   // venue: VenueEntity;
   bookingTimes: BookingTimeEntity[] = [];
   bookingDate: any;

@@ -1,4 +1,4 @@
-export interface FacilityEntity {
+export interface FasilitasEntity {
   id?: number;
   name: string;
   image: string;

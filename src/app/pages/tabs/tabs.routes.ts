@@ -14,17 +14,17 @@ export const routes: Routes = [
       {
         path: 'tab2',
         loadComponent: () => import('../tab2/tab2.page').then((m) => m.Tab2Page),
-        canActivate: [AuthGuardService],
+        // canActivate: [AuthGuardService],
       },
       {
         path: 'tab3',
         loadComponent: () => import('../tab3/tab3.page').then((m) => m.Tab3Page),
-        canActivate: [AuthGuardService],
+        // canActivate: [AuthGuardService],
       },
       {
         path: 'akun',
         loadComponent: () => import('../akun/akun/akun.page').then((m) => m.AkunPage),
-        canActivate: [AuthGuardService],
+        // canActivate: [AuthGuardService],
       },
       {
         path: '',
