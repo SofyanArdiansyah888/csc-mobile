@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 
 import {AdvertisingEntity} from '../../entities/Advertising.entity';
@@ -11,6 +11,9 @@ import {ModalService} from '../../services/ionic/modal.service';
 import {environment} from "../../../environments/environment";
 import {IonicModule} from "@ionic/angular";
 import {CommonModule, NgForOf, NgIf, NgOptimizedImage, NgStyle} from "@angular/common";
+import { IonicSlides } from '@ionic/angular/standalone';
+
+
 
 @Component({
   selector: 'app-tab1',
@@ -25,7 +28,8 @@ import {CommonModule, NgForOf, NgIf, NgOptimizedImage, NgStyle} from "@angular/c
     RouterLink,
     CommonModule,
   ],
-  standalone: true
+  standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class Tab1Page {
   advertisings: AdvertisingEntity[] = [];
@@ -34,6 +38,7 @@ export class Tab1Page {
   promos: LapanganEntity[] = [];
   loading = false;
   imageUrl = environment.imageUrl;
+  swiperModules = [IonicSlides];
 
   constructor(
     private api: ApiService,

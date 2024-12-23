@@ -32,6 +32,18 @@
             <ion-refresher-content></ion-refresher-content>
           </ion-refresher>
           <div class="hw-section-slide">
+            <swiper-container
+              slides-per-view="1"
+              pagination="true"
+              autoplay="5000"
+              loop="true"
+              class="slider-atas"
+            >
+              <swiper-slide class="hellox" *ngFor="let advertising of advertisings">
+                <img src="{{imageUrl}}/iklan/{{advertising.link_gambar}}"/>
+              </swiper-slide>
+            </swiper-container>
+
             <!-- SLIDER  -->
             <!--            [options]="slideOptsOne"-->
             <!--              <ion-slides-->
@@ -52,28 +64,28 @@
       </div>
 
       <!-- SLIDER SKELETON -->
-      <!--    <div *ngIf="loading">-->
-      <!--      <div class="hw-slide">-->
-      <!--        <div class="hw-section-slide">-->
-      <!--          &lt;!&ndash; SLIDER  &ndash;&gt;-->
-      <!--          <ion-slides class="slider-atas">-->
-      <!--            <ion-slide *ngFor="let slider of [1,2]">-->
-      <!--              <ion-skeleton-text-->
-      <!--                animated-->
-      <!--                slider-->
-      <!--                style="-->
-      <!--                  width: 90%;-->
-      <!--                  height: 157px;-->
-      <!--                  border-radius: 20px;-->
-      <!--                  margin-bottom: 30px;-->
-      <!--                "-->
-      <!--              >-->
-      <!--              </ion-skeleton-text>-->
-      <!--            </ion-slide>-->
-      <!--          </ion-slides>-->
-      <!--        </div>-->
-      <!--      </div>-->
-      <!--    </div>-->
+          <div *ngIf="loading">
+            <div class="hw-slide">
+              <div class="hw-section-slide">
+                <!-- SLIDER  -->
+                <ion-slides class="slider-atas">
+                  <ion-slide>
+                    <ion-skeleton-text
+                      animated
+                      slider
+                      style="
+                        width: 90%;
+                        height: 157px;
+                        border-radius: 20px;
+                        margin-bottom: 30px;
+                      "
+                    >
+                    </ion-skeleton-text>
+                  </ion-slide>
+                </ion-slides>
+              </div>
+            </div>
+          </div>
     </ion-header>
 
 
