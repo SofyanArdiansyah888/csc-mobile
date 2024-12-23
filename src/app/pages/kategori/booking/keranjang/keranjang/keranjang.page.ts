@@ -8,6 +8,9 @@ import {LapanganEntity} from "../../../../../entities/Lapangan.entity";
 import {Router} from "@angular/router";
 import {ApiService} from "../../../../../services/api.service";
 import * as moment from "moment";
+import {FormsModule} from "@angular/forms";
+import {AlertService} from "../../../../../services/ionic/alert.service";
+import {LoadingService} from "../../../../../services/ionic/loading.service";
 
 @Component({
   selector: 'app-keranjang',
@@ -19,7 +22,8 @@ import * as moment from "moment";
     NgForOf,
     NgIf,
     DatePipe,
-    CurrencyPipe
+    CurrencyPipe,
+    FormsModule
   ],
   standalone: true
 })
@@ -29,12 +33,16 @@ export class KeranjangPage {
   bookingTimes: BookingTimeEntity[] = [];
   bookingDate: any;
   totalPrice = 0;
+  diskon = 0
+  kodeVoucher = null
 
   constructor(
     private bookingService: BookingService,
     private location: Location,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private alertService: AlertService,
+    private loadingService: LoadingService
   ) {
     const booking = this.bookingService.booking()
     this.bookingTimes = booking.bookingTimes
@@ -49,7 +57,7 @@ export class KeranjangPage {
       this.totalPrice = this.court?.harga ?? 0
     } else {
       this.bookingTimes.map((times) => {
-        if (times.status === 'booked') {
+        if (times.status === 'checked') {
           this.totalPrice += Number(times.price ?? 0) ?? 0
         }
       });
@@ -70,6 +78,21 @@ export class KeranjangPage {
     this.location.back()
   }
 
+  async cekPromo(){
+    this.loadingService.show()
+    const result = await this.apiService.cekPromo(this.kodeVoucher ?? '')
+    const promo = result?.data?.data;
+    if(promo?.id){
+      this.diskon = promo?.max_voucher ?? 0
+    }else{
+      this.alertService.fail('Kode Voucher Tidak Valid');
+    }
+
+    this.loadingService.hide()
+    console.log("RESULT KODE",result)
+
+  }
+
   async selanjutnyaClick() {
 
     const payload = {
@@ -77,16 +100,33 @@ export class KeranjangPage {
       'id_client': '1', // TODO
       'id_lapangan': this.court?.id,
       'tanggal_booking': moment(this.bookingDate).format('YYYY-MM-DD'),
-      'kode_voucher': '',
+      'kode_voucher': this.kodeVoucher,
       'total_harga': this.totalPrice
     }
     console.log("DATA BOOKING",payload)
     const dataBooking = await this.apiService.doBooking(payload)
-    console.log("DATA BOOKING RESPONSE:",dataBooking)
+    const nomorBooking = dataBooking?.data?.data?.nomor_booking
+    console.log("DATA BOOKING RESPONSE:",dataBooking?.data?.data?.nomor_booking)
 
-    // this.apiService.showMidtransPayment({
-    //
-    // })
+    this.apiService.showMidtransPayment({
+      receipt_id: nomorBooking,
+      account_id: '1' // TODO
+    },
+      // SUKSES
+      (result: any)=> {
+        this.alertService.success('Berhasil melakukan booking');
+        this.router.navigateByUrl('tabs/tab2')
+      },
+      // ERROR
+      () => {
+        this.alertService.fail('Gagal melakukan pembayaran');
+        this.router.navigateByUrl('tabs/tab2')
+      }
+      )
+
+
+
+
 
     // this.modalService.show(BayarPage, {
     //   court: this.court,

@@ -36,6 +36,13 @@ export class ApiService {
   promos() {
     return this.api.get('promos');
   }
+  promo(idPromo: string) {
+    return this.api.get(`promos/${idPromo}`);
+  }
+
+  cekPromo(kodeVoucher: string) {
+    return this.api.get(`cek-promo?kode_voucher=${kodeVoucher}`);
+  }
 
   bookingTimes(tanggalBooking?: string) {
     if (tanggalBooking)
@@ -103,7 +110,7 @@ export class ApiService {
     return this.api.post('register', data);
   }
 
-  async showMidtransPayment(data: any) {
+  async showMidtransPayment(data: any,onSuccess?:any,onError?:any,onPending?:any,onClose?:any) {
     (window as any)?.snap.show();
 
     // const data = {
@@ -119,20 +126,24 @@ export class ApiService {
       if (!result.token) throw new Error("Token not found");
 
       (window as any)?.snap?.pay(result.token, {
-        onSuccess: async function (result: any) {
-          // console.log(result);
-        },
-        onPending: function (result: any) {
-          // alert("Waiting for your payment!");
-          console.log(result);
-        },
-        onError: function (result: any) {
-          // alert("Payment failed!");
-          console.log(result);
-        },
-        onClose: function () {
-          // alert("You closed the popup without finishing the payment");
-        },
+        onSuccess,
+        onError,
+        onPending,
+        onClose
+        // onSuccess: async function (result: any) {
+        //   // console.log(result);
+        // },
+        // onPending: function (result: any) {
+        //   // alert("Waiting for your payment!");
+        //   console.log(result);
+        // },
+        // onError: function (result: any) {
+        //   // alert("Payment failed!");
+        //   console.log(result);
+        // },
+        // onClose: function () {
+        //   // alert("You closed the popup without finishing the payment");
+        // },
       });
     }).catch(() => {
       (window as any)?.snap.hide();

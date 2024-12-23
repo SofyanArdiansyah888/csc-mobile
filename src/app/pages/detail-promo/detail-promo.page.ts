@@ -31,7 +31,6 @@ export class DetailPromoPage implements OnInit {
   court: LapanganEntity | undefined = undefined;
   loading = false
   constructor(
-    private modalController: ModalController,
     private authService: AuthenticationService,
     private alertService: AlertService,
     private modalService: ModalService,
@@ -44,7 +43,7 @@ export class DetailPromoPage implements OnInit {
   async ngOnInit() {
     const temp = this.router.url.split('/');
     this.loading = true
-    const result = await this.apiService.court(temp[2]);
+    const result = await this.apiService.promo(temp[2]);
     this.loading = false
     this.court = result?.data?.data;
   }

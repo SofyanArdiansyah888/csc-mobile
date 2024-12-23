@@ -20,7 +20,7 @@
         </ion-col>
       </ion-item>
       <div *ngFor="let item of bookingTimes">
-        <ion-item lines="none" *ngIf="item.status === 'booked'">
+        <ion-item lines="none" *ngIf="item.status === 'checked'">
           <ion-col class="hw-reviewtime hw-time" size="12">
             <label class="waktunya">{{ item.booking_time }}</label>
             <span class="harga">{{ item.price| currency:'Rp.':'symbol':'3.0' }}</span>
@@ -36,6 +36,39 @@
 
     </div>
 
+
+    <!--   DISKON -->
+    <div class="hw-empty-space"></div>
+
+    <div class="hw-rincian hwdatetime">
+      <ion-item style="margin-top: -15px; margin-bottom: 10px">
+        <ion-col size="12">
+          <p class="title hw-bultah" style="margin: 20px 0 0px 0px">
+            Potongan
+          </p>
+        </ion-col>
+      </ion-item>
+
+      <ion-item lines="none" >
+        <ion-col class="hw-reviewtime hw-time" size="12">
+
+          <div >
+            <ion-label position="floating" mode="ios">Kode Voucher</ion-label>
+            <ion-input enterkeyhint="go" type="text" name="name" [(ngModel)]="kodeVoucher" ></ion-input>
+          </div>
+
+          <ion-icon
+            class="hw-icon"
+            src="/assets/icon/chat.svg"
+            (click)="cekPromo()"
+          ></ion-icon>
+        </ion-col>
+      </ion-item>
+
+    </div>
+
+
+    <!-- RINGKASAN PEMBAYARAN    -->
     <div class="hw-empty-space"></div>
 
     <div class="hw-rincian hwdatetime">
@@ -49,29 +82,19 @@
 
       <ion-item class="isi" lines="none">
         <ion-col size="6">Biaya venue</ion-col>
-        <ion-col style="text-align: right" size="6">{{ totalPrice | currency:'Rp.':'symbol':'3.0' }}</ion-col>
+        <ion-col style="text-align: right" size="6">{{ totalPrice | currency:'Rp.':'symbol':'1.0' }}</ion-col>
       </ion-item>
 
-      <!-- <ion-item class="isi" lines="none">
-        <ion-col size="6">Biaya layanan</ion-col>
-        <ion-col class="lainnya" style="text-align: right" size="6"
-          >3.000</ion-col
-        >
+      <ion-item class="isi" lines="none" *ngIf="diskon !== 0">
+        <ion-col size="6">Diskon</ion-col>
+        <ion-col style="text-align: right" size="6">-{{ diskon | currency:'Rp.':'symbol':'1.0' }}</ion-col>
       </ion-item>
 
-      <ion-item class="isi">
-        <ion-col size="6" style="margin-bottom: 10px">Biaya lainnya</ion-col>
-        <ion-col
-          class="lainnya"
-          style="text-align: right; margin-bottom: 10px"
-          size="6"
-          >5.000</ion-col
-        >
-      </ion-item> -->
+
 
       <ion-item class="hwtotal" lines="none">
         <ion-col size="6">Total Biaya Sewa</ion-col>
-        <ion-col size="6" style="text-align: right">{{ totalPrice | currency:'Rp.':'symbol':'3.0' }}</ion-col>
+        <ion-col size="6" style="text-align: right">{{ totalPrice - diskon | currency:'Rp.':'symbol':'1.0' }}</ion-col>
       </ion-item>
     </div>
 
@@ -98,7 +121,7 @@
       <ion-item lines="none">
         <ion-col size="6">
           <p class="hw-labelharga">Total Biaya</p>
-          <p class="hw-hargatotal"><span>{{ totalPrice| currency:'Rp.':'symbol':'3.0' }}</span></p>
+          <p class="hw-hargatotal"><span>{{ totalPrice - diskon| currency:'Rp.':'symbol':'1.0' }}</span></p>
         </ion-col>
         <ion-col
           size="6"

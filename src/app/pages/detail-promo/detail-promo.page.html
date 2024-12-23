@@ -6,7 +6,7 @@
     <app-base-header
       (handleBackClick)="backClick()"
       title="Detail Promo"
-      description=""
+      description="Temukan promo menarik"
     >
     </app-base-header>
 
@@ -22,17 +22,17 @@
         <ion-col>
           <p class="hw-nama-lapangan">{{ court?.nama }}</p>
           <p class="hw-deskripsi">
-            {{ court?.promo }}
+            {{ court?.deskripsi }}
           </p>
         </ion-col>
       </ion-item>
       <!--Harganya-->
-      <ion-item lines="none">
-        <ion-col>
-          <p class="harga">{{ court?.deskripsi_harga }}</p>
-          <span class="hw-btn" (click)="bookingClick()">Booking</span>
-        </ion-col>
-      </ion-item>
+<!--      <ion-item lines="none">-->
+<!--        <ion-col>-->
+<!--          <p class="harga">{{ court?.deskripsi_harga }}</p>-->
+<!--          <span class="hw-btn" (click)="bookingClick()">Booking</span>-->
+<!--        </ion-col>-->
+<!--      </ion-item>-->
     </div>
     </ng-container>
     <ng-template #loadingSkeleton>
