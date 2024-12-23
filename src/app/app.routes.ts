@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 
 export const routes: Routes = [
   {
@@ -7,17 +7,18 @@ export const routes: Routes = [
   },
 
   {
-    path:'court/:id/booking',
+    path: 'court/:id/booking',
     loadComponent: () => import('./pages/kategori/booking/booking/booking.page').then(m => m.BookingPage)
   },
   {
-    path:'court/:id/booking/keranjang',
+    path: 'court/:id/booking/keranjang',
     loadComponent: () => import('./pages/kategori/booking/keranjang/keranjang/keranjang.page').then(m => m.KeranjangPage)
   },
 
   {
     path: 'category/:id',
-    loadComponent: () => import('./pages/kategori/kategori/kategori.page').then(m => m.KategoriPage)
+    // loadComponent: () => import('./pages/kategori/kategori/kategori.page').then(m => m.KategoriPage)
+    loadComponent: () => import('./pages/list-lapangan/list-lapangan.page').then(m => m.ListLapanganPage)
   },
   {
     path: 'category/:id/singlesport/:singeSportID',
@@ -37,15 +38,15 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    loadComponent: () => import('./pages/auth/login/login.page').then( m => m.LoginPage)
+    loadComponent: () => import('./pages/auth/login/login.page').then(m => m.LoginPage)
   },
   {
     path: 'otp',
-    loadComponent: () => import('./pages/auth/otp/otp.page').then( m => m.OtpPage)
+    loadComponent: () => import('./pages/auth/otp/otp.page').then(m => m.OtpPage)
   },
   {
     path: 'daftar',
-    loadComponent: () => import('./pages/auth/daftar/daftar.page').then( m => m.DaftarPage)
+    loadComponent: () => import('./pages/auth/daftar/daftar.page').then(m => m.DaftarPage)
   },
   {
     path: 'syarat',
@@ -53,11 +54,11 @@ export const routes: Routes = [
   },
   {
     path: 'kebijakan',
-    loadComponent: () => import('./pages/kebijakan/kebijakan.page').then( m => m.KebijakanPage)
+    loadComponent: () => import('./pages/kebijakan/kebijakan.page').then(m => m.KebijakanPage)
   },
   {
     path: 'kontak',
-    loadComponent: () => import('./pages/kontak/kontak.page').then( m => m.KontakPage)
+    loadComponent: () => import('./pages/kontak/kontak.page').then(m => m.KontakPage)
   },
   {
     path: 'coming',
@@ -70,5 +71,32 @@ export const routes: Routes = [
   {
     path: 'court/:id/detail-court',
     loadComponent: () => import('./pages/detail-court/detail-court.page').then(m => m.DetailCourtPage)
-  }
+  },
+
+
+  // AKUN
+  {
+    path: 'biodata',
+    loadComponent: () => import('./pages/akun/biodata/biodata.page').then(m => m.BiodataPage)
+  },
+  {
+    path: 'ubah-pass',
+    loadComponent: () => import('./pages/akun/ubahpass/ubahpass.page').then(m => m.UbahpassPage)
+  },
+  {
+    path: 'kontak',
+    loadComponent: () => import('./pages/kontak/kontak.page').then(m => m.KontakPage)
+  },
+  {
+    path: 'syarat-ketentuan',
+    loadComponent: () => import('./pages/akun/syarat-ketentuan/syarat-ketentuan.page').then(m => m.SyaratKetentuanPage)
+  },
+  {
+    path: 'kebijakan-privasi',
+    loadComponent: () => import('./pages/akun/kebijakan-privasi/kebijakan-privasi.page').then(m => m.KebijakanPrivasiPage)
+  },
+  {
+    path: 'list-lapangan',
+    loadComponent: () => import('./pages/list-lapangan/list-lapangan.page').then(m => m.ListLapanganPage)
+  },
 ];

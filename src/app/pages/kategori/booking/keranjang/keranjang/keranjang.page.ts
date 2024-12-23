@@ -6,6 +6,8 @@ import {CurrencyPipe, DatePipe, Location, NgForOf, NgIf} from "@angular/common";
 import {BookingService} from "../../../../../services/signal/booking.service";
 import {LapanganEntity} from "../../../../../entities/Lapangan.entity";
 import {Router} from "@angular/router";
+import {ApiService} from "../../../../../services/api.service";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-keranjang',
@@ -29,33 +31,29 @@ export class KeranjangPage {
   totalPrice = 0;
 
   constructor(
-      private  bookingService: BookingService,
-      private location: Location,
-      private router: Router,
+    private bookingService: BookingService,
+    private location: Location,
+    private router: Router,
+    private apiService: ApiService
   ) {
     const booking = this.bookingService.booking()
-    console.log("ISI BOOKING",booking)
     this.bookingTimes = booking.bookingTimes
     this.bookingDate = booking.bookingDate
     this.court = booking.court
-    // this.court = data.court;
-    // this.venue = data.venue;
-    // this.bookingTimes = data.bookingTimes;
-    // this.bookingDate = data.bookingDate;
     this.countTotalPrice();
-    // console.log(this.court, 'court');
-    // console.log(this.venue, 'venue');
-    // console.log(this.bookingTimes, 'bookingTimes');
-    // console.log(this.bookingDate, 'bookingDate');
   }
 
   countTotalPrice() {
     this.totalPrice = 0;
-    this.bookingTimes.map((item) => {
-      if (item.selected) {
-        this.totalPrice += Number(item.price);
-      }
-    });
+    if (this?.court?.status_waktu == false) {
+      this.totalPrice = this.court?.harga ?? 0
+    } else {
+      this.bookingTimes.map((times) => {
+        if (times.status === 'booked') {
+          this.totalPrice += Number(times.price ?? 0) ?? 0
+        }
+      });
+    }
   }
 
   kebijakanClick() {
@@ -64,7 +62,7 @@ export class KeranjangPage {
   }
 
   deleteClick(item: BookingTimeEntity) {
-    item.selected = false;
+    item.status = 'default';
     this.countTotalPrice();
   }
 
@@ -73,6 +71,23 @@ export class KeranjangPage {
   }
 
   async selanjutnyaClick() {
+
+    const payload = {
+      'booking_times': this.bookingTimes,
+      'id_client': '1', // TODO
+      'id_lapangan': this.court?.id,
+      'tanggal_booking': moment(this.bookingDate).format('YYYY-MM-DD'),
+      'kode_voucher': '',
+      'total_harga': this.totalPrice
+    }
+    console.log("DATA BOOKING",payload)
+    const dataBooking = await this.apiService.doBooking(payload)
+    console.log("DATA BOOKING RESPONSE:",dataBooking)
+
+    // this.apiService.showMidtransPayment({
+    //
+    // })
+
     // this.modalService.show(BayarPage, {
     //   court: this.court,
     //   venue: this.venue,

@@ -1,25 +1,16 @@
 <ion-content fullscreen="true">
   <section>
-    <div style="width: 100%">
-      <ion-item lines="none" class="header-title" style="margin-bottom: -10px">
-        <ion-col size="1">
-          <ion-icon
-            class="backclik_black"
-            (click)="backClick()"
-            src="assets/icon/chevron-left.svg"
-          ></ion-icon>
-        </ion-col>
-        <ion-col size="11">
-          <p class="title" style="margin: 20px 0 0px 10px">Detail Promo</p>
-          <p style="margin: 0">
-          <span style="padding-left: 10px"
-          ></span
-          >
-          </p>
-        </ion-col>
-      </ion-item>
-    </div>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <app-base-header
+      (handleBackClick)="backClick()"
+      title="Detail Promo"
+      description=""
+    >
+    </app-base-header>
 
+    <ng-container *ngIf="!loading; else loadingSkeleton">
     <!--PROMO DETAIL-->
     <div class="datanya">
       <ion-item class="hw-lapangan" lines="none">
@@ -43,5 +34,9 @@
         </ion-col>
       </ion-item>
     </div>
+    </ng-container>
+    <ng-template #loadingSkeleton>
+      <app-detail-lapangan-skeleton *ngIf="loading"></app-detail-lapangan-skeleton>
+    </ng-template>
   </section>
 </ion-content>

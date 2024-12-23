@@ -1,6 +1,6 @@
 <ion-content>
 
-  <section>
+  <section class="sofie-section">
     <app-base-header
       (handleBackClick)="backClick()"
       title="Karsa Mini Soccer"
@@ -15,14 +15,14 @@
     <div class="hw-list" style="width: 100%">
       <ion-item lines="none" class="hw-listlapangan">
         <ion-col size="12" style="padding: 0">
-          <p class="hw-nama">{{ court?.nama }} - {{ court?.tipe_alas }}</p>
+          <p class="hw-nama">{{ court?.nama }}</p>
           <p class="hw-jadwal hw-address">{{ bookingDate | date :  "dd MMM y" : "UTC + 8" }}</p>
         </ion-col>
       </ion-item>
       <div *ngFor="let item of bookingTimes">
-        <ion-item lines="none" *ngIf="item.selected === true">
+        <ion-item lines="none" *ngIf="item.status === 'booked'">
           <ion-col class="hw-reviewtime hw-time" size="12">
-            <label class="waktunya">{{ item.name }}</label>
+            <label class="waktunya">{{ item.booking_time }}</label>
             <span class="harga">{{ item.price| currency:'Rp.':'symbol':'3.0' }}</span>
             <ion-icon
               class="hw-icon"
@@ -94,7 +94,7 @@
       </ion-item>
     </div>
 
-    <ion-footer>
+    <ion-footer class="sofie-footer">
       <ion-item lines="none">
         <ion-col size="6">
           <p class="hw-labelharga">Total Biaya</p>

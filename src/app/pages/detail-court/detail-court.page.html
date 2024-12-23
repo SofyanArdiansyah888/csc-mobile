@@ -1,5 +1,8 @@
 <ion-content fullscreen="true">
   <section>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
     <app-base-header
       (handleBackClick)="backClick()"
       title="Lapangan"
@@ -7,66 +10,73 @@
     >
     </app-base-header>
 
-    <!--Datanya-->
-    <div class="datanya">
-      <ion-item class="hw-lapangan" lines="none">
-        <img class="hw-ganbarnya" src="{{imageUrl}}/lapangan/{{court?.link_gambar}}"/>
-      </ion-item>
+    <ng-container *ngIf="!loading; else loadingSkeleton">
+      <!--Datanya-->
+      <div class="datanya">
+        <ion-item class="hw-lapangan" lines="none">
+          <img class="hw-ganbarnya" src="{{imageUrl}}/lapangan/{{court?.link_gambar}}"/>
+        </ion-item>
 
-      <!--Nama Lapangan & Deskripsi-->
-      <ion-item class="hw-lapangan produk-desc" lines="none">
-        <ion-col>
-          <p class="hw-nama-lapangan">{{ court?.nama }}</p>
-          <p class="hw-deskripsi">
-            {{ court?.deskripsi }}
-          </p>
-        </ion-col>
-      </ion-item>
+        <!--Nama Lapangan & Deskripsi-->
+        <ion-item class="hw-lapangan produk-desc" lines="none">
+          <ion-col>
+            <p class="hw-nama-lapangan">{{ court?.nama }}</p>
+            <p class="hw-deskripsi">
+              {{ court?.deskripsi }}
+            </p>
+          </ion-col>
+        </ion-item>
 
-      <!--Jenis Fasilitasnya-->
-      <ion-item
-        class="hw-lapangan spesifikasi"
-        lines="none"
-        style="margin-top: -20px"
-      >
-        <ion-col size="12">
-          <div class="hw-col-main">
-            <div class="hw-col6 hw-jenis">
-              <p>Cabang Olahraga</p>
+        <!--Jenis Fasilitasnya-->
+        <ion-item
+          class="hw-lapangan spesifikasi"
+          lines="none"
+          style="margin-top: -20px"
+        >
+          <ion-col size="12">
+            <div class="hw-col-main">
+              <div class="hw-col6 hw-jenis">
+                <p>Cabang Olahraga</p>
+              </div>
+              <div class="hw-col6 teks-kanan">
+                <p>{{ court?.sports }}</p>
+              </div>
             </div>
-            <div class="hw-col6 teks-kanan">
-              <p>{{ court?.sports }}</p>
-            </div>
-          </div>
 
-          <div class="hw-col-main">
-            <div class="hw-col6 hw-jenis">
-              <p>Jenis Lapangan</p>
+            <div class="hw-col-main">
+              <div class="hw-col6 hw-jenis">
+                <p>Jenis Lapangan</p>
+              </div>
+              <div class="hw-col6 teks-kanan">
+                <p>{{ court?.tipe_lapangan }}</p>
+              </div>
             </div>
-            <div class="hw-col6 teks-kanan">
-              <p>{{ court?.tipe_lapangan }}</p>
-            </div>
-          </div>
 
-          <div class="hw-col-main">
-            <div class="hw-col6 hw-jenis">
-              <p>Jenis Alas</p>
+            <div class="hw-col-main">
+              <div class="hw-col6 hw-jenis">
+                <p>Jenis Alas</p>
+              </div>
+              <div class="hw-col6 teks-kanan">
+                <p>{{ court?.tipe_alas }}</p>
+              </div>
             </div>
-            <div class="hw-col6 teks-kanan">
-              <p>{{ court?.tipe_alas }}</p>
-            </div>
-          </div>
-          <div style="border: 1px solid #ebebeb"></div>
-        </ion-col>
-      </ion-item>
+            <div style="border: 1px solid #ebebeb"></div>
+          </ion-col>
+        </ion-item>
 
-      <!--Harganya-->
-      <ion-item lines="none">
-        <ion-col>
-          <p class="harga">{{ court?.deskripsi_harga }}</p>
-          <span class="hw-btn" (click)="bookingClick()">Booking</span>
-        </ion-col>
-      </ion-item>
-    </div>
+        <!--Harganya-->
+        <ion-item lines="none">
+          <ion-col>
+            <p class="harga">{{ court?.deskripsi_harga }}</p>
+            <span class="hw-btn" (click)="bookingClick()">Booking</span>
+          </ion-col>
+        </ion-item>
+      </div>
+    </ng-container>
+
+
+    <ng-template #loadingSkeleton>
+      <app-detail-lapangan-skeleton *ngIf="loading"></app-detail-lapangan-skeleton>
+    </ng-template>
   </section>
 </ion-content>

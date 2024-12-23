@@ -1,7 +1,8 @@
 export interface BookingTimeEntity {
   id?: number;
   name: string;
+  booking_time: string;
   price?: number;
-  selected?: boolean;
+  status: 'booked' | 'default' | 'not available' | 'checked';
 }
 

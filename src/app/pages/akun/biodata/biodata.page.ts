@@ -4,15 +4,19 @@ import {UserEntity} from 'src/app/entities/User.entity';
 import {ApiService} from 'src/app/services/api.service';
 import {AlertService} from 'src/app/services/ionic/alert.service';
 import {FormsModule} from "@angular/forms";
+import {BaseHeaderComponent} from "../../../components/base-header/base-header.component";
+import {Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-biodata',
   templateUrl: './biodata.page.html',
   styleUrls: ['./biodata.page.scss'],
-  imports: [
-    IonicModule,
-    FormsModule
-  ],
+    imports: [
+        IonicModule,
+        FormsModule,
+        BaseHeaderComponent
+    ],
   standalone: true
 })
 export class BiodataPage implements OnInit {
@@ -30,7 +34,8 @@ export class BiodataPage implements OnInit {
   };
 
   constructor(private apiService: ApiService,
-              private modalController: ModalController,
+              private router: Router,
+              private location: Location,
               private alertService: AlertService) {
   }
 
@@ -53,7 +58,7 @@ export class BiodataPage implements OnInit {
   }
 
   backClick() {
-    this.modalController.dismiss();
+    this.location.back()
   }
 
 }

@@ -11,32 +11,32 @@ export class AlertService {
   async success(message = '') {
     const alert = await this.alertController.create({
       cssClass: 'berhasilki konfirmasi',
-      message:
-        `<div class="hw-backgrond"><img src="assets/olahraga/bullhorn-solid.svg" class="gambar-alert"></div> <br> <p class="hw-intro">Berhasil<p>${message}`,
+      message:'',
       buttons: ['TERIMA KASIH'],
     });
 
-    await alert.present();
+    await this.show(alert, ` <div class="hw-backgrond">
+        <img src="assets/olahraga/bullhorn-solid.svg" class="gambar-alert">
+      </div>
+      <br>
+      <p class="hw-intro">Berhasil</p>
+      <p>${message}</p>`)
   }
 
   async fail(message = 'Error') {
     const alert = await this.alertController.create({
       cssClass: 'gagalki konfirmasi',
-      message:
-        `<div class="hw-backgrond"><img src="assets/olahraga/bullhorn-solid.svg" class="gambar-alert"></div><br> <p class="hw-intro">Maaf<p>${message}`,
-      //header: 'lupa',
-      //message: 'Kami akan mengirimkan password baru ke alamat Email Anda.',
+      message:'',
       buttons: ['OK'],
     });
 
-    await alert.present();
+    this.show(alert,`<div class="hw-backgrond"><img src="assets/olahraga/bullhorn-solid.svg" class="gambar-alert"></div><br> <p class="hw-intro">Maaf<p>${message}`)
   }
 
   async confirm(message: string, button1: any, button2:any, callback:any) {
     const alert = await this.alertController.create({
       cssClass: 'gagalki konfirmasi',
-      message:
-      `<div class="hw-backgrond"><img src="assets/olahraga/bullhorn-solid.svg" class="gambar-alert"></div><br> <p class="hw-intro">Maaf<p>${message}`,
+      message: '',
       buttons: [
         {
           text: button1,
@@ -49,14 +49,14 @@ export class AlertService {
         },
       ],
     });
-    alert.present();
+    this.show(alert,`<div class="hw-backgrond"><img src="assets/olahraga/bullhorn-solid.svg" class="gambar-alert"></div><br> <p class="hw-intro">Maaf<p>${message}`)
   }
 
   async forgetPassword(buttons: (string | AlertButton)[] | undefined) {
     const alert = await this.alertController.create({
       cssClass: 'konfirmasi hw-confir-reset',
       header: 'Lupa?',
-      message: '<img class="hw-icon" src="assets/jac/global/lock-solid.svg">',
+      message: ``,
       inputs: [
         {
           name: 'alamatemail',
@@ -66,6 +66,17 @@ export class AlertService {
       ],
       buttons,
     });
-    return await alert.present();
+    return this.show(alert,'<img class="hw-icon" src="assets/jac/global/lock-solid.svg">')
+  }
+
+  private async show(alert:any,element: string){
+    // Present the alert first
+    await alert.present();
+
+    // Inject HTML into the alert message container
+    const alertElement = document.querySelector('ion-alert .alert-message');
+    if (alertElement) {
+      alertElement.innerHTML = `${element}`;
+    }
   }
 }

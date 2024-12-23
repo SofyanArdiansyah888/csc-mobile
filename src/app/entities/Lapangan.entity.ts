@@ -14,6 +14,7 @@ export interface LapanganEntity {
   sports?: string;
   created_at?: string;
   venue?: VenueEntity;
+  status_waktu: boolean;
   isPromo?: boolean;
   promo?: string;
 }

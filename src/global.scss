@@ -37,8 +37,6 @@
 //@import '@ionic/angular/css/palettes/dark.system.css';
 
 
-
-
 @font-face {
   font-family: "Metropolis-Bold";
   src: url("../src/assets/fonts/Metropolis-Bold.otf") format("truetype");
@@ -460,6 +458,7 @@ input {
     line-height: 1.5;
     max-height: 100px;
     padding-bottom: 0;
+
     p.hw-intro {
       font-family: "Metropolis-Bold";
       font-size: 16px;
@@ -1054,7 +1053,7 @@ a {
 }
 
 
-ion-accordion-group{
+ion-accordion-group {
   ion-accordion {
     .ion-accordion-toggle-icon {
       font-size: 18px;
@@ -1069,7 +1068,7 @@ ion-accordion-group{
   margin-bottom: 5px;
 }
 
-ion-footer{
+ion-footer {
   .pilih {
     font-size: 12px;
 
@@ -1087,7 +1086,7 @@ img.thumbnail {
   min-height: 70px !important;
 }
 
-.hw-col-3 p{
+.hw-col-3 p {
   font-size: 14px !important;
 }
 
@@ -1122,17 +1121,29 @@ ion-item.hw-cari ion-icon {
   margin-top: 0px !important;
 }
 
-ion-content section{
+ion-content section {
   max-width: 400px !important;
   margin: 0px auto;
 }
-.empty-state{
+
+.empty-state {
   justify-content: center;
   display: flex;
 }
-.test{
-  background: #fafafa !important;
 
+.test {
+  background: #fafafa !important;
+}
+
+.sofie-footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%
+}
+
+.sofie-section {
+  position: relative;
+  min-height: 100vh
 }
 
 
@@ -1148,4 +1159,25 @@ ion-content section{
   .hw-jenis p {
     font-size: 13px !important;
   }
+}
+
+
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-400 rounded-full
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb {
+  background: #555;
 }

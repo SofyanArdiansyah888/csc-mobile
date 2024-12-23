@@ -24,8 +24,9 @@ export class ApiService {
     return this.api.get('iklans');
   }
 
-  courts() {
-    return this.api.get('courts');
+  courts(categoryID?: number | string) {
+    if (categoryID) return this.api.get(`courts?id_kategori=${categoryID}`);
+    return this.api.get(`courts`);
   }
 
   court(id: string) {
@@ -36,8 +37,10 @@ export class ApiService {
     return this.api.get('promos');
   }
 
-  bookingTimes() {
-    return this.api.get('booking-times');
+  bookingTimes(tanggalBooking?: string) {
+    if (tanggalBooking)
+      return this.api.get(`booking-times?tanggal_booking=${tanggalBooking}`);
+    return this.api.get(`booking-times`);
   }
 
   bookings() {

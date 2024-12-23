@@ -1,39 +1,32 @@
 <ion-content fullscreen="true">
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
+  <section>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 
-  <div style="width: 100%;">
-  <ion-item lines="none" class="header-title" style="margin-bottom: -10px;">
-    <ion-col size="1">
-      <ion-icon class="backclik_black" (click)="backClick()" src="assets/icon/chevron-left.svg"></ion-icon>
-  </ion-col>
-  <ion-col size="11">
-    <p class="title" style="margin: 20px 0 0px 10px;">Kebijakan Privasi</p>
-    <!-- <p style="margin: 0;">
-      <span style="padding-left: 10px;">Privacy Policy</span>
-    </p> -->
-  </ion-col>
-  </ion-item>
-  </div>
+    <app-base-header
+      (handleBackClick)="backClick()"
+      title="Kebijakan Privasi"
+      description="">
+    </app-base-header>
 
-  <ion-item style="margin-top:45px;" lines="none">
-    <img class="logo" src="assets/olahraga/logo.png">
-  </ion-item>
+    <ion-item style="margin-top:45px;" lines="none">
+      <img class="logo" src="assets/olahraga/logo.png">
+    </ion-item>
 
-  <ion-item style="margin-top:25px;" lines="none">
-    <ion-col>
-      <p class="top">Kebijakan Privasi MSportive</p>
-    </ion-col>
-  </ion-item>
+    <ion-item style="margin-top:25px;" lines="none">
+      <ion-col>
+        <p class="top">Kebijakan Privasi MSportive</p>
+      </ion-col>
+    </ion-item>
 
-  <ion-item style="margin-top:5px;" lines="none">
-    <ion-col>
-      <p class="hw-konten">
-        {{policies[0].description}}
-      </p>
-    </ion-col>
-  </ion-item>
+    <ion-item style="margin-top:5px;" lines="none">
+      <ion-col>
+        <p class="hw-konten">
+          {{ policies[0].description }}
+        </p>
+      </ion-col>
+    </ion-item>
 
-
+  </section>
 </ion-content>

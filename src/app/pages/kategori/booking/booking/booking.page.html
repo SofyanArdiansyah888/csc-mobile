@@ -1,5 +1,5 @@
 <ion-content>
-  <section>
+  <section class="sofie-section">
     <app-base-header
       (handleBackClick)="backClick()"
       title="Booking"
@@ -10,17 +10,17 @@
       <a href="/olahraga/singlesport">
         <ion-item lines="none" class="hw-listlapangan">
           <ion-col size="9" style="padding: 0">
-            <p class="hw-nama">{{court?.nama}}</p>
-            <p class="hw-address">{{court?.deskripsi}}</p>
+            <p class="hw-nama">{{ court?.nama }}</p>
+            <p class="hw-address">{{ court?.deskripsi }}</p>
 
-            <p class="hw-fasilitas">Jenis Alas : {{court?.tipe_alas}}</p>
-            <p class="hw-fasilitas">Jenis Lapangan : {{court?.tipe_lapangan}}</p>
+            <p class="hw-fasilitas">Jenis Alas : {{ court?.tipe_alas }}</p>
+            <p class="hw-fasilitas">Jenis Lapangan : {{ court?.tipe_lapangan }}</p>
 
-            <p class="hw-nama harga">{{court?.deskripsi_harga}}</p>
+            <p class="hw-nama harga">{{ court?.deskripsi_harga }}</p>
           </ion-col>
 
           <ion-col size="3">
-            <img class="thumbnail" src="{{imageUrl}}lapangan/{{court?.link_gambar}}" />
+            <img class="thumbnail" src="{{imageUrl}}lapangan/{{court?.link_gambar}}"/>
           </ion-col>
         </ion-item>
       </a>
@@ -28,10 +28,10 @@
     <div class="hw-empty-space"></div>
 
     <div class="hwdatetime">
-      <ion-item lines="none">
+      <ion-item lines="none" style="margin: 20px 0px">
         <ion-col size="6">
           <p class="title hw-bultah" style="margin: 20px 0 0px 0px">
-            {{monthName(selectedMonth)}} {{selectedYear}}
+            {{ monthName(selectedMonth) }} {{ selectedYear }}
           </p>
         </ion-col>
         <ion-col size="6" style="margin-bottom: 15px">
@@ -51,7 +51,7 @@
       <ion-item>
         <div class="outer-div">
           <div class="inner-div" #innerDiv>
-            <ul id="dates" >
+            <ul id="dates">
               <li
                 *ngFor="let day of days"
                 [ngClass]="{'active booked': day.booked, 'disabled': day.disabled}"
@@ -68,27 +68,31 @@
 
     </div>
 
-    <div class="hw-jamnya" id="pilih-jam">
+    <div *ngIf="court?.status_waktu == true" class="hw-jamnya" id="pilih-jam">
+
       <ion-item lines="none" *ngFor="let bookingTime of bookingTimes">
         <input
           type="checkbox"
           value="{{bookingTime.id}}"
-          [checked]="bookingTime.selected"
+          [checked]="bookingTime.status === 'checked'"
           (change)="onCheckboxChange($event.target,bookingTime)"
+          [disabled]="['booked','not available'].includes(bookingTime.status)"
+          *ngIf="!['booked','not available'].includes(bookingTime.status)"
         />
-        <ion-col class="hw-time" size="12">
-          <label for="{{bookingTime.name}}">{{bookingTime.name}}</label
-          ><span class="harga">{{bookingTime.price | currency:'Rp.':'symbol':'3.0' }}</span>
+        <ion-col class="hw-time checked-list" size="12">
+          <label for="{{bookingTime.booking_time}}">{{ bookingTime.booking_time }}</label>
+          <span *ngIf="!['booked','not available'].includes(bookingTime.status)" class="harga">{{ bookingTime.price | currency:'Rp.':'symbol':'3.0' }}</span>
+          <span *ngIf="['booked','not available'].includes(bookingTime.status)" class="harga" style="text-transform: capitalize">{{bookingTime.status}}</span>
         </ion-col>
       </ion-item>
     </div>
 
 
-    <ion-footer>
+    <ion-footer class="sofie-footer">
       <ion-item lines="none">
         <ion-col size="6">
           <p class="hw-labelharga">Total Biaya</p>
-          <p class="hw-hargatotal"><span>{{totalPrice| currency:'Rp.':'symbol':'3.0' }}</span></p>
+          <p class="hw-hargatotal"><span>{{ totalPrice| currency:'Rp.':'symbol':'3.0' }}</span></p>
         </ion-col>
         <ion-col
           size="6"
@@ -102,6 +106,7 @@
         </ion-col>
       </ion-item>
     </ion-footer>
+
   </section>
 
 </ion-content>

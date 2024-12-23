@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {IonicModule, ModalController, NavParams} from '@ionic/angular';
-import { PolicyEntity } from 'src/app/entities/Policy.entity';
-import { ApiService } from 'src/app/services/api.service';
-import {NgOptimizedImage} from "@angular/common";
+import {Component, OnInit} from '@angular/core';
+import {IonicModule} from '@ionic/angular';
+import {PolicyEntity} from 'src/app/entities/Policy.entity';
+import {ApiService} from 'src/app/services/api.service';
+import {Location, NgOptimizedImage} from "@angular/common";
+import {BaseHeaderComponent} from "../../../components/base-header/base-header.component";
 
 @Component({
   selector: 'app-syarat-ketentuan',
@@ -10,7 +11,8 @@ import {NgOptimizedImage} from "@angular/common";
   styleUrls: ['./syarat-ketentuan.page.scss'],
   imports: [
     IonicModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    BaseHeaderComponent
   ],
   standalone: true
 })
@@ -25,10 +27,12 @@ export class SyaratKetentuanPage implements OnInit {
       description: '',
     },
   ];
+
   constructor(
     private apiService: ApiService,
-    private modalController: ModalController
-  ) {}
+    private location: Location
+  ) {
+  }
 
   async ngOnInit() {
     const temp = await this.apiService.policies();
@@ -43,6 +47,6 @@ export class SyaratKetentuanPage implements OnInit {
   }
 
   backClick() {
-    this.modalController.dismiss();
+    this.location.back()
   }
 }

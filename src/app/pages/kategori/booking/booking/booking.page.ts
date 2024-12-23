@@ -6,7 +6,7 @@ import {getAllDaysInMonth, getMonthName, thisMonth, thisYear, today,} from 'src/
 import {AlertService} from 'src/app/services/ionic/alert.service';
 import {ModalService} from 'src/app/services/ionic/modal.service';
 import {Router} from '@angular/router';
-import {CurrencyPipe, Location, NgClass, NgForOf} from '@angular/common';
+import {CurrencyPipe, Location, NgClass, NgForOf, NgIf} from '@angular/common';
 import {environment} from "../../../../../environments/environment";
 import {BaseHeaderComponent} from "../../../../components/base-header/base-header.component";
 import {IonicModule} from "@ionic/angular";
@@ -22,7 +22,8 @@ import * as moment from "moment";
     IonicModule,
     NgForOf,
     NgClass,
-    CurrencyPipe
+    CurrencyPipe,
+    NgIf
   ],
   standalone: true
 })
@@ -35,7 +36,7 @@ export class BookingPage implements OnInit {
   selectedTimes = [];
   selectedBookingTimes: BookingTimeEntity[] = [];
   imageUrl = environment.imageUrl;
-  totalPrice = 0;
+  totalPrice: number = 0;
 
   // DATE
   selectedDate = Number(today());
@@ -46,7 +47,6 @@ export class BookingPage implements OnInit {
   constructor(
     private apiService: ApiService,
     private alertService: AlertService,
-    private modalService: ModalService,
     private router: Router,
     private location: Location,
     private bookingService: BookingService
@@ -55,18 +55,25 @@ export class BookingPage implements OnInit {
 
 
   async ngOnInit() {
+    this.days.map((item) => {
+      item.booked = item.date === this.selectedDate;
+      return item;
+    });
     setTimeout(() => {
       this.scrollToToday()
     });
+
     await this.initCourt();
-    const result = await this.apiService.bookingTimes();
+    const result = await this.apiService.bookingTimes(`${this.selectedYear}-${this.selectedMonth+1}-${this.selectedDate}`);
     this.bookingTimes = result.data.data;
     this.bookingTimes.map(
       (bookingTime) => {
-        bookingTime.price = this?.court?.harga;
-        bookingTime.selected = false;
+        bookingTime.price = this?.court?.harga ?? 0;
       }
     );
+
+
+    this.countTotalPrice();
 
   }
 
@@ -112,13 +119,20 @@ export class BookingPage implements OnInit {
     this.days = getAllDaysInMonth(this.selectedYear, this.selectedMonth);
   }
 
-  dateClick(day:any) {
+  async dateClick(day: any) {
     this.days.map((item) => {
       item.booked = false;
       return item;
     });
     day.booked = true;
     this.selectedDate = day.date;
+    const result = await this.apiService.bookingTimes(`${this.selectedYear}-${this.selectedMonth + 1}-${this.selectedDate}`);
+    this.bookingTimes = result.data.data;
+    this.bookingTimes.map(
+      (bookingTime) => {
+        bookingTime.price = this?.court?.harga ?? 0;
+      }
+    );
   }
 
   monthName(month: number) {
@@ -127,27 +141,27 @@ export class BookingPage implements OnInit {
 
   onCheckboxChange(event:any, test:any) {
     if (event.checked) {
-      test.selected = true;
+      test.status = 'checked'
     } else {
-      test.selected = false;
+      test.status = 'default';
     }
     this.countTotalPrice();
   }
 
   countTotalPrice(){
     this.totalPrice = 0;
-    console.log("BOOKING PAGE",this.bookingTimes)
-    this.bookingTimes.map((times) => {
-      if(times.selected)
-        {this.totalPrice += Number(times.price)}
-    });
+    if(this?.court?.status_waktu == false){
+      this.totalPrice = this.court?.harga ?? 0
+    }else{
+      this.bookingTimes.map((times) => {
+        if(times.status === 'checked') {
+          this.totalPrice += Number(times.price ?? 0) ?? 0}
+      });
+    }
+
   }
 
   async selanjutnyaClick() {
-    if(this.bookingTimes?.filter(item => item.selected === true).length === 0){
-        this.alertService.fail('Waktu booking harus berurutan !');
-        return;
-    }
     this.bookingService.doBooking({
       bookingTimes: this.bookingTimes,
       bookingDate: new Date(

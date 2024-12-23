@@ -25,7 +25,7 @@ import {SinglesportSkeletonComponent} from "../../../../components/singlesport-s
   standalone: true
 })
 export class SinglesportPage implements OnInit {
-  venue: VenueEntity | null = null;
+  venue: VenueEntity | any = null;
   loading = false;
   imageUrl = environment.imageUrl;
   constructor(
@@ -39,9 +39,17 @@ export class SinglesportPage implements OnInit {
   async ngOnInit() {
     const temp = this.router.url.split('/');
     this.loading = true;
-    const result = await this.apiService.venue(temp[4]);
-    this.loading = false;
-    this.venue = result?.data?.data;
+    try{
+      const result = await this.apiService.venue(temp[4]);
+      this.venue = result?.data?.data;
+    }catch(error){
+      this.venue = [];
+    } finally {
+      this.loading = false;
+    }
+
+
+
   }
 
   backClick() {

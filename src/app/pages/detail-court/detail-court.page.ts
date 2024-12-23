@@ -9,6 +9,9 @@ import {AlertService} from '../../services/ionic/alert.service';
 import {ModalService} from '../../services/ionic/modal.service';
 import {environment} from "../../../environments/environment";
 import {BaseHeaderComponent} from "../../components/base-header/base-header.component";
+import {
+  DetailLapanganSkeletonComponent
+} from "../../components/detail-lapangan-skeleton/detail-lapangan-skeleton.component";
 
 @Component({
   selector: 'app-detail-court',
@@ -17,13 +20,15 @@ import {BaseHeaderComponent} from "../../components/base-header/base-header.comp
   imports: [
     IonicModule,
     CommonModule,
-    BaseHeaderComponent
+    BaseHeaderComponent,
+    DetailLapanganSkeletonComponent
   ],
   standalone: true
 })
 export class DetailCourtPage implements OnInit {
   court: LapanganEntity | undefined =  undefined;
   imageUrl = environment.imageUrl;
+  loading = false
   constructor(
     private modalController: ModalController,
     private authService: AuthenticationService,
@@ -37,8 +42,18 @@ export class DetailCourtPage implements OnInit {
 
   async ngOnInit() {
     const temp = this.router.url.split('/');
+    this.loading = true;
     const result = await this.apiService.court(temp[2]);
+    this.loading = false
     this.court = result?.data?.data;
+  }
+
+
+  async doRefresh(event: any) {
+    setTimeout(async () => {
+      await this.ngOnInit();
+      event.target.complete();
+    }, 100);
   }
 
   backClick() {

@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import {IonicModule, ModalController, NavParams} from '@ionic/angular';
-import { PolicyEntity } from 'src/app/entities/Policy.entity';
-import { ApiService } from 'src/app/services/api.service';
+import {Component, OnInit} from '@angular/core';
+import {IonicModule} from '@ionic/angular';
+import {PolicyEntity} from 'src/app/entities/Policy.entity';
+import {ApiService} from 'src/app/services/api.service';
+import {BaseHeaderComponent} from "../../../components/base-header/base-header.component";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-kebijakan-privasi',
   templateUrl: './kebijakan-privasi.page.html',
   styleUrls: ['./kebijakan-privasi.page.scss'],
   imports: [
-    IonicModule
+    IonicModule,
+    BaseHeaderComponent
   ],
   standalone: true
 })
@@ -19,10 +22,12 @@ export class KebijakanPrivasiPage implements OnInit {
       description: '',
     }
   ];
+
   constructor(
     private apiService: ApiService,
-    private modalController: ModalController
-  ) {}
+    private location: Location
+  ) {
+  }
 
   async ngOnInit() {
     const temp = await this.apiService.policies();
@@ -37,6 +42,6 @@ export class KebijakanPrivasiPage implements OnInit {
   }
 
   backClick() {
-    this.modalController.dismiss();
+    this.location.back()
   }
 }

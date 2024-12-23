@@ -5,6 +5,8 @@ import {AuthenticationService} from 'src/app/services/auth/authentication.servic
 import {DatabaseService} from 'src/app/services/database/database.service';
 import {AlertService} from 'src/app/services/ionic/alert.service';
 import {FormsModule} from "@angular/forms";
+import {Location} from "@angular/common";
+import {BaseHeaderComponent} from "../../../components/base-header/base-header.component";
 
 @Component({
   selector: 'app-ubahpass',
@@ -12,7 +14,8 @@ import {FormsModule} from "@angular/forms";
   styleUrls: ['./ubahpass.page.scss'],
   imports: [
     IonicModule,
-    FormsModule
+    FormsModule,
+    BaseHeaderComponent
   ],
   standalone: true
 })
@@ -24,6 +27,7 @@ export class UbahpassPage implements OnInit {
               private authService: AuthenticationService,
               private databaseService: DatabaseService,
               private navController: NavController,
+              private location: Location,
               private alertService: AlertService) {
   }
 
@@ -53,7 +57,7 @@ export class UbahpassPage implements OnInit {
   }
 
   backClick() {
-    this.modalController.dismiss();
+    this.location.back()
   }
 
 }

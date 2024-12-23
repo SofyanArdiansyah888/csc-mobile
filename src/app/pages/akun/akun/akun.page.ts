@@ -9,6 +9,7 @@ import {BiodataPage} from '../biodata/biodata.page';
 import {KebijakanPrivasiPage} from '../kebijakan-privasi/kebijakan-privasi.page';
 import {SyaratKetentuanPage} from '../syarat-ketentuan/syarat-ketentuan.page';
 import {UbahpassPage} from '../ubahpass/ubahpass.page';
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-akun',
@@ -25,6 +26,7 @@ export class AkunPage{
               private authService: AuthenticationService,
               private databaseService: DatabaseService,
               private modalService: ModalService,
+              private route: Router,
               private navController: NavController) {
   }
 
@@ -38,22 +40,27 @@ export class AkunPage{
   }
 
   passwordClick() {
+    this.route.navigateByUrl('ubah-pass')
     // this.modalService.show(UbahpassPage);
   }
 
   biodataClick() {
+    this.route.navigateByUrl('biodata')
     // this.modalService.show(BiodataPage);
   }
 
   hubungiKamiClick() {
+    this.route.navigateByUrl('kontak')
     // this.modalService.show(KontakPage);
   }
 
   syaratKetentuanClick() {
+    this.route.navigateByUrl('syarat-ketentuan')
     // this.modalService.show(SyaratKetentuanPage);
   }
 
   kebijakanPrivasiClick() {
+    this.route.navigateByUrl('kebijakan-privasi')
     // this.modalService.show(KebijakanPrivasiPage);
   }
 }
