@@ -126,27 +126,21 @@ export class ApiService {
       if (!result.token) throw new Error("Token not found");
 
       (window as any)?.snap?.pay(result.token, {
-        onSuccess,
-        onError,
-        onPending,
-        onClose
-        // onSuccess: async function (result: any) {
-        //   // console.log(result);
-        // },
-        // onPending: function (result: any) {
-        //   // alert("Waiting for your payment!");
-        //   console.log(result);
-        // },
-        // onError: function (result: any) {
-        //   // alert("Payment failed!");
-        //   console.log(result);
-        // },
-        // onClose: function () {
-        //   // alert("You closed the popup without finishing the payment");
-        // },
+        onSuccess: async function (result: any) {
+          if(onSuccess) onSuccess(result)
+        },
+        onPending: function (result: any) {
+          if(onPending) onPending(result)
+        },
+        onError: function (result: any) {
+          if(onError) onError(result)
+        },
+        onClose: function () {
+          if(onClose) onClose(result)
+        },
       });
     }).catch(() => {
-      (window as any)?.snap.hide();
+      // (window as any)?.snap.hide();
     })
 
     // fetch('https://crc.banisadar.com/api/get-token', {

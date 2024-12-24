@@ -4,7 +4,6 @@ import {LapanganEntity} from 'src/app/entities/Lapangan.entity';
 import {ApiService} from 'src/app/services/api.service';
 import {getAllDaysInMonth, getMonthName, thisMonth, thisYear, today,} from 'src/app/services/date.service';
 import {AlertService} from 'src/app/services/ionic/alert.service';
-import {ModalService} from 'src/app/services/ionic/modal.service';
 import {Router} from '@angular/router';
 import {CurrencyPipe, Location, NgClass, NgForOf, NgIf} from '@angular/common';
 import {environment} from "../../../../../environments/environment";
@@ -65,7 +64,7 @@ export class BookingPage implements OnInit {
 
     await this.initCourt();
     const result = await this.apiService.bookingTimes(`${this.selectedYear}-${this.selectedMonth+1}-${this.selectedDate}`);
-    this.bookingTimes = result.data.data;
+    this.bookingTimes = result.data.data?.filter((item:any) => item?.status === 'default');
     this.bookingTimes.map(
       (bookingTime) => {
         bookingTime.price = this?.court?.harga ?? 0;
@@ -127,7 +126,7 @@ export class BookingPage implements OnInit {
     day.booked = true;
     this.selectedDate = day.date;
     const result = await this.apiService.bookingTimes(`${this.selectedYear}-${this.selectedMonth + 1}-${this.selectedDate}`);
-    this.bookingTimes = result.data.data;
+    this.bookingTimes = result.data.data?.filter((item:any) => item?.status === 'default');;
     this.bookingTimes.map(
       (bookingTime) => {
         bookingTime.price = this?.court?.harga ?? 0;
@@ -177,5 +176,12 @@ export class BookingPage implements OnInit {
 
   backClick(){
     this.location.back()
+  }
+
+  async doRefresh(event: any) {
+    setTimeout(async () => {
+      await this.ngOnInit();
+      event.target.complete();
+    }, 100);
   }
 }

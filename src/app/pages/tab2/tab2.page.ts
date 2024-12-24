@@ -4,7 +4,8 @@ import {ApiService} from '../../services/api.service';
 import {AlertService} from '../../services/ionic/alert.service';
 import {environment} from "../../../environments/environment";
 import {IonicModule} from "@ionic/angular";
-import {NgForOf, NgIf} from "@angular/common";
+import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-tab2',
@@ -13,7 +14,8 @@ import {NgForOf, NgIf} from "@angular/common";
   imports: [
     IonicModule,
     NgForOf,
-    NgIf
+    NgIf,
+    CurrencyPipe
   ],
   standalone: true
 })
@@ -24,7 +26,8 @@ export class Tab2Page {
 
   constructor(
     private apiService: ApiService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private router: Router
   ) {
     this.init();
   }
@@ -38,6 +41,10 @@ export class Tab2Page {
     } catch (error: any) {
       this.alertService.fail(error.message);
     }
+  }
+
+  itemClick(item: BookingEntity){
+    this.router.navigateByUrl('detail-pesanan')
   }
 
   async doRefresh(event: any) {

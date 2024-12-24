@@ -78,18 +78,18 @@ export class KeranjangPage {
     this.location.back()
   }
 
-  async cekPromo(){
+  async cekPromo() {
     this.loadingService.show()
     const result = await this.apiService.cekPromo(this.kodeVoucher ?? '')
     const promo = result?.data?.data;
-    if(promo?.id){
+    if (promo?.id) {
       this.diskon = promo?.max_voucher ?? 0
-    }else{
+    } else {
       this.alertService.fail('Kode Voucher Tidak Valid');
     }
 
     this.loadingService.hide()
-    console.log("RESULT KODE",result)
+    console.log("RESULT KODE", result)
 
   }
 
@@ -103,38 +103,31 @@ export class KeranjangPage {
       'kode_voucher': this.kodeVoucher,
       'total_harga': this.totalPrice
     }
-    console.log("DATA BOOKING",payload)
+    console.log("DATA BOOKING", payload)
     const dataBooking = await this.apiService.doBooking(payload)
     const nomorBooking = dataBooking?.data?.data?.nomor_booking
-    console.log("DATA BOOKING RESPONSE:",dataBooking?.data?.data?.nomor_booking)
+    console.log("DATA BOOKING RESPONSE:", dataBooking?.data?.data?.nomor_booking)
 
     this.apiService.showMidtransPayment({
-      receipt_id: nomorBooking,
-      account_id: '1' // TODO
-    },
+        receipt_id: nomorBooking,
+        account_id: '1' // TODO
+      },
       // SUKSES
-      (result: any)=> {
+      (result: any) => {
+        console.log("RESULT:", result)
         this.alertService.success('Berhasil melakukan booking');
         this.router.navigateByUrl('tabs/tab2')
       },
       // ERROR
-      () => {
+      (error: any) => {
+        console.log("ERROR", error)
         this.alertService.fail('Gagal melakukan pembayaran');
         this.router.navigateByUrl('tabs/tab2')
       }
-      )
-
-
-
-
-
-    // this.modalService.show(BayarPage, {
-    //   court: this.court,
-    //   venue: this.venue,
-    //   bookingTimes: this.bookingTimes,
-    //   bookingDate: this.bookingDate
-    // });
+    )
   }
+
+
 
   // bookingClick() {
   // const data = {

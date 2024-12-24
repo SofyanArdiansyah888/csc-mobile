@@ -1,5 +1,8 @@
 <ion-content>
   <section class="sofie-section">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
     <app-base-header
       (handleBackClick)="backClick()"
       title="Booking"
@@ -92,7 +95,7 @@
       <ion-item lines="none">
         <ion-col size="6">
           <p class="hw-labelharga">Total Biaya</p>
-          <p class="hw-hargatotal"><span>{{ totalPrice| currency:'Rp.':'symbol':'3.0' }}</span></p>
+          <p class="hw-hargatotal"><span>{{ totalPrice| currency:'Rp.':'symbol':'0.0' }}</span></p>
         </ion-col>
         <ion-col
           size="6"

@@ -29,7 +29,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/kategori/singlesport/pilih/pilih.page').then(m => m.PilihPage)
   },
   {
-    path: 'detailpesanan',
+    path: 'detail-pesanan',
     loadComponent: () => import('./pages/detail-pesanan/detailpesanan.page').then(m => m.DetailpesananPage)
   },
   {
