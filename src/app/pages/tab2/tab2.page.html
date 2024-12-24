@@ -37,7 +37,7 @@
           </div>
           <div class="hw-col-4">
             <p class="hw-namalap">{{ item?.lapangan?.nama }}</p>
-                      <p class="hw-tglbook">{{item.tanggal_booking}}</p>
+                      <p class="hw-tglbook">{{item.tanggal_booking| date:'d MMM YYYY'}}</p>
           </div>
           <div class="hw-col-3" style="text-align: right">
               <p class="hw-harga" style="font-size:12px !important;">{{item.total_harga| currency:'Rp.':'symbol':'0.0'}}</p>

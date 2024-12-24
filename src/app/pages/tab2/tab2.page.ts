@@ -4,7 +4,7 @@ import {ApiService} from '../../services/api.service';
 import {AlertService} from '../../services/ionic/alert.service';
 import {environment} from "../../../environments/environment";
 import {IonicModule} from "@ionic/angular";
-import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
+import {CurrencyPipe, DatePipe, NgForOf, NgIf} from "@angular/common";
 import {Router} from "@angular/router";
 
 @Component({
@@ -15,7 +15,8 @@ import {Router} from "@angular/router";
     IonicModule,
     NgForOf,
     NgIf,
-    CurrencyPipe
+    CurrencyPipe,
+    DatePipe
   ],
   standalone: true
 })

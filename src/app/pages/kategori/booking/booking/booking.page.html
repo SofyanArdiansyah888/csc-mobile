@@ -72,22 +72,29 @@
     </div>
 
     <div *ngIf="court?.status_waktu == true" class="hw-jamnya" id="pilih-jam">
+      <div *ngIf="bookingTimes.length === 0" class="empty-state">
+        Waktu booking tidak tersedia, silahkan pilih tanggal lain
+      </div>
 
-      <ion-item lines="none" *ngFor="let bookingTime of bookingTimes">
-        <input
-          type="checkbox"
-          value="{{bookingTime.id}}"
-          [checked]="bookingTime.status === 'checked'"
-          (change)="onCheckboxChange($event.target,bookingTime)"
-          [disabled]="['booked','not available'].includes(bookingTime.status)"
-          *ngIf="!['booked','not available'].includes(bookingTime.status)"
-        />
-        <ion-col class="hw-time checked-list" size="12">
-          <label for="{{bookingTime.booking_time}}">{{ bookingTime.booking_time }}</label>
-          <span *ngIf="!['booked','not available'].includes(bookingTime.status)" class="harga">{{ bookingTime.price | currency:'Rp.':'symbol':'3.0' }}</span>
-          <span *ngIf="['booked','not available'].includes(bookingTime.status)" class="harga" style="text-transform: capitalize">{{bookingTime.status}}</span>
-        </ion-col>
-      </ion-item>
+      <div *ngIf="bookingTimes.length > 0">
+        <ion-item lines="none" *ngFor="let bookingTime of bookingTimes">
+          <input
+            type="checkbox"
+            value="{{bookingTime.id}}"
+            [checked]="bookingTime.status === 'checked'"
+            (change)="onCheckboxChange($event.target,bookingTime)"
+            [disabled]="['booked','not available'].includes(bookingTime.status)"
+            *ngIf="!['booked','not available'].includes(bookingTime.status)"
+          />
+          <ion-col class="hw-time checked-list" size="12">
+            <label for="{{bookingTime.booking_time}}">{{ bookingTime.booking_time }}</label>
+            <span *ngIf="!['booked','not available'].includes(bookingTime.status)"
+                  class="harga">{{ bookingTime.price | currency:'Rp.':'symbol':'3.0' }}</span>
+            <span *ngIf="['booked','not available'].includes(bookingTime.status)" class="harga"
+                  style="text-transform: capitalize">{{ bookingTime.status }}</span>
+          </ion-col>
+        </ion-item>
+      </div>
     </div>
 
 
@@ -101,7 +108,11 @@
           size="6"
           style="margin: 0 auto; float: none; text-align: right; padding: 0"
         >
-          <ion-button class="pilih" (click)="selanjutnyaClick()">
+          <ion-button
+            class="pilih"
+            [disabled]="!isBookingTimesChecked()"
+            (click)="selanjutnyaClick()"
+          >
         <span>
           <a style="color: #fff"> Selanjutnya </a>
         </span>

@@ -174,6 +174,10 @@ export class BookingPage implements OnInit {
     this.countTotalPrice();
   }
 
+  isBookingTimesChecked():boolean{
+      return this.bookingTimes.filter((item) => item.status === 'checked').length > 0
+  }
+
   backClick(){
     this.location.back()
   }
