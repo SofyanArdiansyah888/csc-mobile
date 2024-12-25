@@ -29,7 +29,7 @@ import {LoadingService} from "../../../../../services/ionic/loading.service";
 })
 export class KeranjangPage {
   court: LapanganEntity | null | undefined = null;
-  // venue: VenueEntity;
+  selectedPayment: string = 'full payment';
   bookingTimes: BookingTimeEntity[] = [];
   bookingDate: any;
   totalPrice = 0;
@@ -64,6 +64,10 @@ export class KeranjangPage {
     }
   }
 
+  onPaymentChange(event: any) {
+    this.selectedPayment = event.detail.value;
+  }
+
   kebijakanClick() {
     // this.router.navigateByUrl(``)
     // this.modalService.show(KebijakanPage, {venue: this.venue});
@@ -89,7 +93,6 @@ export class KeranjangPage {
     }
 
     this.loadingService.hide()
-    console.log("RESULT KODE", result)
 
   }
 
@@ -101,48 +104,40 @@ export class KeranjangPage {
       'id_lapangan': this.court?.id,
       'tanggal_booking': moment(this.bookingDate).format('YYYY-MM-DD'),
       'kode_voucher': this.kodeVoucher,
-      'total_harga': this.totalPrice
+      'total_harga': this.totalPrice,
+      'jenis_pembayaran' : this.selectedPayment
     }
-    console.log("DATA BOOKING", payload)
     const dataBooking = await this.apiService.doBooking(payload)
-    const nomorBooking = dataBooking?.data?.data?.nomor_booking
-    console.log("DATA BOOKING RESPONSE:", dataBooking?.data?.data?.nomor_booking)
+    const nomorBooking = dataBooking?.data?.data?.nomor_booking;
+    const nomorBookingTransaksi = dataBooking?.data?.data?.booking_transaksi?.nomor_booking_transaksi;
 
-    this.apiService.showMidtransPayment({
-        receipt_id: nomorBooking,
-        account_id: '1' // TODO
+    await this.apiService.showMidtransPayment({
+        nomor_booking: nomorBooking,
+        nomor_booking_transaksi: nomorBookingTransaksi,
+        // nomor_booking: 'BOK-20241225002',
+        // nomor_booking_transaksi: 'BOK-20241225002-001',
+        id_client: '1' // TODO
       },
       // SUKSES
       (result: any) => {
-        console.log("RESULT:", result)
         this.alertService.success('Berhasil melakukan booking');
         this.router.navigateByUrl('tabs/tab2')
       },
       // ERROR
       (error: any) => {
-        console.log("ERROR", error)
         this.alertService.fail('Gagal melakukan pembayaran');
         this.router.navigateByUrl('tabs/tab2')
-      }
+      },
+      () => {
+        this.alertService.fail('Pembayaran pending');
+        this.router.navigateByUrl('tabs/tab2')
+      },
+      () => {
+        this.alertService.fail('Pembayaran di batalkan');
+        this.router.navigateByUrl('tabs/tab2')
+      },
     )
+    this.bookingService.clearBooking()
   }
 
-
-
-  // bookingClick() {
-  // const data = {
-  //   court_id: this.court.id,
-  //   booking_times: [...this.bookingTimes],
-  //   booking_date: format(this.bookingDate, 'yyyy-MM-dd'),
-  // };
-
-  // try {
-  //   this.apiService.doBooking(data);
-  //   this.alertService.success('Berhasil melakukan booking');
-  //   this.modalController.dismiss();
-  //   this.navController.navigateRoot('tabs/tab2');
-  // } catch (error) {
-  //   this.alertService.fail(error.message);
-  // }
-  // }
 }

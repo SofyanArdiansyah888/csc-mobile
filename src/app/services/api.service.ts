@@ -117,7 +117,7 @@ export class ApiService {
     //   account_id: '1',
     //   receipt_id: 'CRC001'
     // }
-    axios.post(environment.midtransUrl, {data}, {
+    axios.post(environment.midtransUrl, data, {
       headers: {
         "Content-Type": "application/json",
       }

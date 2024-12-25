@@ -81,7 +81,6 @@ export class BookingPage implements OnInit {
     const todayElement = this.innerDiv.nativeElement.querySelector(
       `li[data-date="${moment().date()}"]`
     );
-    console.log("TODAY ELEMENT:",todayElement)
 
     if (todayElement) {
       todayElement.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'center' });
@@ -93,6 +92,7 @@ export class BookingPage implements OnInit {
   ionViewWillEnter(){
     this.countTotalPrice();
   }
+
 
   async initCourt(){
     const temp = this.router.url.split('/');

@@ -51,9 +51,9 @@
       </ion-item>
 
       <div style="width: 100%;padding-left: 20px;padding-right: 20px">
-        <ion-radio-group value="full payment">
+        <ion-radio-group value="full payment"  (ionChange)="onPaymentChange($event)">
           <ion-radio value="full payment" labelPlacement="end">Full Payment</ion-radio>
-          <ion-radio value="half payment" labelPlacement="end" >Half Payment</ion-radio>
+          <ion-radio value="down payment" labelPlacement="end" >Half Payment</ion-radio>
         </ion-radio-group>
       </div>
 
@@ -143,8 +143,8 @@
     <ion-footer class="sofie-footer">
       <ion-item lines="none">
         <ion-col size="6">
-          <p class="hw-labelharga">Total Biaya</p>
-          <p class="hw-hargatotal"><span>{{ totalPrice - diskon| currency:'Rp.':'symbol':'1.0' }}</span></p>
+          <p class="hw-labelharga">Pembayaran</p>
+          <p class="hw-hargatotal"><span>{{ (selectedPayment === 'down payment' ? ((totalPrice-diskon)/2) : (totalPrice - diskon)) | currency:'Rp.':'symbol':'1.0' }}</span></p>
         </ion-col>
         <ion-col
           size="6"
@@ -153,7 +153,7 @@
           <ion-button class="pilih" (click)="selanjutnyaClick()">
         <span>
           <a style="color: #fff">
-            Selanjutnya
+            Bayar Sekarang
           </a>
         </span>
           </ion-button>
