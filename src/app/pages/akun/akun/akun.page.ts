@@ -10,6 +10,7 @@ import {KebijakanPrivasiPage} from '../kebijakan-privasi/kebijakan-privasi.page'
 import {SyaratKetentuanPage} from '../syarat-ketentuan/syarat-ketentuan.page';
 import {UbahpassPage} from '../ubahpass/ubahpass.page';
 import {Route, Router} from "@angular/router";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-akun',
@@ -60,7 +61,9 @@ export class AkunPage{
   }
 
   kebijakanPrivasiClick() {
-    this.route.navigateByUrl('kebijakan-privasi')
+    // this.route.navigateByUrl('kebijakan-privasi')
     // this.modalService.show(KebijakanPrivasiPage);
   }
+
+  protected readonly environment = environment;
 }

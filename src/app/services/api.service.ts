@@ -98,8 +98,12 @@ export class ApiService {
     return this.api.post('change-password', data);
   }
 
-  login(data: { username: string; password: string }) {
+  login(data: any) {
     return this.api.post('login', data);
+  }
+
+  loginOTP(data: { nomor_hp: string }) {
+    return this.api.post('login-otp', data);
   }
 
   sendOTP(data: { email: string }) {

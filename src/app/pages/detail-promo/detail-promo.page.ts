@@ -59,13 +59,4 @@ export class DetailPromoPage implements OnInit {
     this.location.back();
   }
 
-  bookingClick() {
-    if (this.authService.isLoggedIn) {
-      this.router.navigateByUrl(`court/${this?.court?.id}/booking`);
-    } else {
-      this.alertService.fail(
-        'Silahkan login terlebih dahulu untuk dapat membooking!'
-      );
-    }
-  }
 }
