@@ -5,9 +5,9 @@ import {AuthenticationService} from 'src/app/services/auth/authentication.servic
 import {DatabaseService} from 'src/app/services/database/database.service';
 import {AlertService} from 'src/app/services/ionic/alert.service';
 import {LoadingService} from 'src/app/services/ionic/loading.service';
-import {ModalService} from 'src/app/services/ionic/modal.service';
 import {FormsModule} from "@angular/forms";
-import {NgOptimizedImage} from "@angular/common";
+import {Location, NgOptimizedImage} from "@angular/common";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -23,13 +23,10 @@ import {NgOptimizedImage} from "@angular/common";
 export class LoginPage implements OnInit {
   constructor(
     private alertController: AlertController,
-    private authService: AuthenticationService,
-    private navController: NavController,
-    private modalController: ModalController,
     private alertService: AlertService,
     private apiService: ApiService,
-    private databaseService: DatabaseService,
-    private modalService: ModalService,
+    private location: Location,
+    private router: Router,
     private loadingService: LoadingService
   ) {
   }
@@ -39,31 +36,18 @@ export class LoginPage implements OnInit {
   }
 
   backClick() {
-    this.modalController.dismiss();
+    this.location.back();
   }
 
   daftarClick() {
-    // this.modalService.show(DaftarPage);
+    this.router.navigateByUrl('daftar')
   }
 
   async login(loginData: any) {
-    try {
-      const result = await this.apiService.login(loginData);
-      if (result.data.status === true) {
-        this.databaseService.setAccessToken(result.data.token);
-        this.authService.setLoggedIn(true);
-        this.navController.navigateRoot('tabs/tab1');
-        this.modalController.dismiss();
-        this.alertService.success('Berhasil Login');
-      } else {
-        this.alertService.fail(result.data.message);
-      }
-    } catch (error: any) {
-      this.alertService.fail(error.response.data.message);
-    }
-
-
-    this.authService.setLoggedIn(true);
+    await this.apiService.loginOTP({
+      nomor_hp: `0${loginData?.telepon}`
+    });
+    await this.router.navigateByUrl(`otp?tag=login&nomor_hp=0${loginData.telepon}`);
   }
 
   async lupakiAlert() {
@@ -112,29 +96,5 @@ export class LoginPage implements OnInit {
     }
   }
 
-  async berhasilAlert() {
-    const alert = await this.alertController.create({
-      cssClass: 'berhasilki konfirmasi',
-      message:
-        '<div class="hw-backgrond"><img src="assets/olahraga/bullhorn-solid.svg" class="gambar-alert"></div> <br> <p class="hw-intro">Berhasil<p>Password baru telah kami kirim ke email anda.',
-      //header: 'lupa',
-      //message: 'Kami akan mengirimkan password baru ke alamat Email Anda.',
-      buttons: ['TERIMA KASIH'],
-    });
 
-    await alert.present();
-  }
-
-  async gagalAlert() {
-    const alert = await this.alertController.create({
-      cssClass: 'gagalki konfirmasi',
-      message:
-        '<div class="hw-backgrond"><img src="assets/olahraga/bullhorn-solid.svg" class="gambar-alert"></div><br> <p class="hw-intro">Maaf<p>Email/Password yang anda masukkan belum terdaftar atau Salah.',
-      //header: 'lupa',
-      //message: 'Kami akan mengirimkan password baru ke alamat Email Anda.',
-      buttons: ['OK'],
-    });
-
-    await alert.present();
-  }
 }

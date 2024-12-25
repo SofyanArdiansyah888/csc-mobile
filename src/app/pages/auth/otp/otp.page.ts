@@ -1,11 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {AlertController, IonicModule, LoadingController, NavController, NavParams,} from '@ionic/angular';
+import {IonicModule,} from '@ionic/angular';
 import {FormsModule} from "@angular/forms";
-import {NgOptimizedImage} from "@angular/common";
-//import { AuthenticationService } from "src/app/service/auth/authentication.service";
-//import { DatabaseService } from "src/app/service/database/database.service";
-//import { ApiService } from "../../../service/api/api.service";
+import {Location, NgIf, NgOptimizedImage} from "@angular/common";
+import {NgOtpInputComponent} from "ng-otp-input";
+import {ApiService} from "../../../services/api.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AlertService} from "../../../services/ionic/alert.service";
+
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.page.html',
@@ -13,21 +14,22 @@ import {NgOptimizedImage} from "@angular/common";
   imports: [
     IonicModule,
     FormsModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    NgOtpInputComponent,
+    NgIf
   ],
   standalone: true
 })
 export class OtpPage implements OnInit {
   dataform: any;
-  regisdata = {};
   timeInSeconds: any;
   time: any;
-  // runTimer: boolean;
-  // hasFinished: boolean;
-  // hasStarted: boolean;
+  runTimer: boolean = false;
+  hasFinished: boolean = false;
+  hasStarted: boolean = false;
   remainingTime: any;
-  // displayTime: string;
-  // otp: string;
+  displayTime: string = '00:00';
+  otp: string = '';
   showOtpComponent = true;
   emptycode = false;
 
@@ -48,67 +50,54 @@ export class OtpPage implements OnInit {
     },
   };
 
-  constructor(
-    private route: ActivatedRoute,
-    // private database: DatabaseService,
-    private loadingCtrl: LoadingController,
-    // private ApiService: ApiService,
-    public alertController: AlertController,
-    public navCtrl: NavController,
-    public navParams: NavParams
-    //private auth: AuthenticationService
+  constructor(private apiService: ApiService,
+              private location: Location,
+              private route: ActivatedRoute,
+              private router: Router,
+              private alertService: AlertService
   ) {
   }
 
   ngOnInit() {
-    console.log("HEllox")
-    // const dataregis = this.route.snapshot.paramMap.get('dataregis');
-    // this.dataform = this.navParams.data.data;
-    // this.dataform = JSON.parse(dataregis);
-    // const email = this.dataform;
-    // this.initTimer();
-    // this.startTimer();
+
+    const dataRegis = this.route.snapshot.queryParams;
+    this.dataform = dataRegis
+    this.initTimer();
+    this.startTimer();
   }
 
   initTimer() {
     if (!this.timeInSeconds) {
-      this.timeInSeconds = 420;
+      this.timeInSeconds = 300;
     }
     this.time = this.timeInSeconds;
-    // this.runTimer = false;
-    // this.hasStarted = false;
-    // this.hasFinished = false;
-    // this.remainingTime = this.timeInSeconds;
-    // this.displayTime = this.getSecondsAsDigitalClock(this.remainingTime);
+    this.runTimer = false;
+    this.hasStarted = false;
+    this.hasFinished = false;
+    this.remainingTime = this.timeInSeconds;
+    this.displayTime = this.getSecondsAsDigitalClock(this.remainingTime);
   }
 
   startTimer() {
-    // this.runTimer = true;
-    // this.hasStarted = true;
-    // this.timerTick();
+    this.runTimer = true;
+    this.hasStarted = true;
+    this.timerTick();
   }
 
-  pauseTimer() {
-    // this.runTimer = false;
-  }
-
-  resumeTimer() {
-    this.startTimer();
-  }
 
   timerTick() {
-    // setTimeout(() => {
-    //   if (!this.runTimer) {
-    //     return;
-    //   }
-    //   this.remainingTime--;
-    //   this.displayTime = this.getSecondsAsDigitalClock(this.remainingTime);
-    //   if (this.remainingTime > 0) {
-    //     this.timerTick();
-    //   } else {
-    //     this.hasFinished = true;
-    //   }
-    // }, 1000);
+    setTimeout(() => {
+      if (!this.runTimer) {
+        return;
+      }
+      this.remainingTime--;
+      this.displayTime = this.getSecondsAsDigitalClock(this.remainingTime);
+      if (this.remainingTime > 0) {
+        this.timerTick();
+      } else {
+        this.hasFinished = true;
+      }
+    }, 1000);
   }
 
   getSecondsAsDigitalClock(inputSeconds: number) {
@@ -125,18 +114,39 @@ export class OtpPage implements OnInit {
     return minutesString + ':' + secondsString;
   }
 
-  onOtpChange(otp:any) {
-    // this.otp = otp;
-    // if (this.otp.length === 6) {
-    //   this.emptycode = true;
-    // }
+  onOtpChange(otp: any) {
+    this.otp = otp;
+    if (this.otp.length === 6) {
+      this.emptycode = true;
+    }
   }
 
-  register(form:any) {
+  async register(form: any) {
+    try {
+      if (this.dataform.tag === 'login') {
+        const result = await this.apiService.login({
+          nomor_hp: this.dataform.nomor_hp,
+          kode_otp: this.otp
+        })
+        localStorage.setItem('user', JSON.stringify(result.data.data));
+      }
+      if (this.dataform.tag === 'register') {
+        const result = await this.apiService.register({
+          ...this.dataform,
+          kode_otp: this.otp
+        })
+        localStorage.setItem('user', JSON.stringify(result.data.data));
+      }
+      this.router.navigateByUrl('/tabs/tab1')
+    } catch (error: any) {
+      await this.alertService.fail(error.response.data.message);
+    }
 
   }
 
-  backClick(){}
+  backClick() {
+    this.location.back()
+  }
 
 
 }

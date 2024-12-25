@@ -110,7 +110,7 @@ export class ApiService {
     return this.api.post('send-otp', data);
   }
 
-  register(data: { username: string; password: string }) {
+  register(data: any) {
     return this.api.post('register', data);
   }
 

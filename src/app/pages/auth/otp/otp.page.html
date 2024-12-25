@@ -8,7 +8,7 @@
   </ion-col>
 </ion-item>
 
-<div class="frame-default">
+<div class="frame-default" style="background: white">
   <img class="logo" ngSrc="assets/olahraga/logo.png" height="32" width="147"/>
   <form class="mid" #form="ngForm" (ngSubmit)="register(form.value)">
     <ion-grid class="hw-otp-konten">
@@ -17,40 +17,38 @@
           <div>
             <h3>Kode OTP terkirim!</h3>
             <p>
-              Masukkan kode OTP yang kami kirimkan ke email yang anda daftarkan
-              <strong>{{dataform.email}}</strong>
+              Masukkan kode OTP yang kami kirimkan ke nomor
+              <strong>{{dataform?.nomor_hp}}</strong>
             </p>
           </div>
           <ion-grid>
             <ion-row class="otp-box">
               <ion-col>
                 <div class="card ion-text-left">
-<!--                  <ng-otp-input-->
-<!--                    #ngOtpInput-->
-<!--                    (onInputChange)="onOtpChange($event)"-->
-<!--                    *ngIf="showOtpComponent"-->
-<!--                    [config]="config"-->
-<!--                  ></ng-otp-input>-->
+                  <ng-otp-input
+                    #ngOtpInput
+                    (onInputChange)="onOtpChange($event)"
+                    *ngIf="showOtpComponent"
+                    [config]="config"
+                  ></ng-otp-input>
                 </div>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
-<!--                <h3 class="ion-text-center" [hidden]="displayTime === '00:00'">-->
-<!--                  {{displayTime}}-->
-<!--                </h3>-->
+                <h3 class="ion-text-center" [hidden]="displayTime === '00:00'">
+                  {{displayTime}}
+                </h3>
               </ion-col>
             </ion-row>
           </ion-grid>
 
-
-<!--          [disabled]="form.invalid"-->
           <div class="hw-tombol" padding>
             <ion-button
               size="large"
               type="submit"
-
               expand="block"
+              [disabled]="otp.length !== 6"
               >KONFIRMASI
             </ion-button>
           </div>
