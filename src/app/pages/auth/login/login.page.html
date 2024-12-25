@@ -4,7 +4,7 @@
       <ion-col style="margin: 45px 20px">
         <ion-icon
           class="backclik_black"
-          (click)="backClick()"
+          (click)="this.location.back()"
           src="assets/icon/chevron-left.svg"
         ></ion-icon>
       </ion-col>
@@ -23,7 +23,7 @@
               <ion-row class="upgan">
                 <ion-col>
                   <div class="ion-text-left bm_reg">
-                    Jika belum punya akun/ <a (click)="daftarClick()"> Daftar</a>
+                    Jika belum punya akun/ <a (click)="this.router.navigateByUrl('daftar')"> Daftar</a>
                   </div>
                 </ion-col>
               </ion-row>
