@@ -51,7 +51,7 @@ export class OtpPage implements OnInit {
   };
 
   constructor(private apiService: ApiService,
-              private location: Location,
+              protected location: Location,
               private route: ActivatedRoute,
               private router: Router,
               private alertService: AlertService
@@ -137,15 +137,11 @@ export class OtpPage implements OnInit {
         })
         localStorage.setItem('user', JSON.stringify(result.data.data));
       }
-      this.router.navigateByUrl('/tabs/tab1')
+      await this.router.navigateByUrl('/tabs/tab1')
     } catch (error: any) {
       await this.alertService.fail(error.response.data.message);
     }
 
-  }
-
-  backClick() {
-    this.location.back()
   }
 
 
