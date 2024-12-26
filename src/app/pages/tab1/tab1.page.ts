@@ -5,14 +5,10 @@ import {AdvertisingEntity} from '../../entities/Advertising.entity';
 import {KategoriEntity} from '../../entities/Kategori.entity';
 import {LapanganEntity} from '../../entities/Lapangan.entity';
 import {ApiService} from '../../services/api.service';
-import {AuthenticationService} from '../../services/auth/authentication.service';
-import {AlertService} from '../../services/ionic/alert.service';
-import {ModalService} from '../../services/ionic/modal.service';
 import {environment} from "../../../environments/environment";
 import {IonicModule} from "@ionic/angular";
 import {CommonModule, NgForOf, NgIf, NgOptimizedImage, NgStyle} from "@angular/common";
-import { IonicSlides } from '@ionic/angular/standalone';
-
+import {IonicSlides} from '@ionic/angular/standalone';
 
 
 @Component({
@@ -38,21 +34,17 @@ export class Tab1Page {
   promos: LapanganEntity[] = [];
   loading = false;
   imageUrl = environment.imageUrl;
-  swiperModules = [IonicSlides];
 
   constructor(
     private api: ApiService,
-    private modal: ModalService,
-    private router: Router,
-    private authService: AuthenticationService,
-    private alertService: AlertService
+    protected router: Router,
   ) {
     this.init();
   }
 
   async init() {
     this.loading = true;
-    const [tempAdvertising, tempCategory, tempCourt,tempPromo] =
+    const [tempAdvertising, tempCategory, tempCourt, tempPromo] =
       await Promise.all([
         this.api.advertisings(),
         this.api.categories(),
@@ -75,23 +67,12 @@ export class Tab1Page {
   }
 
   promoClick(court: LapanganEntity) {
-  this.router.navigateByUrl(`court/${court.id}/detail-promo`);
+    this.router.navigateByUrl(`court/${court.id}/detail-promo`);
   }
 
   courtClick(court: LapanganEntity) {
     this.router.navigateByUrl(`court/${court.id}/detail-court`)
   }
 
-  kontakClick() {
-    this.router.navigateByUrl(`kontak`)
-  }
-
-  // kategoriClick(category: CategoryEntity) {
-  //   if (this.authService.isLoggedIn) {
-  //     // this.modal.show(KategoriPage, {category});
-  //   } else {
-  //     this.alertService.fail('Silahkan login terlebih dahulu untuk dapat membooking!');
-  //   }
-  // }
 
 }
