@@ -61,10 +61,12 @@ export class DetailCourtPage implements OnInit {
   }
 
   bookingClick(){
-    if(this.authService.isLoggedIn){
+    if(this.authService.isAuthenticated()){
       this.router.navigateByUrl(`court/${this?.court?.id}/booking`);
     }else{
-      this.alertService.fail('Silahkan login terlebih dahulu untuk dapat membooking!');
+      this.alertService.confirm('Silahkan login terlebih dahulu untuk dapat membooking!','Login','Batal',()=> {
+        this.router.navigateByUrl(`/login`);
+      });
     }
   }
 }

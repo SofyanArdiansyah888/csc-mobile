@@ -9,6 +9,8 @@ import {environment} from "../../../environments/environment";
 import {Router} from "@angular/router";
 import {ApiService} from "../../services/api.service";
 import {KategoriEntity} from "../../entities/Kategori.entity";
+import {AuthenticationService} from "../../services/auth/authentication.service";
+import {AlertService} from "../../services/ionic/alert.service";
 
 @Component({
   selector: 'app-list-lapangan',
@@ -28,6 +30,8 @@ export class ListLapanganPage implements OnInit {
   constructor(
     private router: Router,
     private apiService: ApiService,
+    private authService: AuthenticationService,
+    private alertService: AlertService,
     private location: Location
   ) {
   }
@@ -47,7 +51,14 @@ export class ListLapanganPage implements OnInit {
   }
 
   bookingClick(court: LapanganEntity) {
-    this.router.navigateByUrl(`/court/${court.id}/booking`);
+
+    if(this.authService.isAuthenticated()){
+      this.router.navigateByUrl(`/court/${court.id}/booking`);
+    }else{
+      this.alertService.confirm('Silahkan login terlebih dahulu untuk dapat membooking!','Login','Batal',()=> {
+        this.router.navigateByUrl(`/login`);
+      });
+    }
   }
 
   async doRefresh(event: any) {

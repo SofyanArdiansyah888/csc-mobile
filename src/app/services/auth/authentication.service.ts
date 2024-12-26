@@ -15,6 +15,7 @@ export class AuthenticationService {
   }
 
   isAuthenticated(): boolean {
-    return this.isLoggedIn;
+    const user = localStorage.getItem('user')
+    return !!user
   }
 }

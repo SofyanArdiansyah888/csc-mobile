@@ -36,7 +36,7 @@ export class AlertService {
   async confirm(message: string, button1: any, button2:any, callback:any) {
     const alert = await this.alertController.create({
       cssClass: 'gagalki konfirmasi',
-      message: '',
+      message,
       buttons: [
         {
           text: button1,
