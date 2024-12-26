@@ -10,7 +10,7 @@ import {environment} from "../../../../../environments/environment";
 import {BaseHeaderComponent} from "../../../../components/base-header/base-header.component";
 import {IonicModule} from "@ionic/angular";
 import {BookingService} from "../../../../services/signal/booking.service";
-import * as moment from "moment";
+import moment from 'moment';
 
 @Component({
   selector: 'app-booking',

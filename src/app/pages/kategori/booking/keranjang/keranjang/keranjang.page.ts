@@ -7,7 +7,7 @@ import {BookingService} from "../../../../../services/signal/booking.service";
 import {LapanganEntity} from "../../../../../entities/Lapangan.entity";
 import {Router} from "@angular/router";
 import {ApiService} from "../../../../../services/api.service";
-import * as moment from "moment";
+import moment from "moment";
 import {FormsModule} from "@angular/forms";
 import {AlertService} from "../../../../../services/ionic/alert.service";
 import {LoadingService} from "../../../../../services/ionic/loading.service";
