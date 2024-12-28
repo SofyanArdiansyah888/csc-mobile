@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IonicModule, ModalController} from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 import {UserEntity} from 'src/app/entities/User.entity';
 import {ApiService} from 'src/app/services/api.service';
 import {AlertService} from 'src/app/services/ionic/alert.service';
@@ -12,11 +12,11 @@ import {Location} from "@angular/common";
   selector: 'app-biodata',
   templateUrl: './biodata.page.html',
   styleUrls: ['./biodata.page.scss'],
-    imports: [
-        IonicModule,
-        FormsModule,
-        BaseHeaderComponent
-    ],
+  imports: [
+    IonicModule,
+    FormsModule,
+    BaseHeaderComponent
+  ],
   standalone: true
 })
 export class BiodataPage implements OnInit {
@@ -24,12 +24,14 @@ export class BiodataPage implements OnInit {
     name: '',
     email: '',
     client: {
+      nama: '',
       sex: '',
       birthday: '',
       height: '',
       weight: '',
       phone: '',
-      photo: ''
+      photo: '',
+      created_at: ''
     }
   };
 
@@ -44,7 +46,7 @@ export class BiodataPage implements OnInit {
     this.user = result.data;
   }
 
-  async updateProfile(form:any) {
+  async updateProfile(form: any) {
     try {
       const result = await this.apiService.updateProfile(form);
       if (result.data.status === true) {
