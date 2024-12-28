@@ -4,35 +4,35 @@
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
     <app-base-header
-      (handleBackClick)="backClick()"
+      (handleBackClick)="this.location.back()"
       title="Detail Promo"
       description="Temukan promo menarik"
     >
     </app-base-header>
 
     <ng-container *ngIf="!loading; else loadingSkeleton">
-    <!--PROMO DETAIL-->
-    <div class="datanya">
-      <ion-item class="hw-lapangan" lines="none">
-        <img class="hw-ganbarnya" src="{{imageUrl}}promo/{{court?.link_gambar}}"/>
-      </ion-item>
+      <!--PROMO DETAIL-->
+      <div class="datanya">
+        <ion-item class="hw-lapangan" lines="none">
+          <img class="hw-ganbarnya" src="{{imageUrl}}promo/{{promo?.link_gambar}}"/>
+        </ion-item>
 
-      <!-- DESCRIPTION -->
-      <ion-item class="hw-lapangan produk-desc" lines="none">
-        <ion-col>
-          <p class="hw-nama-lapangan">{{ court?.nama }}</p>
-          <div class="hw-deskripsi" [innerHTML]="court?.deskripsi">
+        <!-- DESCRIPTION -->
+        <ion-item class="hw-lapangan produk-desc" lines="none">
+          <ion-col>
+            <p class="hw-nama-lapangan">{{ promo?.nama }}</p>
+            <div class="hw-deskripsi" [innerHTML]="promo?.deskripsi">
+            </div>
+          </ion-col>
+        </ion-item>
+        <!--Harganya-->
+        <div style="padding-left: 20px;padding-right:20px">
+          <div style="font-size: 14px;font-weight: 500">
+            Tanggal Expire {{ promo?.tgl_expire_voucher | date: 'DD MMMM YYYY' }}
           </div>
-        </ion-col>
-      </ion-item>
-      <!--Harganya-->
-<!--      <ion-item lines="none">-->
-<!--        <ion-col>-->
-<!--          <p class="harga">{{ court?.deskripsi_harga }}</p>-->
-<!--          <span class="hw-btn" (click)="bookingClick()">Booking</span>-->
-<!--        </ion-col>-->
-<!--      </ion-item>-->
-    </div>
+          <p class="harga">Nilai Voucher {{ promo?.nilai_voucher | currency:'Rp.':'symbol':'0.0' }}</p>
+        </div>
+      </div>
     </ng-container>
     <ng-template #loadingSkeleton>
       <app-detail-lapangan-skeleton *ngIf="loading"></app-detail-lapangan-skeleton>

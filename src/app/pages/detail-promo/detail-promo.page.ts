@@ -1,18 +1,17 @@
-import {Location, NgIf} from '@angular/common';
+import {CurrencyPipe, DatePipe, Location, NgIf} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {IonicModule, ModalController} from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 
 import {LapanganEntity} from '../../entities/Lapangan.entity';
 import {ApiService} from '../../services/api.service';
-import {AuthenticationService} from '../../services/auth/authentication.service';
-import {AlertService} from '../../services/ionic/alert.service';
-import {ModalService} from '../../services/ionic/modal.service';
 import {environment} from "../../../environments/environment";
 import {BaseHeaderComponent} from "../../components/base-header/base-header.component";
 import {
   DetailLapanganSkeletonComponent
 } from "../../components/detail-lapangan-skeleton/detail-lapangan-skeleton.component";
+import {PromoEntity} from "../../entities/Promo.entity";
+import {formatRupiah} from "../../services/utils.service";
 
 @Component({
   selector: 'app-detail-promo',
@@ -22,21 +21,21 @@ import {
     IonicModule,
     BaseHeaderComponent,
     NgIf,
-    DetailLapanganSkeletonComponent
+    DetailLapanganSkeletonComponent,
+    CurrencyPipe,
+    DatePipe
   ],
   standalone: true
 })
 export class DetailPromoPage implements OnInit {
   imageUrl = environment.imageUrl;
-  court: LapanganEntity | undefined = undefined;
+  promo: PromoEntity | undefined = undefined;
   loading = false
+
   constructor(
-    private authService: AuthenticationService,
-    private alertService: AlertService,
-    private modalService: ModalService,
     private router: Router,
     private apiService: ApiService,
-    private location: Location
+    protected location: Location
   ) {
   }
 
@@ -45,8 +44,9 @@ export class DetailPromoPage implements OnInit {
     this.loading = true
     const result = await this.apiService.promo(temp[2]);
     this.loading = false
-    this.court = result?.data?.data;
+    this.promo = result?.data?.data;
   }
+
   async doRefresh(event: any) {
     setTimeout(async () => {
       await this.ngOnInit();
@@ -54,9 +54,5 @@ export class DetailPromoPage implements OnInit {
     }, 100);
   }
 
-
-  backClick() {
-    this.location.back();
-  }
-
+  protected readonly formatRupiah = formatRupiah;
 }
