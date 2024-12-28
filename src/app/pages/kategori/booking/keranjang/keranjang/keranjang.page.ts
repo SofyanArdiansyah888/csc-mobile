@@ -108,16 +108,9 @@ export class KeranjangPage {
       'jenis_pembayaran' : this.selectedPayment
     }
     const dataBooking = await this.apiService.doBooking(payload)
-    const nomorBooking = dataBooking?.data?.data?.nomor_booking;
-    const nomorBookingTransaksi = dataBooking?.data?.data?.booking_transaksi?.nomor_booking_transaksi;
+    const token = dataBooking?.data?.data?.token;
 
-    await this.apiService.showMidtransPayment({
-        nomor_booking: nomorBooking,
-        nomor_booking_transaksi: nomorBookingTransaksi,
-        // nomor_booking: 'BOK-20241225002',
-        // nomor_booking_transaksi: 'BOK-20241225002-001',
-        id_client: '1' // TODO
-      },
+    await this.apiService.showMidtransPayment(token,
       // SUKSES
       (result: any) => {
         this.alertService.success('Berhasil melakukan booking');
