@@ -371,14 +371,14 @@ div ion-col.kiri {
 }
 
 ion-footer {
-  margin-bottom: 10px;
-
+  box-shadow: none;
+  padding:10px 0px 10px 0px;
   ion-item.hw-tombol {
     margin-top: -10px;
 
     ion-button {
       width: 100%;
-      margin-bottom: 30px;
+      //margin-bottom: 30px;
 
       span {
         color: #fff;

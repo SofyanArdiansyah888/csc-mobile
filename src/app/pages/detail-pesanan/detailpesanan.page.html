@@ -5,7 +5,7 @@
     </ion-refresher>
 
     <app-base-header
-      (handleBackClick)="backClick()"
+      (handleBackClick)="this.location.back()"
       title="Detail Pesanan"
       description="Periksa kembali riwayat pesanan kamu">
     </app-base-header>
@@ -109,15 +109,14 @@
     </div>
 
     <div class="hw-empty-space"></div>
+
     <!--Footer-->
     <ion-footer>
       <ion-item class="hw-tombol" lines="none">
-        <ion-button class="pilih">
-    <span>
-      <a style="color:#fff;" href="/olahraga/pilih">
-        KEMBALI
-      </a>
-    </span>
+        <ion-button buttonType="button" class="pilih" (click)="this.location.back()">
+          <div style="color:#fff;">
+            KEMBALI
+          </div>
         </ion-button>
       </ion-item>
 
