@@ -114,38 +114,48 @@ export class ApiService {
     return this.api.post('register', data);
   }
 
-  async showMidtransPayment(data: any,onSuccess?:any,onError?:any,onPending?:any,onClose?:any) {
+  async showMidtransPayment(token: string,onSuccess?:any,onError?:any,onPending?:any,onClose?:any) {
     (window as any)?.snap.show();
+    (window as any)?.snap?.pay(token, {
+      onSuccess: async function (result: any) {
+        if(onSuccess) onSuccess(result)
+      },
+      onPending: function (result: any) {
+        if(onPending) onPending(result)
+      },
+      onError: function (result: any) {
+        if(onError) onError(result)
+      },
+      onClose: function (result: any) {
+        if(onClose) onClose(result)
+      },
+    });
 
-    // const data = {
-    //   account_id: '1',
-    //   receipt_id: 'CRC001'
-    // }
-    axios.post(environment.midtransUrl, data, {
-      headers: {
-        "Content-Type": "application/json",
-      }
-    }).then((response) => {
-      const result = response.data
-      if (!result.token) throw new Error("Token not found");
-
-      (window as any)?.snap?.pay(result.token, {
-        onSuccess: async function (result: any) {
-          if(onSuccess) onSuccess(result)
-        },
-        onPending: function (result: any) {
-          if(onPending) onPending(result)
-        },
-        onError: function (result: any) {
-          if(onError) onError(result)
-        },
-        onClose: function () {
-          if(onClose) onClose(result)
-        },
-      });
-    }).catch(() => {
-      // (window as any)?.snap.hide();
-    })
+    // axios.post(environment.midtransUrl, data, {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   }
+    // }).then((response) => {
+    //   const result = response.data
+    //   if (!result.token) throw new Error("Token not found");
+    //
+    //   (window as any)?.snap?.pay(result.token, {
+    //     onSuccess: async function (result: any) {
+    //       if(onSuccess) onSuccess(result)
+    //     },
+    //     onPending: function (result: any) {
+    //       if(onPending) onPending(result)
+    //     },
+    //     onError: function (result: any) {
+    //       if(onError) onError(result)
+    //     },
+    //     onClose: function () {
+    //       if(onClose) onClose(result)
+    //     },
+    //   });
+    // }).catch(() => {
+    //   // (window as any)?.snap.hide();
+    // })
 
     // fetch('https://crc.banisadar.com/api/get-token', {
     //   method: "POST",
