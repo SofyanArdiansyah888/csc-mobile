@@ -16,9 +16,8 @@ ion-header {
 }
 
   .paling-atas {
-    padding: 20px;
+    padding:0px 20px 15px;
     background: #fff;
-    height: unset !important;
 
 
 
@@ -86,14 +85,13 @@ ion-header {
     border-radius: 20px;
     box-shadow: 0px 5px 15px #00000019;
     margin-bottom: 30px;
-    background-color: #fd9f27;
+    background-color: #EAB128;
   }
   .swiper-slide-active{
-    margin-left:20px
+    margin-left:20px;
+    padding-bottom:5px
   }
-  .swiper-pagination{
-    text-align:left !important
-  }
+
   
 
 }
@@ -114,7 +112,10 @@ ion-header {
   white-space: nowrap;
   -ms-overflow-style: none;
   scrollbar-width: none;
-
+.kotak_kategori{
+  margin-top:20px;
+  margin-bottom: 15px;
+}
   .kotak {
     padding-left: 20px;
     max-width: max-content;
@@ -123,7 +124,7 @@ ion-header {
 
 
     .scroll-col {
-      padding: 0 20px 0 0;
+      padding: 0 15px 0 0;
 
       .hw_menu-oder {
         background: #FFC69A !important;
@@ -137,7 +138,7 @@ ion-header {
         width: 61px;
         height: 61px;
         background: #f9929f;
-        border-radius: 100%;
+        border-radius: 20px;
         position: relative;
 
 
@@ -172,7 +173,6 @@ ion-header {
       .title-produk {
         font-size: 12px;
         color: #656565;
-    opacity: 0.8;
       }
     }
   }
@@ -276,12 +276,12 @@ a {
     }
 
     p.fitur-tdktau {
-      background: #f55869;
+      background: #C69621;
     border-radius: 100%;
     height: 25px;
     width: 25px;
     line-height: 2.5;
-    padding-left: 4px;
+    padding-left: 5px;
     color: #fff;
     font-size: 10px;
     margin-top: -10px;
@@ -310,9 +310,11 @@ a {
   position: absolute;
   right: 25px;
   p {
-    color: #F15162;
+    color: #EAB128;
     margin: 0 auto;
     text-align: center;
+    font-size:12px;
+    font-weight: bold;
 }
 img {
   display: block;
@@ -321,3 +323,20 @@ img {
   margin-top: 10px;
 }
 }
+swiper-container::part(pagination) {
+  text-align: left;
+  padding-left:20px
+}
+swiper-container::part(bullet) {
+  background-color:#F2F2F2;
+  opacity: 1;
+}
+swiper-container::part(bullet-active) {
+  background-color:#C69621;
+}
+.slider-atas {
+  --swiper-pagination-bullet-size: 12px;
+}
+
+
+

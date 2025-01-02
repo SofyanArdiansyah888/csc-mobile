@@ -124,48 +124,33 @@
 
 ion-tab-button {
   ion-icon {
-    fill: #FFFFFF;
+    fill: #fff;
   }
 
   ion-label {
-    color: #FFFFFF;
-    opacity: 0.8;
+    color: #fff;
   }
 }
 
 ion-tab-button.tab-selected {
   ion-icon {
-    fill: #f2f2f2 !important;
+    fill: #fff !important;
   }
 
   ion-label {
-    color: #f2f2f2 !important;
+    color: #fff !important;
   }
 }
 
 ion-tab-button.tab-selected {
-  background: #DE3244 !important;
+  // background: #DE3244 !important;
+  background: #C69621 !important;
 }
 
 ion-slides.produk .swiper-pagination.swiper-pagination-bullets {
   left: unset;
   width: 100%;
 }
-
-.swiper-pagination.swiper-pagination-bullets {
-  left: 20px;
-  width: inherit;
-
-  .swiper-pagination-bullet {
-    background: #eaeaea;
-    opacity: 1;
-  }
-
-  .swiper-pagination-bullet-active {
-    background: #ff2545;
-  }
-}
-
 .skeletonslide .swiper-pagination.swiper-pagination-bullets {
   .swiper-pagination-bullet-active {
     background: #ccc;
@@ -328,7 +313,7 @@ ion-button.pilih::part(native) {
 }
 
 .paling-atas {
-  height: 145px;
+  // height: 145px;
   // background: #FD9F27;
   z-index: 1;
   position: relative;
@@ -490,7 +475,7 @@ input {
       width: 100%;
       margin-bottom: 25px;
       text-transform: initial;
-      background: #F15162;
+      background: #EAB128;
       border-radius: 20px;
 
       span.alert-button-inner {
@@ -1185,3 +1170,6 @@ ion-content section {
   background: #555;
 }
 
+span.hw-btn{
+  background:#EAB128 !important
+}

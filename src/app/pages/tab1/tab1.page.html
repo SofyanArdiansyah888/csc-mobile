@@ -6,7 +6,7 @@
     <!-- HEADER -->
     <ion-header class="ion-no-border">
       <ion-item style="padding-top:35px; z-index: 2" lines="none">
-        <img class="logo" ngSrc="../../../assets/olahraga/logo.png" height="32" width="147"/>
+        <img class="logo" ngSrc="../../../assets/olahraga/logo-cahaya-black.png" height="41" width="147"/>
         <div class="hw-chat">
           <a (click)="this.router.navigateByUrl('kontak')">
             <img class="chat" ngSrc="../../../assets/olahraga/comment-dots-solid.svg" height="19" width="22"/>
@@ -20,7 +20,7 @@
           <ion-item class="hw-transparant" lines="none">
             <p class="title hw-titleatas">Mau olahraga apa hari ini ?</p>
           </ion-item>
-          <span style="color: #a3a3a3">
+          <span style="color: #a3a3a3;font-size:12px">
           Booking online, GRATIS extra time 15menit!
         </span>
         </ion-toolbar>
@@ -33,7 +33,7 @@
           </ion-refresher>
           <div class="hw-section-slide">
             <swiper-container
-              slides-per-view="1.2"
+              slides-per-view="1.16"
               [loop]="true"
               [autoplay]="{ delay: 3000 }"
               [pagination]="{ clickable: true }"
@@ -94,7 +94,7 @@
       <!-- KATEGORI -->
       <div *ngIf="!loading" class="menu-atas">
         <div class="scrollable">
-          <div class="kotak">
+          <div class="kotak kotak_kategori">
             <ion-row>
               <ion-col *ngFor="let category of categories" class="scroll-col">
                 <a [routerLink]="['/category', category.id]">

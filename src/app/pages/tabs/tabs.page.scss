@@ -11,14 +11,17 @@ ion-icon {
 }
 
 .footmenu {
-  max-width: 350px;
+  max-width: 325px;
   margin: 15px auto;
-  background: #ff4156;
+  background:#EAB128;
   border-radius: 20px;
   box-shadow: -1px 6px 10px 0px #808080a8;
   height: 65px;
 }
-
+.footmenu ion-tab-button ion-label{
+  opacity: 1;
+    font-weight: bold;
+}
 .tabbadge {
   position: absolute;
   right: 15px;
