@@ -28,7 +28,7 @@
         <!--Harganya-->
         <div style="padding-left: 20px;padding-right:20px">
           <div style="font-size: 14px;font-weight: 500">
-            Tanggal Expire {{ promo?.tgl_expire_voucher | date: 'DD MMMM YYYY' }}
+            Tanggal Expire {{ promo?.tgl_expire_voucher | date: 'dd MMMM YYYY' }}
           </div>
           <p class="harga">Nilai Voucher {{ promo?.nilai_voucher | currency:'Rp.':'symbol':'0.0' }}</p>
         </div>
