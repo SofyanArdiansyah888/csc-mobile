@@ -1,11 +1,9 @@
 export interface ClientEntity {
+  id?: string;
   nama?:string;
-  sex: string;
-  birthday: string;
-  weight: string;
-  height: string;
-  photo: string;
-  phone: string;
+  no_hp?: string;
+  email?: string;
+  alamat?: string;
   created_at: string;
 }
 

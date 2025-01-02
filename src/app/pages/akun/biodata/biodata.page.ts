@@ -1,12 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicModule} from '@ionic/angular';
-import {UserEntity} from 'src/app/entities/User.entity';
 import {ApiService} from 'src/app/services/api.service';
 import {AlertService} from 'src/app/services/ionic/alert.service';
 import {FormsModule} from "@angular/forms";
 import {BaseHeaderComponent} from "../../../components/base-header/base-header.component";
-import {Router} from "@angular/router";
 import {Location} from "@angular/common";
+import {ClientEntity} from "../../../entities/Client.entity";
 
 @Component({
   selector: 'app-biodata',
@@ -19,48 +18,37 @@ import {Location} from "@angular/common";
   ],
   standalone: true
 })
-export class BiodataPage implements OnInit {
-  user: UserEntity = {
-    name: '',
+export class BiodataPage {
+  user: ClientEntity = {
+    nama: '',
     email: '',
-    client: {
-      nama: '',
-      sex: '',
-      birthday: '',
-      height: '',
-      weight: '',
-      phone: '',
-      photo: '',
-      created_at: ''
-    }
+    no_hp: '',
+    alamat: '',
+    created_at: ''
   };
 
   constructor(private apiService: ApiService,
-              private router: Router,
-              private location: Location,
+              protected location: Location,
               private alertService: AlertService) {
-  }
-
-  async ngOnInit() {
-    const result = await this.apiService.profile();
-    this.user = result.data;
-  }
-
-  async updateProfile(form: any) {
-    try {
-      const result = await this.apiService.updateProfile(form);
-      if (result.data.status === true) {
-        this.alertService.success('Berhasil Mengupdate Data Profile Anda!');
-      } else {
-        this.alertService.fail(result.data.message);
-      }
-    } catch (error: any) {
-      this.alertService.fail(error.response.data.message);
+    const client = localStorage.getItem('user');
+    if (client) {
+      this.user = JSON.parse(client);
     }
   }
 
-  backClick() {
-    this.location.back()
+
+  async updateProfile(form: any) {
+    try {
+      const result = await this.apiService.updateProfile({
+        ...form,
+        id: this.user.id
+      });
+      localStorage.setItem('user', JSON.stringify(result?.data?.data));
+      await this.alertService.success('Berhasil Mengupdate Data Profile Anda!');
+    } catch (error: any) {
+      await this.alertService.fail(error.response.data.message);
+    }
   }
+
 
 }

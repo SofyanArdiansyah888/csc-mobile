@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {BaseConfig} from './baseconfig.service';
 import axios from "axios";
 import {environment} from "../../environments/environment";
+import {ClientEntity} from "../entities/Client.entity";
 
 @Injectable({
   providedIn: 'root'
@@ -78,16 +79,8 @@ export class ApiService {
     return this.api.get('profile');
   }
 
-  updateProfile(data: {
-    birthday: string;
-    sex: string;
-    name: string;
-    email: string;
-    phone: string;
-    height: number;
-    weight: number;
-  }) {
-    return this.api.post('update-profile', data);
+  updateProfile(data:ClientEntity) {
+    return this.api.put('update-profile', data);
   }
 
   forgotPassword(data: { email: string }) {

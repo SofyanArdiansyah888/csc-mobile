@@ -1,77 +1,71 @@
 <ion-content>
   <section>
     <app-base-header
-      (handleBackClick)="backClick()"
+      (handleBackClick)="this.location.back()"
       title="Biodata Diri"
       description="Silahkan input data diri kamu">
     </app-base-header>
-    <form #form="ngForm" (ngSubmit)="updateProfile(form.value)" style="height: 100vh" >
-      <div class="frame-default" >
+    <form #form="ngForm" (ngSubmit)="updateProfile(form.value)" style="height: 100vh">
+      <div class="frame-default">
 
         <ion-grid class="mid">
           <ion-row color="primary">
-            <ion-col align-self-center >
+            <ion-col align-self-center>
               <div class="hw-form-daftar">
-                <ion-item lines="none">
-                  <ion-label position="floating" mode="ios">Nama Lengkap</ion-label>
-                  <ion-input enterkeyhint="go" type="text" name="name" [(ngModel)]="user.name"></ion-input>
-                </ion-item>
 
                 <ion-item lines="none">
-                  <ion-label position="floating" mode="ios">Tanggal Lahir</ion-label>
-                  <!--                [(ngModel)]="user?.client?.birthday"-->
-                  <ion-input enterkeyhint="go" type="date" name="birthday"></ion-input>
+                  <ion-label position="floating" mode="ios">Nama Lengkap</ion-label>
+                  <ion-input enterkeyhint="go" type="text" name="nama" [(ngModel)]="user.nama"></ion-input>
                 </ion-item>
+
+                <!--                <ion-item lines="none">-->
+                <!--                  <ion-label position="floating" mode="ios">Tanggal Lahir</ion-label>-->
+                <!--                  <ion-input enterkeyhint="go" type="date" name="birthday"-->
+                <!--                             [(ngModel)]="user.email"></ion-input>-->
+                <!--                </ion-item>-->
 
                 <ion-item lines="none">
                   <ion-label position="floating" mode="ios">Nomor Handphone</ion-label>
-                  <!--                [(ngModel)]="user?.client?.phone"-->
-                  <ion-input enterkeyhint="go" type="number" name="phone">
-                  </ion-input>
+                  <ion-input enterkeyhint="go" type="number" name="no_hp" [(ngModel)]="user.no_hp"></ion-input>
                 </ion-item>
 
                 <ion-item lines="none">
                   <ion-label position="floating" mode="ios">Email</ion-label>
-                  <!--                [(ngModel)]="user.email"-->
-                  <ion-input enterkeyhint="go" type="email" name="email"></ion-input>
+                  <ion-input enterkeyhint="go" type="email" name="email" [(ngModel)]="user.email"></ion-input>
                 </ion-item>
 
-                <div style="width: 100%">
-                  <ion-label>Jenis Kelamin</ion-label>
-                  <!--                [(ngModel)]="user?.client?.sex" -->
-                  <ion-radio-group name="sex">
-                    <ion-radio class="hw-pria" value="male"></ion-radio>
-                    <ion-radio class="hw-wanita" value="female"></ion-radio>
-                  </ion-radio-group>
-                </div>
+                <!--                <div style="width: 100%">-->
+                <!--                  <ion-label>Jenis Kelamin</ion-label>-->
+                <!--                  <ion-radio-group name="sex" [(ngModel)]="user.email">-->
+                <!--                    <ion-radio class="hw-pria" value="male"></ion-radio>-->
+                <!--                    <ion-radio class="hw-wanita" value="female"></ion-radio>-->
+                <!--                  </ion-radio-group>-->
+                <!--                </div>-->
 
-                <div class="hw-tambahan">
-                  <div class="col2 left">
-                    <ion-item lines="none">
-                      <ion-label position="floating" mode="ios">Tinggi</ion-label>
-                      <!--                    [(ngModel)]="user?.client?.height"-->
-                      <ion-input enterkeyhint="go" type="number" name="height">
-                      </ion-input>
-                    </ion-item>
-                  </div>
-                  <div class="col2 right">
-                    <ion-item lines="none">
-                      <ion-label position="floating" mode="ios">Berat</ion-label>
-                      <!--                    [(ngModel)]="user?.client?.weight"-->
-                      <ion-input enterkeyhint="go" type="text" name="weight"></ion-input>
-                    </ion-item>
-                  </div>
-                </div>
+                <!--                <div class="hw-tambahan">-->
+                <!--                  <div class="col2 left">-->
+                <!--                    <ion-item lines="none">-->
+                <!--                      <ion-label position="floating" mode="ios">Tinggi</ion-label>-->
+                <!--                      <ion-input enterkeyhint="go" type="number" name="height" [(ngModel)]="user.email">-->
+                <!--                      </ion-input>-->
+                <!--                    </ion-item>-->
+                <!--                  </div>-->
+                <!--                  <div class="col2 right">-->
+                <!--                    <ion-item lines="none">-->
+                <!--                      <ion-label position="floating" mode="ios">Berat</ion-label>-->
+                <!--                      <ion-input enterkeyhint="go" type="text" name="weight"-->
+                <!--                                 [(ngModel)]="user.email"></ion-input>-->
+                <!--                    </ion-item>-->
+                <!--                  </div>-->
+                <!--                </div>-->
               </div>
             </ion-col>
           </ion-row>
 
           <ion-row></ion-row>
         </ion-grid>
+        <ion-footer>
 
-      </div>
-      <ion-footer>
-        <div style="padding: 0px 20px 20px 20px; display: block">
           <ion-col>
             <div class="ion-text-center googlebutton">
               <ion-button type="submit" [disabled]="form.invalid" expand="block" class="flex-margin" size="default">
@@ -79,8 +73,10 @@
               </ion-button>
             </div>
           </ion-col>
-        </div>
-      </ion-footer>
+
+        </ion-footer>
+      </div>
+
     </form>
   </section>
 </ion-content>
