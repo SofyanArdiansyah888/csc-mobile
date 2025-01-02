@@ -80,7 +80,7 @@ ion-header {
   }
 
   swiper-slide img {
-    width: 90%;
+    width: 100%;
     height: 157px;
     object-fit: cover;
     border-radius: 20px;
@@ -88,6 +88,13 @@ ion-header {
     margin-bottom: 30px;
     background-color: #fd9f27;
   }
+  .swiper-slide-active{
+    margin-left:20px
+  }
+  .swiper-pagination{
+    text-align:left !important
+  }
+  
 
 }
 

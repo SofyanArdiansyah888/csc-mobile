@@ -23,6 +23,7 @@ import {IonicSlides} from '@ionic/angular/standalone';
     NgStyle,
     RouterLink,
     CommonModule,
+    
   ],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
